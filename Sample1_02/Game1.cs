@@ -243,7 +243,7 @@ namespace Sample1_02
 			{
 				// ゲーム描画
 
-				// タイトル画面
+				// 自機の描画
 				spriteBatch.Draw(
 					gameThumbnail, new Vector2(playerX, playerY), null,
 					Color.White, 0f, new Vector2(32, 32), 1f,
