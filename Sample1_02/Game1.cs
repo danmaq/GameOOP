@@ -11,8 +11,6 @@ namespace Sample1_02
 	/// </summary>
 	public class Game1 : Game
 	{
-		/// <summary>グラフィック デバイス構成管理。</summary>
-		GraphicsDeviceManager graphics;
 
 		/// <summary>スプライト バッチ。</summary>
 		SpriteBatch spriteBatch;
@@ -70,7 +68,7 @@ namespace Sample1_02
 		/// </summary>
 		public Game1()
 		{
-			graphics = new GraphicsDeviceManager(this);
+			new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 		}
 

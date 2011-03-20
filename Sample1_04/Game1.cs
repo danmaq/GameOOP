@@ -3,14 +3,57 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sample1_03
+namespace Sample1_04
 {
+
 	/// <summary>
 	/// This is the main type for your game
 	/// </summary>
 	public class Game1
 		: Game
 	{
+
+		/// <summary>自機サイズ。</summary>
+		const float RECT_SIZE = 64;
+
+		/// <summary>自機の移動速度。</summary>
+		const float PLAYER_SPEED = 3;
+
+		/// <summary>自機の初期残機。</summary>
+		const int PLAYER_AMOUNT = 2;
+
+		/// <summary>画面横幅。</summary>
+		const float SCREEN_WIDTH = 800;
+
+		/// <summary>画面縦幅。</summary>
+		const float SCREEN_HEIGHT = 600;
+
+		/// <summary>画面左端。</summary>
+		const float SCREEN_LEFT = 0;
+
+		/// <summary>画面上端。</summary>
+		const float SCREEN_TOP = 0;
+
+		/// <summary>画面右端。</summary>
+		const float SCREEN_RIGHT = SCREEN_LEFT + SCREEN_WIDTH;
+
+		/// <summary>画面下端。</summary>
+		const float SCREEN_BOTTOM = SCREEN_TOP + SCREEN_HEIGHT;
+
+		/// <summary>エクステンドの閾値。</summary>
+		const int EXTEND_THRESHOLD = 500;
+
+		/// <summary>敵機の最大数。</summary>
+		const int ENEMY_MAX = 100;
+
+		/// <summary>敵機の自機に対する大きさ。</summary>
+		const float ENEMY_SCALE = 0.5f;
+
+		/// <summary>ホーミング確率。</summary>
+		const int HOMING_PERCENTAGE = 20;
+
+		/// <summary>ホーミング時間。</summary>
+		const int HOMING_LIMIT = 60;
 
 		/// <summary>スプライト バッチ。</summary>
 		SpriteBatch spriteBatch;
@@ -46,22 +89,22 @@ namespace Sample1_03
 		float playerY;
 
 		/// <summary>敵のX座標一覧。</summary>
-		float[] enemyX = new float[100];
+		float[] enemyX = new float[ENEMY_MAX];
 
 		/// <summary>敵のY座標一覧。</summary>
-		float[] enemyY = new float[100];
+		float[] enemyY = new float[ENEMY_MAX];
 
 		/// <summary>敵の移動速度一覧。</summary>
-		float[] enemySpeed = new float[100];
+		float[] enemySpeed = new float[ENEMY_MAX];
 
 		/// <summary>敵の移動角度一覧。</summary>
-		double[] enemyAngle = new double[100];
+		double[] enemyAngle = new double[ENEMY_MAX];
 
 		/// <summary>敵のホーミング有効時間。</summary>
-		int[] enemyHomingAmount = new int[100];
+		int[] enemyHomingAmount = new int[ENEMY_MAX];
 
 		/// <summary>ホーミング対応の敵かどうか。</summary>
-		bool[] enemyHoming = new bool[100];
+		bool[] enemyHoming = new bool[ENEMY_MAX];
 
 		/// <summary>
 		/// Constructor.
@@ -118,35 +161,35 @@ namespace Sample1_03
 		{
 			if (keyState.IsKeyDown(Keys.Left))
 			{
-				playerX -= 3;
+				playerX -= PLAYER_SPEED;
 			}
 			if (keyState.IsKeyDown(Keys.Right))
 			{
-				playerX += 3;
+				playerX += PLAYER_SPEED;
 			}
 			if (keyState.IsKeyDown(Keys.Up))
 			{
-				playerY -= 3;
+				playerY -= PLAYER_SPEED;
 			}
 			if (keyState.IsKeyDown(Keys.Down))
 			{
-				playerY += 3;
+				playerY += PLAYER_SPEED;
 			}
-			if (playerX < 0)
+			if (playerX < SCREEN_LEFT)
 			{
-				playerX = 0;
+				playerX = SCREEN_LEFT;
 			}
-			if (playerX > 800)
+			if (playerX > SCREEN_RIGHT)
 			{
-				playerX = 800;
+				playerX = SCREEN_RIGHT;
 			}
-			if (playerY < 0)
+			if (playerY < SCREEN_TOP)
 			{
-				playerY = 0;
+				playerY = SCREEN_TOP;
 			}
-			if (playerY > 600)
+			if (playerY > SCREEN_BOTTOM)
 			{
-				playerY = 600;
+				playerY = SCREEN_BOTTOM;
 			}
 		}
 
@@ -157,30 +200,34 @@ namespace Sample1_03
 		{
 			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0)
 			{
-				for (int i = 0; i < enemyX.Length; i++)
+				const float AROUND_HALF = SCREEN_WIDTH + SCREEN_HEIGHT;
+				const float AROUND_HALF_QUARTER = SCREEN_WIDTH * 2 + SCREEN_HEIGHT;
+				const int AROUND = (int)AROUND_HALF * 2;
+				for (int i = 0; i < ENEMY_MAX; i++)
 				{
-					if (enemyX[i] > 800 || enemyX[i] < 0 &&
-						enemyY[i] > 600 || enemyY[i] < 0)
+					if ((enemyX[i] > SCREEN_RIGHT || enemyX[i] < SCREEN_LEFT) &&
+						(enemyY[i] > SCREEN_BOTTOM || enemyY[i] < SCREEN_TOP))
 					{
 						Random rnd = new Random();
-						int p = rnd.Next((800 + 600) * 2);
-						if (p < 800 || p >= 1400 && p < 2200)
+						int p = rnd.Next(AROUND);
+						if (p < SCREEN_WIDTH || p >= AROUND_HALF &&
+							p < AROUND_HALF_QUARTER)
 						{
-							enemyX[i] = p % 800;
-							enemyY[i] = p < 1400 ? 0 : 600;
+							enemyX[i] = p % SCREEN_WIDTH;
+							enemyY[i] = p < AROUND_HALF ? 0 : SCREEN_HEIGHT;
 						}
 						else
 						{
-							enemyX[i] = p < 1400 ? 0 : 800;
-							enemyY[i] = p % 600;
+							enemyX[i] = p < AROUND_HALF ? 0 : SCREEN_WIDTH;
+							enemyY[i] = p % SCREEN_HEIGHT;
 						}
 						enemySpeed[i] = rnd.Next(1, 3) + counter * 0.001f;
 						enemyAngle[i] = Math.Atan2(
 							playerY - enemyY[i], playerX - enemyX[i]);
-						enemyHoming[i] = rnd.Next(100) >= 80;
-						enemyHomingAmount[i] = enemyHoming[i] ? 60 : 0;
+						enemyHoming[i] = rnd.Next(100) < HOMING_PERCENTAGE;
+						enemyHomingAmount[i] = enemyHoming[i] ? HOMING_LIMIT : 0;
 						score += 10;
-						if (score % 500 < prevScore % 500)
+						if (score % EXTEND_THRESHOLD < prevScore % EXTEND_THRESHOLD)
 						{
 							playerAmount++;
 						}
@@ -202,10 +249,11 @@ namespace Sample1_03
 		private bool enemyMoveAndHitTest()
 		{
 			bool hit = false;
-			for (int i = 0; i < enemyX.Length; i++)
+			const float HITAREA = RECT_SIZE * 0.5f + RECT_SIZE * ENEMY_SCALE * 0.5f;
+			for (int i = 0; i < ENEMY_MAX; i++)
 			{
-				if (Math.Abs(playerX - enemyX[i]) < 48 &&
-					Math.Abs(playerY - enemyY[i]) < 48)
+				if (Math.Abs(playerX - enemyX[i]) < HITAREA &&
+					Math.Abs(playerY - enemyY[i]) < HITAREA)
 				{
 					hit = true;
 					game = --playerAmount >= 0;
@@ -227,10 +275,11 @@ namespace Sample1_03
 		/// </summary>
 		private void enemyReset()
 		{
-			for (int i = 0; i < enemyX.Length; i++)
+			const float FIRST_POSITION = -RECT_SIZE * ENEMY_SCALE;
+			for (int i = 0; i < ENEMY_MAX; i++)
 			{
-				enemyX[i] = -32;
-				enemyY[i] = -32;
+				enemyX[i] = FIRST_POSITION;
+				enemyY[i] = FIRST_POSITION;
 				enemySpeed[i] = 0;
 			}
 		}
@@ -249,12 +298,12 @@ namespace Sample1_03
 			{
 				// ゲーム開始
 				game = true;
-				playerX = 400;
-				playerY = 300;
+				playerX = SCREEN_LEFT + SCREEN_WIDTH * 0.5f;
+				playerY = SCREEN_TOP + SCREEN_HEIGHT * 0.5f;
 				counter = 0;
 				score = 0;
 				prevScore = 0;
-				playerAmount = 2;
+				playerAmount = PLAYER_AMOUNT;
 				enemyReset();
 			}
 		}
@@ -286,9 +335,8 @@ namespace Sample1_03
 		/// </summary>
 		private void drawTitle()
 		{
-			spriteBatch.DrawString(spriteFont, "SAMPLE 1", new
-				Vector2(200, 100), Color.Black, 0f, Vector2.Zero, 5f,
-				SpriteEffects.None, 0f);
+			spriteBatch.DrawString(spriteFont, "SAMPLE 1", new Vector2(200, 100),
+				Color.Black, 0f, Vector2.Zero, 5f, SpriteEffects.None, 0f);
 			spriteBatch.DrawString(spriteFont, "PUSH SPACE KEY.",
 				new Vector2(340, 400), Color.Black);
 		}
@@ -310,7 +358,8 @@ namespace Sample1_03
 		{
 			spriteBatch.Draw(
 				gameThumbnail, new Vector2(playerX, playerY), null,
-				Color.White, 0f, new Vector2(32, 32), 1f, SpriteEffects.None, 0f);
+				Color.White, 0f, new Vector2(RECT_SIZE * 0.5f), 1f,
+				SpriteEffects.None, 0f);
 		}
 
 		/// <summary>
@@ -318,12 +367,12 @@ namespace Sample1_03
 		/// </summary>
 		private void drawEnemy()
 		{
-			for (int i = 0; i < enemyX.Length; i++)
+			for (int i = 0; i < ENEMY_MAX; i++)
 			{
 				spriteBatch.Draw(
 					gameThumbnail, new Vector2(enemyX[i], enemyY[i]), null,
 					enemyHoming[i] ? Color.Orange : Color.Red, 0f,
-					new Vector2(32, 32), 0.5f, SpriteEffects.None, 0f);
+					new Vector2(RECT_SIZE * 0.5f), ENEMY_SCALE, SpriteEffects.None, 0f);
 			}
 		}
 
