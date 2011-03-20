@@ -13,7 +13,7 @@ namespace Sample1_05
 		: Game
 	{
 
-		/// <summary>画像の半分サイズ。</summary>
+		/// <summary>画像サイズ。</summary>
 		const float RECT = 64;
 
 		/// <summary>画面横幅。</summary>
@@ -174,8 +174,8 @@ namespace Sample1_05
 						enemies[i].homingAmount =
 							enemies[i].homing ? Enemy.HOMING_LIMIT : 0;
 						score.now += 10;
-						if (score.now % Player.EXTEND_THRESHOLD <
-							score.prev % Player.EXTEND_THRESHOLD)
+						if (score.now % Score.EXTEND_THRESHOLD <
+							score.prev % Score.EXTEND_THRESHOLD)
 						{
 							player.amount++;
 						}

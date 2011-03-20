@@ -1,4 +1,4 @@
-﻿namespace Sample1_05
+﻿namespace Sample1_06
 {
 
 	/// <summary>

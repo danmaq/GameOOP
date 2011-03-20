@@ -16,9 +16,6 @@
 		/// <summary>自機の初期残機。</summary>
 		public const int DEFAULT_AMOUNT = 2;
 
-		/// <summary>エクステンドの閾値。</summary>
-		public const int EXTEND_THRESHOLD = 500;
-
 		/// <summary>ミス猶予(残機)数。</summary>
 		public int amount;
 
