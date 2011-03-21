@@ -77,7 +77,7 @@ namespace Sample1_07
 			{
 				player.move(keyState);
 				createEnemy();
-				if (Enemy.enemyMoveAndHitTest(player.position))
+				if (Enemy.moveAndHitTest(player.position))
 				{
 					game = --player.amount >= 0;
 				}
@@ -101,34 +101,6 @@ namespace Sample1_07
 			{
 				player.amount++;
 			}
-		}
-
-		/// <summary>
-		/// “G‹@‚ÌˆÚ“®A‹y‚ÑÚG”»’è‚ğ‚µ‚Ü‚·B
-		/// </summary>
-		/// <returns>ÚG‚µ‚½ê‡AtrueB</returns>
-		private bool enemyMoveAndHitTest()
-		{
-			bool hit = false;
-			const float HITAREA = Player.SIZE * 0.5f + Enemy.SIZE * 0.5f;
-			const float HITAREA_SQUARED = HITAREA * HITAREA;
-			for (int i = 0; i < Enemy.MAX; i++)
-			{
-				if (Vector2.DistanceSquared(Enemy.enemies[i].position, player.position) <
-					HITAREA_SQUARED)
-				{
-					hit = true;
-					game = --player.amount >= 0;
-					break;
-				}
-				if (Enemy.enemies[i].homing && --Enemy.enemies[i].homingAmount > 0)
-				{
-					Enemy.enemies[i].velocity =
-						createVelocity(Enemy.enemies[i].position, Enemy.enemies[i].velocity.Length());
-				}
-				Enemy.enemies[i].position += Enemy.enemies[i].velocity;
-			}
-			return hit;
 		}
 
 		/// <summary>

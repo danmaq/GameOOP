@@ -76,26 +76,33 @@ namespace Sample1_07
 		/// </summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <returns>接触した場合、true。</returns>
-		public static bool enemyMoveAndHitTest(Vector2 playerPosition)
+		public static bool moveAndHitTest(Vector2 playerPosition)
 		{
 			bool hit = false;
-			const float HITAREA = Player.SIZE * 0.5f + SIZE * 0.5f;
-			const float HITAREA_SQUARED = HITAREA * HITAREA;
-			for (int i = 0; i < Enemy.MAX; i++)
+			for (int i = 0; !hit && i < Enemy.MAX; i++)
 			{
-				if (Vector2.DistanceSquared(Enemy.enemies[i].position, playerPosition) <
-					HITAREA_SQUARED)
-				{
-					hit = true;
-					break;
-				}
-				if (enemies[i].homing && --enemies[i].homingAmount > 0)
-				{
-					enemies[i].initEnemy(playerPosition, enemies[i].velocity.Length());
-				}
-				enemies[i].position += enemies[i].velocity;
+				hit = enemies[i]._moveAndHitTest(playerPosition);
+			}
+			if (hit)
+			{
+				reset();
 			}
 			return hit;
+		}
+
+		/// <summary>
+		/// 敵機を描画します。
+		/// </summary>
+		private void drawEnemy()
+		{
+			const float SCALE = Enemy.SIZE / RECT;
+			Vector2 origin = new Vector2(RECT * 0.5f);
+			for (int i = 0; i < Enemy.MAX; i++)
+			{
+				graphics.spriteBatch.Draw(graphics.gameThumbnail, Enemy.enemies[i].position,
+					null, Enemy.enemies[i].homing ? Color.Orange : Color.Red,
+					0f, origin, SCALE, SpriteEffects.None, 0f);
+			}
 		}
 
 		/// <summary>
@@ -124,6 +131,24 @@ namespace Sample1_07
 			initVelocity(playerPosition, rnd.Next(1, 3) + speed);
 			homing = rnd.Next(100) < Enemy.HOMING_PERCENTAGE;
 			homingAmount = Enemy.HOMING_LIMIT;
+		}
+
+		/// <summary>
+		/// 敵機の移動、及び接触判定をします。
+		/// </summary>
+		/// <param name="playerPosition">自機の座標。</param>
+		/// <returns>接触した場合、true。</returns>
+		public bool _moveAndHitTest(Vector2 playerPosition)
+		{
+			const float HITAREA = Player.SIZE * 0.5f + SIZE * 0.5f;
+			const float HITAREA_SQUARED = HITAREA * HITAREA;
+			bool hit = (HITAREA_SQUARED > Vector2.DistanceSquared(position, playerPosition));
+			if (homing && --homingAmount > 0)
+			{
+				initVelocity(playerPosition, velocity.Length());
+			}
+			position += velocity;
+			return hit;
 		}
 
 		/// <summary>
