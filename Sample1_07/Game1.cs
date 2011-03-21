@@ -32,7 +32,10 @@ namespace Sample1_07
 		/// <summary>スコア データ。</summary>
 		Score score = new Score();
 
-		/// <summary>自機 データ。</summary>
+		/// <summary>敵機一覧データ。</summary>
+		Enemies enemies = new Enemies();
+
+		/// <summary>自機データ。</summary>
 		Player player = new Player();
 
 		/// <summary>
@@ -42,18 +45,6 @@ namespace Sample1_07
 		{
 			new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
-		}
-
-		/// <summary>
-		/// Allows the game to perform any initialization it needs to before starting to run.
-		/// This is where it can query for any required services and load any non-graphic
-		/// related content.  Calling base.Initialize will enumerate through any components
-		/// and initialize them as well.
-		/// </summary>
-		protected override void Initialize()
-		{
-			player.initialize();
-			base.Initialize();
 		}
 
 		/// <summary>
@@ -77,7 +68,7 @@ namespace Sample1_07
 			{
 				player.move(keyState);
 				createEnemy();
-				if (Enemy.moveAndHitTest(player.position))
+				if (enemies.moveAndHitTest(player.position))
 				{
 					game = --player.amount >= 0;
 				}
@@ -96,7 +87,7 @@ namespace Sample1_07
 		private void createEnemy()
 		{
 			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0 &&
-				Enemy.create(player.position, counter * 0.001f) &&
+				enemies.create(player.position, counter * 0.001f) &&
 				score.add(10))
 			{
 				player.amount++;
@@ -140,7 +131,7 @@ namespace Sample1_07
 				counter = 0;
 				score.reset();
 				player.amount = Player.DEFAULT_AMOUNT;
-				Enemy.reset();
+				enemies.reset();
 			}
 		}
 
@@ -207,8 +198,8 @@ namespace Sample1_07
 			Vector2 origin = new Vector2(RECT * 0.5f);
 			for (int i = 0; i < Enemy.MAX; i++)
 			{
-				graphics.spriteBatch.Draw(graphics.gameThumbnail, Enemy.enemies[i].position,
-					null, Enemy.enemies[i].homing ? Color.Orange : Color.Red,
+				graphics.spriteBatch.Draw(graphics.gameThumbnail, enemies.list[i].position,
+					null, enemies.list[i].homing ? Color.Orange : Color.Red,
 					0f, origin, SCALE, SpriteEffects.None, 0f);
 			}
 		}

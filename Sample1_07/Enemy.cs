@@ -22,9 +22,6 @@ namespace Sample1_07
 		/// <summary>ホーミング時間。</summary>
 		public const int HOMING_LIMIT = 60;
 
-		/// <summary>敵機一覧データ。</summary>
-		public static Enemy[] enemies = new Enemy[MAX];
-
 		/// <summary>現在座標。</summary>
 		public Vector2 position;
 
@@ -36,74 +33,6 @@ namespace Sample1_07
 
 		/// <summary>ホーミング有効時間。</summary>
 		public int homingAmount;
-
-		/// <summary>
-		/// 敵機を初期状態にリセットします。
-		/// </summary>
-		public static void reset()
-		{
-			Vector2 firstPosition = new Vector2(-SIZE);
-			for (int i = 0; i < Enemy.MAX; i++)
-			{
-				enemies[i].position = firstPosition;
-				enemies[i].velocity = Vector2.Zero;
-			}
-		}
-
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
-		/// <param name="playerPosition">自機の座標。</param>
-		/// <param name="speed">基準速度。</param>
-		/// <returns>敵機を作成できた場合、true。</returns>
-		public static bool create(Vector2 playerPosition, float speed)
-		{
-			bool result = false;
-			for (int i = 0; !result && i < Enemy.MAX; i++)
-			{
-				result = !Game1.SCREEN.Contains(
-					(int)enemies[i].position.X, (int)enemies[i].position.Y);
-				if (result)
-				{
-					enemies[i].initEnemy(playerPosition, speed);
-				}
-			}
-			return result;
-		}
-
-		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
-		/// </summary>
-		/// <param name="playerPosition">自機の座標。</param>
-		/// <returns>接触した場合、true。</returns>
-		public static bool moveAndHitTest(Vector2 playerPosition)
-		{
-			bool hit = false;
-			for (int i = 0; !hit && i < Enemy.MAX; i++)
-			{
-				hit = enemies[i]._moveAndHitTest(playerPosition);
-			}
-			if (hit)
-			{
-				reset();
-			}
-			return hit;
-		}
-
-		/// <summary>
-		/// 敵機を描画します。
-		/// </summary>
-		private void drawEnemy()
-		{
-			const float SCALE = Enemy.SIZE / RECT;
-			Vector2 origin = new Vector2(RECT * 0.5f);
-			for (int i = 0; i < Enemy.MAX; i++)
-			{
-				graphics.spriteBatch.Draw(graphics.gameThumbnail, Enemy.enemies[i].position,
-					null, Enemy.enemies[i].homing ? Color.Orange : Color.Red,
-					0f, origin, SCALE, SpriteEffects.None, 0f);
-			}
-		}
 
 		/// <summary>
 		/// 敵機をアクティブにします。

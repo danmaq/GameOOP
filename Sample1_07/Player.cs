@@ -8,7 +8,7 @@ namespace Sample1_07
 	/// <summary>
 	/// 自機の情報。
 	/// </summary>
-	struct Player
+	class Player
 	{
 
 		/// <summary>大きさ。</summary>
@@ -35,7 +35,7 @@ namespace Sample1_07
 		/// <summary>
 		/// 各種値を初期化します。
 		/// </summary>
-		public void initialize()
+		public Player()
 		{
 			acceptInputKeyList =
 				new Keys[] { Keys.Up, Keys.Down, Keys.Left, Keys.Right };

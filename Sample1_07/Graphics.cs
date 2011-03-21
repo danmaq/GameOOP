@@ -8,7 +8,7 @@ namespace Sample1_07
 	/// <summary>
 	/// スプライト バッチやコンテンツなど描画周りのデータ一覧。
 	/// </summary>
-	struct Graphics
+	class Graphics
 	{
 
 		/// <summary>スプライト バッチ。</summary>
