@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sample1_07
+namespace Sample1_08
 {
 
 	/// <summary>
@@ -70,7 +70,7 @@ namespace Sample1_07
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{
-			const float SCALE = -Enemy.SIZE / Graphics.RECT;
+			const float SCALE = Enemy.SIZE / Graphics.RECT;
 			Vector2 origin = new Vector2(Graphics.RECT * 0.5f);
 			for (int i = 0; i < MAX; i++)
 			{

@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sample1_07
+namespace Sample1_08
 {
 
 	/// <summary>
@@ -16,22 +16,22 @@ namespace Sample1_07
 		public static readonly Rectangle SCREEN = new Rectangle(0, 0, 800, 600);
 
 		/// <summary>ゲーム中かどうか。</summary>
-		bool game;
+		private bool game;
 
 		/// <summary>ゲームの進行カウンタ。</summary>
-		int counter;
+		private int counter;
 
 		/// <summary>描画周りデータ。</summary>
-		Graphics graphics;
+		private Graphics graphics;
 
 		/// <summary>スコア データ。</summary>
-		Score score = new Score();
+		private readonly Score score = new Score();
 
 		/// <summary>敵機一覧データ。</summary>
-		Enemies enemies = new Enemies();
+		private readonly Enemies enemies = new Enemies();
 
 		/// <summary>自機データ。</summary>
-		Player player = new Player();
+		private readonly Player player = new Player();
 
 		/// <summary>
 		/// Constructor.

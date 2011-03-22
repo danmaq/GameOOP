@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace Sample1_07
+namespace Sample1_08
 {
 
 	/// <summary>
@@ -98,7 +98,7 @@ namespace Sample1_07
 		/// </summary>
 		/// <param name="playerPosition">プレイヤーの位置。</param>
 		/// <param name="speed">速度。</param>
-		public void initVelocity(Vector2 playerPosition, float speed)
+		private void initVelocity(Vector2 playerPosition, float speed)
 		{
 			Vector2 v = playerPosition - position;
 			if (v == Vector2.Zero)

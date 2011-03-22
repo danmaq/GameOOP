@@ -1,17 +1,17 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
-    <ProjectGuid>{8BD32CF3-C8E7-406F-BC76-AA2D496AC61E}</ProjectGuid>
+    <ProjectGuid>{AF995462-D45F-4B43-95E8-3F9456E88891}</ProjectGuid>
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sample1_07</RootNamespace>
-    <AssemblyName>Sample1_07</AssemblyName>
+    <RootNamespace>Sample1_08</RootNamespace>
+    <AssemblyName>Sample1_08</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <XnaFrameworkVersion>v3.1</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
-    <XnaCrossPlatformGroupID>6304b881-d9d5-406f-a6f8-a9664022a026</XnaCrossPlatformGroupID>
+    <XnaCrossPlatformGroupID>7af9bca3-3077-4acc-b375-5abc1c8b9365</XnaCrossPlatformGroupID>
     <ApplicationIcon>Game.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
     <PublishUrl>publish\</PublishUrl>
@@ -42,7 +42,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>false</XnaCompressContent>
-    <DocumentationFile>bin\x86\Debug\Sample1_07.XML</DocumentationFile>
+    <DocumentationFile>bin\x86\Debug\Sample1_08.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
@@ -55,7 +55,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>true</XnaCompressContent>
-    <DocumentationFile>bin\x86\Release\Sample1_07.XML</DocumentationFile>
+    <DocumentationFile>bin\x86\Release\Sample1_08.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=3.1.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d, processorArchitecture=x86">
@@ -101,7 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <NestedContentProject Include="Content\Content.contentproj">
-      <Project>dd37c7b9-b559-4667-9644-b2420791eb0c</Project>
+      <Project>adf8fbdf-d62c-4bfe-83b4-8f3b2733d214</Project>
       <Visible>False</Visible>
     </NestedContentProject>
   </ItemGroup>
