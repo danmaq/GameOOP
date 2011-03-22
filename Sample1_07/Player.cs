@@ -1,6 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 namespace Sample1_07
 {
@@ -65,6 +66,17 @@ namespace Sample1_07
 			{
 				position = prev;
 			}
+		}
+
+		/// <summary>
+		/// 描画します。
+		/// </summary>
+		/// <param name="graphics">グラフィック データ。</param>
+		public void draw(Graphics graphics)
+		{
+			graphics.spriteBatch.Draw(graphics.gameThumbnail, position,
+				null, Color.White, 0f, new Vector2(Graphics.RECT * 0.5f),
+				Player.SIZE / Graphics.RECT, SpriteEffects.None, 0f);
 		}
 	}
 }

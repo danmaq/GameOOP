@@ -4,7 +4,7 @@
 	/// <summary>
 	/// スコア情報。
 	/// </summary>
-	struct Score
+	class Score
 	{
 
 		/// <summary>エクステンドの閾値。</summary>

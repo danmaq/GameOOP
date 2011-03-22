@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 namespace Sample1_07
 {
@@ -39,7 +39,23 @@ namespace Sample1_07
 		/// </summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <param name="speed">基準速度。</param>
-		public void initEnemy(Vector2 playerPosition, float speed)
+		/// <returns>敵機をアクティブにできた場合、true。</returns>
+		public bool start(Vector2 playerPosition, float speed)
+		{
+			bool result = !Game1.SCREEN.Contains((int)position.X, (int)position.Y);
+			if (result)
+			{
+				startForce(playerPosition, speed);
+			}
+			return result;
+		}
+
+		/// <summary>
+		/// 敵機を強制的にアクティブにします。
+		/// </summary>
+		/// <param name="playerPosition">自機の座標。</param>
+		/// <param name="speed">基準速度。</param>
+		public void startForce(Vector2 playerPosition, float speed)
 		{
 			Random rnd = new Random();
 			float AROUND_HALF = Game1.SCREEN.Width + Game1.SCREEN.Height;

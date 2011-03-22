@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Sample1_07
 {
@@ -33,12 +30,7 @@ namespace Sample1_07
 			bool result = false;
 			for (int i = 0; !result && i < Enemy.MAX; i++)
 			{
-				result = !Game1.SCREEN.Contains(
-					(int)list[i].position.X, (int)list[i].position.Y);
-				if (result)
-				{
-					list[i].initEnemy(playerPosition, speed);
-				}
+				result = list[i].start(playerPosition, speed);
 			}
 			return result;
 		}
@@ -72,6 +64,22 @@ namespace Sample1_07
 			{
 				list[i].position = firstPosition;
 				list[i].velocity = Vector2.Zero;
+			}
+		}
+
+		/// <summary>
+		/// 描画します。
+		/// </summary>
+		/// <param name="graphics">グラフィック データ。</param>
+		public void draw(Graphics graphics)
+		{
+			const float SCALE = SIZE / Graphics.RECT;
+			Vector2 origin = new Vector2(Graphics.RECT * 0.5f);
+			for (int i = 0; i < Enemy.MAX; i++)
+			{
+				graphics.spriteBatch.Draw(graphics.gameThumbnail, list[i].position,
+					null, list[i].homing ? Color.Orange : Color.Red,
+					0f, origin, SCALE, SpriteEffects.None, 0f);
 			}
 		}
 	}
