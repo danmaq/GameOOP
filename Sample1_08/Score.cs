@@ -8,16 +8,24 @@
 	{
 
 		/// <summary>エクステンドの閾値。</summary>
-		public const int EXTEND_THRESHOLD = 500;
-
-		/// <summary>現在のスコア。</summary>
-		public int now;
+		private const int EXTEND_THRESHOLD = 500;
 
 		/// <summary>前フレームのスコア。</summary>
 		private int prev;
 
+		/// <summary>現在のスコア。</summary>
+		public int now
+		{
+			get;
+			private set;
+		}
+
 		/// <summary>ハイスコア。</summary>
-		public int highest;
+		public int highest
+		{
+			get;
+			private set;
+		}
 
 		/// <summary>
 		/// スコアをリセットします。

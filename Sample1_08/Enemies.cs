@@ -11,10 +11,10 @@ namespace Sample1_08
 	{
 
 		/// <summary>最大数。</summary>
-		public const int MAX = 100;
+		private const int MAX = 100;
 
 		/// <summary>敵機一覧データ。</summary>
-		public Enemy[] list = new Enemy[MAX];
+		private Enemy[] list = new Enemy[MAX];
 
 		/// <summary>
 		/// 敵機を作成します。
@@ -42,7 +42,7 @@ namespace Sample1_08
 			bool hit = false;
 			for (int i = 0; !hit && i < MAX; i++)
 			{
-				hit = list[i]._moveAndHitTest(playerPosition);
+				hit = list[i].moveAndHitTest(playerPosition);
 			}
 			if (hit)
 			{
@@ -59,8 +59,7 @@ namespace Sample1_08
 			Vector2 firstPosition = new Vector2(-Enemy.SIZE);
 			for (int i = 0; i < MAX; i++)
 			{
-				list[i].position = firstPosition;
-				list[i].velocity = Vector2.Zero;
+				list[i].sleep();
 			}
 		}
 
@@ -75,7 +74,7 @@ namespace Sample1_08
 			for (int i = 0; i < MAX; i++)
 			{
 				graphics.spriteBatch.Draw(graphics.gameThumbnail, list[i].position,
-					null, list[i].homing ? Color.Orange : Color.Red,
+					null, list[i].color,
 					0f, origin, SCALE, SpriteEffects.None, 0f);
 			}
 		}

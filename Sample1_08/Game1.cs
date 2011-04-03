@@ -65,7 +65,7 @@ namespace Sample1_08
 				createEnemy();
 				if (enemies.moveAndHitTest(player.position))
 				{
-					game = --player.amount >= 0;
+					game = player.miss();
 				}
 				counter++;
 			}
@@ -85,7 +85,7 @@ namespace Sample1_08
 				enemies.create(player.position, counter * 0.001f) &&
 				score.add(10))
 			{
-				player.amount++;
+				player.extend();
 			}
 		}
 
@@ -103,11 +103,9 @@ namespace Sample1_08
 			{
 				// ÉQÅ[ÉÄäJén
 				game = true;
-				Point center = SCREEN.Center;
-				player.position = new Vector2(center.X, center.Y);
 				counter = 0;
 				score.reset();
-				player.amount = Player.DEFAULT_AMOUNT;
+				player.reset();
 				enemies.reset();
 			}
 		}
@@ -145,7 +143,7 @@ namespace Sample1_08
 					"SCORE: " + score.now.ToString(),
 					new Vector2(300, 560), Color.Black);
 				graphics.spriteBatch.DrawString(graphics.spriteFont,
-					"PLAYER: " + new string('*', player.amount),
+					"PLAYER: " + player.amountString,
 					new Vector2(600, 560), Color.Black);
 			}
 			graphics.spriteBatch.DrawString(graphics.spriteFont,

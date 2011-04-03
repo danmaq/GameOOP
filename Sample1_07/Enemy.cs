@@ -80,7 +80,7 @@ namespace Sample1_07
 		/// </summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <returns>接触した場合、true。</returns>
-		public bool _moveAndHitTest(Vector2 playerPosition)
+		public bool moveAndHitTest(Vector2 playerPosition)
 		{
 			const float HITAREA = Player.SIZE * 0.5f + SIZE * 0.5f;
 			const float HITAREA_SQUARED = HITAREA * HITAREA;

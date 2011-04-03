@@ -42,7 +42,7 @@ namespace Sample1_07
 			bool hit = false;
 			for (int i = 0; !hit && i < MAX; i++)
 			{
-				hit = list[i]._moveAndHitTest(playerPosition);
+				hit = list[i].moveAndHitTest(playerPosition);
 			}
 			if (hit)
 			{
