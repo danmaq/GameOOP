@@ -1,14 +1,16 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-namespace Sample1_08
+namespace Sample1_09
 {
 
 	/// <summary>
 	/// 敵機の情報。
 	/// </summary>
 	struct Enemy
+		: ITask
 	{
 
 		/// <summary>大きさ。</summary>
@@ -47,11 +49,20 @@ namespace Sample1_08
 		}
 
 		/// <summary>
+		/// 1フレーム分の更新を行います。
+		/// </summary>
+		/// <param name="keyState">現在のキー入力状態。</param>
+		public void update(KeyboardState keyState)
+		{
+			position += velocity;
+		}
+
+		/// <summary>
 		/// 敵機の移動、及び接触判定をします。
 		/// </summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <returns>接触した場合、true。</returns>
-		public bool moveAndHitTest(Vector2 playerPosition)
+		public bool hitTest(Vector2 playerPosition)
 		{
 			const float HITAREA = Player.SIZE * 0.5f + SIZE * 0.5f;
 			const float HITAREA_SQUARED = HITAREA * HITAREA;
@@ -60,7 +71,6 @@ namespace Sample1_08
 			{
 				initVelocity(playerPosition, velocity.Length());
 			}
-			position += velocity;
 			return hit;
 		}
 
@@ -95,7 +105,7 @@ namespace Sample1_08
 		/// <summary>
 		/// 敵機を強制的にスリープにします。
 		/// </summary>
-		public void sleep()
+		public void reset()
 		{
 			position = firstPosition;
 			velocity = Vector2.Zero;

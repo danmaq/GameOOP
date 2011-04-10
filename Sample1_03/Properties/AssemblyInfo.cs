@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("SAMPLE 1")]
 [assembly: AssemblyProduct("SAMPLE 1")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("サブルーチンとして各機能を区切ってみた。")]
 [assembly: AssemblyCompany("danmaq")]
 
 [assembly: AssemblyCopyright("©2011 danmaq All rights reserved.")]

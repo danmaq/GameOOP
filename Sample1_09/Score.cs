@@ -1,17 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-namespace Sample1_08
+namespace Sample1_09
 {
 
 	/// <summary>
 	/// スコア情報。
 	/// </summary>
 	class Score
+		: ITask
 	{
 
 		/// <summary>エクステンドの閾値。</summary>
 		private const int EXTEND_THRESHOLD = 500;
+
+		/// <summary>現在のスコアを描画するかどうか。</summary>
+		public bool drawNowScore = false;
 
 		/// <summary>前フレームのスコア。</summary>
 		private int prev;
@@ -37,6 +42,16 @@ namespace Sample1_08
 		{
 			now = 0;
 			prev = 0;
+			drawNowScore = true;
+		}
+
+		/// <summary>
+		/// 1フレーム分の更新を行います。
+		/// </summary>
+		/// <param name="keyState">現在のキー入力状態。</param>
+		public void update(KeyboardState keyState)
+		{
+			// スコアクラスは別段毎フレーム更新するようなものはない。
 		}
 
 		/// <summary>
@@ -60,10 +75,9 @@ namespace Sample1_08
 		/// 描画します。
 		/// </summary>
 		/// <param name="graphics">グラフィック データ。</param>
-		/// <param name="nowScore">現在のスコアも描画するかどうか。</param>
-		public void draw(Graphics graphics, bool nowScore)
+		public void draw(Graphics graphics)
 		{
-			if (nowScore)
+			if (drawNowScore)
 			{
 				graphics.spriteBatch.DrawString(graphics.spriteFont,
 					"SCORE: " + now.ToString(),

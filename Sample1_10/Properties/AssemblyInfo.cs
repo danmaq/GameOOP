@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("SAMPLE 1")]
 [assembly: AssemblyProduct("SAMPLE 1")]
-[assembly: AssemblyDescription("データを各構造体に分割してみた。")]
+[assembly: AssemblyDescription("ポリモーフィズムをさらに進め、シーンもタスク化した。いくつかのクラスはSingletonパターンを適用。")]
 [assembly: AssemblyCompany("danmaq")]
 
 [assembly: AssemblyCopyright("©2011 danmaq All rights reserved.")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("52d38845-1608-46f1-9886-8c4bdaf31b3a")]
+[assembly: Guid("9f0709a7-f7bc-4801-9bb1-61b30047b96e")]
 
 
 // Version information for an assembly consists of the following four values:

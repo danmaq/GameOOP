@@ -1,13 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
-namespace Sample1_08
+namespace Sample1_09
 {
 
 	/// <summary>
 	/// 敵機の情報。
 	/// </summary>
 	class Enemies
+		: ITask
 	{
 
 		/// <summary>最大数。</summary>
@@ -33,16 +35,28 @@ namespace Sample1_08
 		}
 
 		/// <summary>
+		/// 1フレーム分の更新を行います。
+		/// </summary>
+		/// <param name="keyState">現在のキー入力状態。</param>
+		public void update(KeyboardState keyState)
+		{
+			for (int i = 0; i < MAX; i++)
+			{
+				list[i].update(keyState);
+			}
+		}
+
+		/// <summary>
 		/// 敵機の移動、及び接触判定をします。
 		/// </summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <returns>接触した場合、true。</returns>
-		public bool moveAndHitTest(Vector2 playerPosition)
+		public bool hitTest(Vector2 playerPosition)
 		{
 			bool hit = false;
 			for (int i = 0; !hit && i < MAX; i++)
 			{
-				hit = list[i].moveAndHitTest(playerPosition);
+				hit = list[i].hitTest(playerPosition);
 			}
 			if (hit)
 			{
@@ -59,7 +73,7 @@ namespace Sample1_08
 			Vector2 firstPosition = new Vector2(-Enemy.SIZE);
 			for (int i = 0; i < MAX; i++)
 			{
-				list[i].sleep();
+				list[i].reset();
 			}
 		}
 

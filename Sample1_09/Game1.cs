@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sample1_08
+namespace Sample1_09
 {
 
 	/// <summary>
@@ -33,6 +33,9 @@ namespace Sample1_08
 		/// <summary>自機データ。</summary>
 		private readonly Player player = new Player();
 
+		/// <summary>タスク一覧。</summary>
+		private readonly ITask[] tasks;
+
 		/// <summary>
 		/// Constructor.
 		/// </summary>
@@ -40,6 +43,7 @@ namespace Sample1_08
 		{
 			new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
+			tasks = new ITask[] { enemies, player, score };
 		}
 
 		/// <summary>
@@ -61,11 +65,15 @@ namespace Sample1_08
 			KeyboardState keyState = Keyboard.GetState();
 			if (game)
 			{
-				player.move(keyState);
+				for (int i = 0; i < tasks.Length; i++)
+				{
+					tasks[i].update(keyState);
+				}
 				createEnemy();
-				if (enemies.moveAndHitTest(player.position))
+				if (enemies.hitTest(player.position))
 				{
 					game = player.miss();
+					score.drawNowScore = game;
 				}
 				counter++;
 			}
@@ -104,9 +112,10 @@ namespace Sample1_08
 				// ゲーム開始
 				game = true;
 				counter = 0;
-				score.reset();
-				player.reset();
-				enemies.reset();
+				for (int i = 0; i < tasks.Length; i++)
+				{
+					tasks[i].reset();
+				}
 			}
 		}
 
@@ -143,7 +152,7 @@ namespace Sample1_08
 					"PLAYER: " + player.amountString,
 					new Vector2(600, 560), Color.Black);
 			}
-			score.draw(graphics, all);
+			score.draw(graphics);
 		}
 
 		/// <summary>

@@ -1,17 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sample1_08
+namespace Sample1_11.core
 {
 
 	/// <summary>
 	/// スコア情報。
 	/// </summary>
 	class Score
+		: ITask
 	{
+
+		/// <summary>クラス オブジェクト。</summary>
+		public static readonly Score instance = new Score();
+
+		/// <summary>
+		/// コンストラクタ。
+		/// </summary>
+		private Score()
+		{
+		}
 
 		/// <summary>エクステンドの閾値。</summary>
 		private const int EXTEND_THRESHOLD = 500;
+
+		/// <summary>現在のスコアを描画するかどうか。</summary>
+		public bool drawNowScore = false;
 
 		/// <summary>前フレームのスコア。</summary>
 		private int prev;
@@ -33,10 +47,19 @@ namespace Sample1_08
 		/// <summary>
 		/// スコアをリセットします。
 		/// </summary>
-		public void reset()
+		public void setup()
 		{
 			now = 0;
 			prev = 0;
+			drawNowScore = true;
+		}
+
+		/// <summary>
+		/// 1フレーム分の更新を行います。
+		/// </summary>
+		public void update()
+		{
+			// スコアクラスは別段毎フレーム更新するようなものはない。
 		}
 
 		/// <summary>
@@ -60,10 +83,9 @@ namespace Sample1_08
 		/// 描画します。
 		/// </summary>
 		/// <param name="graphics">グラフィック データ。</param>
-		/// <param name="nowScore">現在のスコアも描画するかどうか。</param>
-		public void draw(Graphics graphics, bool nowScore)
+		public void draw(Graphics graphics)
 		{
-			if (nowScore)
+			if (drawNowScore)
 			{
 				graphics.spriteBatch.DrawString(graphics.spriteFont,
 					"SCORE: " + now.ToString(),
