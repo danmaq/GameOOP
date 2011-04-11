@@ -85,7 +85,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="character\Enemies.cs" />
+    <Compile Include="character\EnemyManager.cs" />
     <Compile Include="character\Enemy.cs" />
     <Compile Include="scene\GamePlay.cs" />
     <Compile Include="core\Graphics.cs" />

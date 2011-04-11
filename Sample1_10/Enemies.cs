@@ -67,7 +67,6 @@ namespace Sample1_10
 		/// </summary>
 		public void setup()
 		{
-			Vector2 firstPosition = new Vector2(-Enemy.SIZE);
 			for (int i = 0; i < MAX; i++)
 			{
 				list[i].setup();

@@ -16,7 +16,7 @@ namespace Sample1_11.scene
 		public static readonly IScene instance = new GamePlay();
 
 		/// <summary>敵機一覧データ。</summary>
-		private readonly Enemies enemies = new Enemies();
+		private readonly EnemyManager enemies = new EnemyManager();
 
 		/// <summary>自機データ。</summary>
 		private readonly Player player = new Player();
@@ -33,7 +33,8 @@ namespace Sample1_11.scene
 		private GamePlay()
 		{
 			next = this;
-			mgrTask = new TaskManager(new ITask[] { enemies, player, Score.instance });
+			mgrTask = new TaskManager();
+			mgrTask.tasks.AddRange(new ITask[] { enemies, player, Score.instance });
 		}
 
 		/// <summary>次に遷移するシーン。</summary>

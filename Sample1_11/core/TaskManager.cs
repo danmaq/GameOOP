@@ -1,4 +1,6 @@
-﻿namespace Sample1_11.core
+﻿using System.Collections.Generic;
+
+namespace Sample1_11.core
 {
 
 	/// <summary>
@@ -9,19 +11,13 @@
 	{
 
 		/// <summary>タスク一覧。</summary>
-		private readonly ITask[] tasks;
-
-		/// <summary>タスク数。</summary>
-		private readonly int length;
+		public readonly List<ITask> tasks = new List<ITask>();
 
 		/// <summary>
 		/// コンストラクタ。
 		/// </summary>
-		/// <param name="tasks">タスク一覧。</param>
-		public TaskManager(ITask[] tasks)
+		public TaskManager()
 		{
-			this.tasks = tasks;
-			length = tasks.Length;
 		}
 
 		/// <summary>
@@ -29,6 +25,7 @@
 		/// </summary>
 		public void setup()
 		{
+			int length = tasks.Count;
 			for (int i = 0; i < length; i++)
 			{
 				tasks[i].setup();
@@ -40,6 +37,7 @@
 		/// </summary>
 		public void update()
 		{
+			int length = tasks.Count;
 			for (int i = 0; i < length; i++)
 			{
 				tasks[i].update();
@@ -52,6 +50,7 @@
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{
+			int length = tasks.Count;
 			for (int i = 0; i < length; i++)
 			{
 				tasks[i].draw(graphics);
