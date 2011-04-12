@@ -6,6 +6,7 @@
 	/// </summary>
 	interface ITask
 	{
+
 		/// <summary>
 		/// タスクを開始します。
 		/// </summary>

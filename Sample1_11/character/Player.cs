@@ -14,6 +14,9 @@ namespace Sample1_11.character
 		: ITask
 	{
 
+		/// <summary>クラス インスタンス。</summary>
+		public static readonly Player instance = new Player();
+
 		/// <summary>大きさ。</summary>
 		public const float SIZE = 64;
 
@@ -63,7 +66,7 @@ namespace Sample1_11.character
 		/// <summary>
 		/// 各種値を初期化します。
 		/// </summary>
-		public Player()
+		private Player()
 		{
 			acceptInputKeyList =
 				new Keys[] { Keys.Up, Keys.Down, Keys.Left, Keys.Right };

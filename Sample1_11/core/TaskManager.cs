@@ -6,12 +6,13 @@ namespace Sample1_11.core
 	/// <summary>
 	/// タスク管理クラス。
 	/// </summary>
-	class TaskManager
+	class TaskManager<T>
 		: ITask
+		where T : ITask
 	{
 
 		/// <summary>タスク一覧。</summary>
-		public readonly List<ITask> tasks = new List<ITask>();
+		public readonly List<T> tasks = new List<T>();
 
 		/// <summary>
 		/// コンストラクタ。

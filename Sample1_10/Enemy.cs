@@ -13,7 +13,7 @@ namespace Sample1_10
 	{
 
 		/// <summary>大きさ。</summary>
-		public const float SIZE = 32;
+		private const float SIZE = 32;
 
 		/// <summary>ホーミング確率。</summary>
 		private const int HOMING_PERCENTAGE = 20;
@@ -34,18 +34,10 @@ namespace Sample1_10
 		private int homingAmount;
 
 		/// <summary>現在座標。</summary>
-		public Vector2 position
-		{
-			get;
-			private set;
-		}
+		private Vector2 position;
 
 		/// <summary>色。</summary>
-		public Color color
-		{
-			get;
-			private set;
-		}
+		private Color color;
 
 		/// <summary>
 		/// 1フレーム分の更新を行います。

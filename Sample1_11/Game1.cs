@@ -23,7 +23,7 @@ namespace Sample1_11
 		private SceneManager mgrScene = new SceneManager(Title.instance);
 
 		/// <summary>タスク管理クラス。</summary>
-		private readonly TaskManager mgrTask;
+		private readonly TaskManager<ITask> mgrTask = new TaskManager<ITask>();
 
 		/// <summary>
 		/// Constructor.
@@ -32,7 +32,6 @@ namespace Sample1_11
 		{
 			new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
-			mgrTask = new TaskManager();
 			mgrTask.tasks.AddRange(new ITask[] { KeyStatus.instance, mgrScene });
 		}
 

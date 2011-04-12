@@ -18,11 +18,8 @@ namespace Sample1_11.scene
 		/// <summary>敵機一覧データ。</summary>
 		private readonly EnemyManager enemies = new EnemyManager();
 
-		/// <summary>自機データ。</summary>
-		private readonly Player player = new Player();
-
 		/// <summary>タスク管理クラス。</summary>
-		private readonly TaskManager mgrTask;
+		private readonly TaskManager<ITask> mgrTask = new TaskManager<ITask>();
 
 		/// <summary>ゲームの進行カウンタ。</summary>
 		private int counter;
@@ -33,8 +30,7 @@ namespace Sample1_11.scene
 		private GamePlay()
 		{
 			next = this;
-			mgrTask = new TaskManager();
-			mgrTask.tasks.AddRange(new ITask[] { enemies, player, Score.instance });
+			mgrTask.tasks.AddRange(new ITask[] { enemies, Player.instance, Score.instance });
 		}
 
 		/// <summary>次に遷移するシーン。</summary>
@@ -61,7 +57,7 @@ namespace Sample1_11.scene
 			next = this;
 			mgrTask.update();
 			createEnemy();
-			next = (enemies.hitTest(player.position) && !player.miss()) ?
+			next = (enemies.hitTest() && !Player.instance.miss()) ?
 				Title.instance : this;
 			counter++;
 		}
@@ -72,10 +68,10 @@ namespace Sample1_11.scene
 		private void createEnemy()
 		{
 			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0 &&
-				enemies.create(player.position, counter * 0.001f) &&
+				enemies.create(counter * 0.001f) &&
 				Score.instance.add(10))
 			{
-				player.extend();
+				Player.instance.extend();
 			}
 		}
 

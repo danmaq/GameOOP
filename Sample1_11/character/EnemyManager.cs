@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
 using Sample1_11.core;
 
 namespace Sample1_11.character
@@ -8,27 +8,62 @@ namespace Sample1_11.character
 	/// 敵機の情報。
 	/// </summary>
 	class EnemyManager
-		: TaskManager
+		: TaskManager<Enemy>
 	{
+
+		/// <summary>ホーミング敵機の確率。</summary>
+		private const int HOMING_PERCENTAGE = 20;
+
+		/// <summary>粗悪精度敵機の確率。</summary>
+		private const int INFERIORITY_PERCENTAGE = 30;
+
+		/// <summary>疑似乱数ジェネレータ。</summary>
+		private readonly Random rnd = new Random();
 
 		/// <summary>
 		/// 敵機を作成します。
 		/// </summary>
-		/// <param name="playerPosition">自機の座標。</param>
+		/// <param name="speed">基準速度。</param>
+		public bool create(float speed)
+		{
+			bool result = false;
+			int percentage = rnd.Next(100);
+			if (percentage - HOMING_PERCENTAGE < 0)
+			{
+				result = create<EnemyHoming>(speed);
+			}
+			else if (percentage - INFERIORITY_PERCENTAGE < 0)
+			{
+				result = create<EnemyInferiority>(speed);
+			}
+			else
+			{
+				result = create<EnemyStraight>(speed);
+			}
+			return result;
+		}
+
+		/// <summary>
+		/// 敵機を作成します。
+		/// </summary>
 		/// <param name="speed">基準速度。</param>
 		/// <returns>敵機を作成できた場合、true。</returns>
-		public bool create(Vector2 playerPosition, float speed)
+		public bool create<T>(float speed)
+			where T : Enemy, new()
 		{
 			bool result = false;
 			int length = tasks.Count;
 			for (int i = 0; !result && i < length; i++)
 			{
-				result = ((Enemy)tasks[i]).start(playerPosition, speed);
+				if (tasks[i] is T)
+				{
+					result = tasks[i].start(speed);
+				}
 			}
 			if (!result)
 			{
-				Enemy enemy = new Enemy();
-				enemy.start(playerPosition, speed);
+				T enemy = new T();
+				enemy.start(speed);
 				tasks.Add(enemy);
 				result = true;
 			}
@@ -38,15 +73,14 @@ namespace Sample1_11.character
 		/// <summary>
 		/// 敵機の移動、及び接触判定をします。
 		/// </summary>
-		/// <param name="playerPosition">自機の座標。</param>
 		/// <returns>接触した場合、true。</returns>
-		public bool hitTest(Vector2 playerPosition)
+		public bool hitTest()
 		{
 			bool hit = false;
 			int length = tasks.Count;
 			for (int i = 0; !hit && i < length; i++)
 			{
-				hit = ((Enemy)tasks[i]).hitTest(playerPosition);
+				hit = tasks[i].hitTest();
 			}
 			if (hit)
 			{

@@ -9,7 +9,11 @@
 	{
 
 		/// <summary>現在のシーン。</summary>
-		public IScene nowScene;
+		public IScene nowScene
+		{
+			get;
+			private set;
+		}
 
 		/// <summary>
 		/// コンストラクタ。

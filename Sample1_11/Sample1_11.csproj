@@ -72,6 +72,7 @@
     <Reference Include="System">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
@@ -85,8 +86,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="character\EnemyHoming.cs" />
+    <Compile Include="character\EnemyInferiority.cs" />
     <Compile Include="character\EnemyManager.cs" />
     <Compile Include="character\Enemy.cs" />
+    <Compile Include="character\EnemyStraight.cs" />
     <Compile Include="scene\GamePlay.cs" />
     <Compile Include="core\Graphics.cs" />
     <Compile Include="core\IScene.cs" />
