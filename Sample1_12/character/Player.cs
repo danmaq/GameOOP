@@ -2,20 +2,17 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Sample1_11.core;
+using Sample1_12.core;
 
-namespace Sample1_11.character
+namespace Sample1_12.character
 {
 
 	/// <summary>
 	/// 自機の情報。
 	/// </summary>
 	class Player
-		: ITask
+		: DrawableGameComponent, IPlayer
 	{
-
-		/// <summary>クラス インスタンス。</summary>
-		public static readonly Player instance = new Player();
 
 		/// <summary>大きさ。</summary>
 		public const float SIZE = 64;
@@ -34,6 +31,12 @@ namespace Sample1_11.character
 
 		/// <summary>ミス猶予(残機)数。</summary>
 		private int m_amount;
+
+		/// <summary>描画周りのデータ。</summary>
+		private IGraphicsData graphics;
+
+		/// <summary>キー入力情報。</summary>
+		private IKeyStatus keyStatus;
 
 		/// <summary>現在座標。</summary>
 		public Vector2 position
@@ -66,7 +69,9 @@ namespace Sample1_11.character
 		/// <summary>
 		/// 各種値を初期化します。
 		/// </summary>
-		private Player()
+		/// <param name="game">ゲーム メイン オブジェクト。</param>
+		public Player(Game game)
+			: base(game)
 		{
 			acceptInputKeyList =
 				new Keys[] { Keys.Up, Keys.Down, Keys.Left, Keys.Right };
@@ -75,6 +80,8 @@ namespace Sample1_11.character
 			velocity.Add(Keys.Down, new Vector2(0, Player.SPEED));
 			velocity.Add(Keys.Left, new Vector2(-Player.SPEED, 0));
 			velocity.Add(Keys.Right, new Vector2(Player.SPEED, 0));
+			Enabled = false;
+			Visible = false;
 		}
 
 		/// <summary>
@@ -101,25 +108,28 @@ namespace Sample1_11.character
 		/// </summary>
 		private void resetPosition()
 		{
-			Point center = Game1.SCREEN.Center;
+			Point center = graphics.screenSize.Center;
 			position = new Vector2(center.X, center.Y);
 		}
 
-		/// <summary>
-		/// 座標や残機情報を初期化します。
-		/// </summary>
-		public void setup()
+		public override void Initialize()
 		{
-			resetPosition();
+			graphics = (IGraphicsData)Game.Services.GetService(typeof(IGraphicsData));
+			keyStatus = (IKeyStatus)Game.Services.GetService(typeof(IKeyStatus));
 			amount = DEFAULT_AMOUNT;
+			resetPosition();
+			Enabled = true;
+			Visible = true;
+			base.Initialize();
 		}
 
 		/// <summary>
-		/// キー入力に応じて移動します。
+		/// 1フレーム分の更新を行います。
 		/// </summary>
-		public void update()
+		/// <param name="gameTime">前フレームからの経過時間。</param>
+		public override void Update(GameTime gameTime)
 		{
-			KeyboardState keyState = KeyStatus.instance.keyboardState;
+			KeyboardState keyState = keyStatus.keyboardState;
 			Vector2 prev = position;
 			for (int i = 0; i < acceptInputKeyList.Length; i++)
 			{
@@ -129,24 +139,26 @@ namespace Sample1_11.character
 					position += velocity[key];
 				}
 			}
-			if (!Game1.SCREEN.Contains((int)position.X, (int)position.Y))
+			if (!graphics.screenSize.Contains((int)position.X, (int)position.Y))
 			{
 				position = prev;
 			}
+			base.Update(gameTime);
 		}
 
 		/// <summary>
-		/// 描画します。
+		/// 1フレーム分の描画を行います。
 		/// </summary>
-		/// <param name="graphics">グラフィック データ。</param>
-		public void draw(Graphics graphics)
+		/// <param name="gameTime">前フレームからの経過時間。</param>
+		public override void Draw(GameTime gameTime)
 		{
 			graphics.spriteBatch.DrawString(graphics.spriteFont,
 				"PLAYER: " + amountString,
 				new Vector2(600, 560), Color.Black);
 			graphics.spriteBatch.Draw(graphics.gameThumbnail, position,
-				null, Color.White, 0f, new Vector2(Graphics.RECT * 0.5f),
-				Player.SIZE / Graphics.RECT, SpriteEffects.None, 0f);
+				null, Color.White, 0f, graphics.gameThumbnailOrigin,
+				SIZE / graphics.gameThumbnailWidth, SpriteEffects.None, 0f);
+			base.Draw(gameTime);
 		}
 	}
 }

@@ -1,22 +1,22 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
-namespace Sample1_11.core
+namespace Sample1_12.core
 {
 
 	/// <summary>
 	/// キー入力管理クラス。
 	/// </summary>
 	class KeyStatus
-		: ITask
+		: GameComponent, IKeyStatus
 	{
-
-		/// <summary>クラス オブジェクト。</summary>
-		public static readonly KeyStatus instance = new KeyStatus();
 
 		/// <summary>
 		/// コンストラクタ。
 		/// </summary>
-		private KeyStatus()
+		/// <param name="game">ゲーム メイン オブジェクト。</param>
+		public KeyStatus(Game game)
+			: base(game)
 		{
 		}
 
@@ -28,28 +28,13 @@ namespace Sample1_11.core
 		}
 
 		/// <summary>
-		/// タスクを開始します。
-		/// </summary>
-		public void setup()
-		{
-			// 特にすることはない。
-		}
-
-		/// <summary>
 		/// 1フレーム分の更新を行います。
 		/// </summary>
-		public void update()
+		/// <param name="gameTime">前フレームからの経過時間。</param>
+		public override void  Update(GameTime gameTime)
 		{
 			keyboardState = Keyboard.GetState();
-		}
-
-		/// <summary>
-		/// 1フレーム分の描画を行います。
-		/// </summary>
-		/// <param name="graphics">グラフィック データ。</param>
-		public void draw(Graphics graphics)
-		{
-			// このクラスでは別段何かを描画する必要はない。
+			base.Update(gameTime);
 		}
 	}
 }

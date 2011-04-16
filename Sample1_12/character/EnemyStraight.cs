@@ -1,6 +1,7 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace Sample1_11.character
+namespace Sample1_12.character
 {
 
 	/// <summary>
@@ -13,8 +14,9 @@ namespace Sample1_11.character
 		/// <summary>
 		/// コンストラクタ。
 		/// </summary>
-		public EnemyStraight() :
-			base(Color.Red)
+		/// <param name="game">ゲーム メイン オブジェクト。</param>
+		public EnemyStraight(Game game)
+			: base(game, Color.Red)
 		{
 		}
 	}

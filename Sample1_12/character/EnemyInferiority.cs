@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sample1_11.character
+namespace Sample1_12.character
 {
 
 	/// <summary>
@@ -14,8 +14,9 @@ namespace Sample1_11.character
 		/// <summary>
 		/// コンストラクタ。
 		/// </summary>
-		public EnemyInferiority() :
-			base(Color.Magenta)
+		/// <param name="game">ゲーム メイン オブジェクト。</param>
+		public EnemyInferiority(Game game)
+			: base(game, Color.Magenta)
 		{
 		}
 

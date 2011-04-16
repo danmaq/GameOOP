@@ -1,34 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sample1_11.core
+namespace Sample1_12.core
 {
 
 	/// <summary>
 	/// スコア情報。
 	/// </summary>
 	class Score
-		: ITask
+		: DrawableGameComponent, IScore
 	{
-
-		/// <summary>クラス オブジェクト。</summary>
-		public static readonly Score instance = new Score();
-
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
-		private Score()
-		{
-		}
 
 		/// <summary>エクステンドの閾値。</summary>
 		private const int EXTEND_THRESHOLD = 500;
 
-		/// <summary>現在のスコアを描画するかどうか。</summary>
-		public bool drawNowScore = false;
-
 		/// <summary>前フレームのスコア。</summary>
 		private int prev;
+
+		/// <summary>描画周りのデータ。</summary>
+		private IGraphicsData graphics;
+
+		/// <summary>現在のスコアを描画するかどうか。</summary>
+		public bool drawNowScore
+		{
+			get;
+			set;
+		}
 
 		/// <summary>現在のスコア。</summary>
 		public int now
@@ -45,6 +42,17 @@ namespace Sample1_11.core
 		}
 
 		/// <summary>
+		/// コンストラクタ。
+		/// </summary>
+		/// <param name="game">ゲーム メイン オブジェクト。</param>
+		public Score(Game game)
+			: base(game)
+		{
+			Enabled = false;
+			Visible = false;
+		}
+
+		/// <summary>
 		/// スコアをリセットします。
 		/// </summary>
 		public void setup()
@@ -52,14 +60,6 @@ namespace Sample1_11.core
 			now = 0;
 			prev = 0;
 			drawNowScore = true;
-		}
-
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
-		public void update()
-		{
-			// スコアクラスは別段毎フレーム更新するようなものはない。
 		}
 
 		/// <summary>
@@ -80,10 +80,21 @@ namespace Sample1_11.core
 		}
 
 		/// <summary>
-		/// 描画します。
+		/// コンポーネントの初期化を行います。
 		/// </summary>
-		/// <param name="graphics">グラフィック データ。</param>
-		public void draw(Graphics graphics)
+		public override void Initialize()
+		{
+			graphics = (IGraphicsData)Game.Services.GetService(typeof(IGraphicsData));
+			Enabled = true;
+			Visible = true;
+			base.Initialize();
+		}
+
+		/// <summary>
+		/// 1フレーム分の描画を行います。
+		/// </summary>
+		/// <param name="gameTime">前フレームからの経過時間。</param>
+		public override void Draw(GameTime gameTime)
 		{
 			if (drawNowScore)
 			{
@@ -93,6 +104,7 @@ namespace Sample1_11.core
 			}
 			graphics.spriteBatch.DrawString(graphics.spriteFont,
 				"HISCORE: " + highest.ToString(), new Vector2(0, 560), Color.Black);
+			base.Draw(gameTime);
 		}
 	}
 }

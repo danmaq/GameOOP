@@ -1,14 +1,15 @@
 ﻿using System;
-using Sample1_11.core;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
-namespace Sample1_11.character
+namespace Sample1_12.character
 {
 
 	/// <summary>
 	/// 敵機の情報。
 	/// </summary>
 	class EnemyManager
-		: TaskManager<Enemy>
+		: IDisposable
 	{
 
 		/// <summary>ホーミング敵機の確率。</summary>
@@ -20,6 +21,21 @@ namespace Sample1_11.character
 		/// <summary>疑似乱数ジェネレータ。</summary>
 		private readonly Random rnd = new Random();
 
+		/// <summary>タスク一覧。</summary>
+		private readonly List<Enemy> tasks = new List<Enemy>();
+
+		/// <summary>ゲーム メイン オブジェクト。</summary>
+		private readonly Game game;
+
+		/// <summary>
+		/// コンストラクタ。
+		/// </summary>
+		/// <param name="game">ゲーム メイン オブジェクト。</param>
+		public EnemyManager(Game game)
+		{
+			this.game = game;
+		}
+
 		/// <summary>
 		/// 敵機を作成します。
 		/// </summary>
@@ -30,15 +46,15 @@ namespace Sample1_11.character
 			int percentage = rnd.Next(100);
 			if (percentage - HOMING_PERCENTAGE < 0)
 			{
-				result = create<EnemyHoming>(speed);
+				result = create<EnemyHoming>(speed, () => new EnemyHoming(game));
 			}
 			else if (percentage - INFERIORITY_PERCENTAGE < 0)
 			{
-				result = create<EnemyInferiority>(speed);
+				result = create<EnemyInferiority>(speed, () => new EnemyInferiority(game));
 			}
 			else
 			{
-				result = create<EnemyStraight>(speed);
+				result = create<EnemyStraight>(speed, () => new EnemyStraight(game));
 			}
 			return result;
 		}
@@ -47,27 +63,28 @@ namespace Sample1_11.character
 		/// 敵機を作成します。
 		/// </summary>
 		/// <param name="speed">基準速度。</param>
+		/// <param name="constructor">コンストラクタ。</param>
 		/// <returns>敵機を作成できた場合、true。</returns>
-		public bool create<T>(float speed)
-			where T : Enemy, new()
+		public bool create<T>(float speed, Func<T> constructor)
+			where T : Enemy
 		{
-			bool result = false;
+			T result = null;
 			int length = tasks.Count;
-			for (int i = 0; !result && i < length; i++)
+			for (int i = 0; result == null && i < length; i++)
 			{
-				if (tasks[i] is T)
-				{
-					result = tasks[i].start(speed);
-				}
+				result = tasks[i] as T;
 			}
-			if (!result)
+			if (result == null)
 			{
-				T enemy = new T();
-				enemy.start(speed);
-				tasks.Add(enemy);
-				result = true;
+				result = constructor();
+				tasks.Add(result);
 			}
-			return result;
+			if (result != null)
+			{
+				result.start(speed);
+				game.Components.Add(result);
+			}
+			return result != null;
 		}
 
 		/// <summary>
@@ -84,9 +101,18 @@ namespace Sample1_11.character
 			}
 			if (hit)
 			{
-				setup();
+				tasks.ForEach(t => t.sleep());
 			}
 			return hit;
+		}
+
+		/// <summary>
+		/// リソースを解放します。
+		/// </summary>
+		public void Dispose()
+		{
+			tasks.ForEach(t => game.Components.Remove(t));
+			tasks.Clear();
 		}
 	}
 }

@@ -1,9 +1,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sample1_11.core;
-using Sample1_11.scene;
+using Sample1_12.core;
+using Sample1_12.scene;
 
-namespace Sample1_11
+namespace Sample1_12
 {
 
 	/// <summary>
@@ -13,17 +13,8 @@ namespace Sample1_11
 		: Game
 	{
 
-		/// <summary>画面矩形情報。</summary>
-		public static readonly Rectangle SCREEN = new Rectangle(0, 0, 800, 600);
-
-		/// <summary>描画周りデータ。</summary>
-		private Graphics graphics;
-
-		/// <summary>シーン管理クラス。</summary>
-		private SceneManager mgrScene = new SceneManager(Title.instance);
-
-		/// <summary>タスク管理クラス。</summary>
-		private readonly TaskManager<ITask> mgrTask = new TaskManager<ITask>();
+		/// <summary>スプライトバッチ。</summary>
+		private SpriteBatch spriteBatch;
 
 		/// <summary>
 		/// Constructor.
@@ -32,32 +23,25 @@ namespace Sample1_11
 		{
 			new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
-			mgrTask.tasks.AddRange(new ITask[] { KeyStatus.instance, mgrScene });
 		}
 
 		/// <summary>
 		/// LoadContent will be called once per game and is the place to load
 		/// all of your content.
 		/// </summary>
-		protected override void LoadContent()
+		protected override void Initialize()
 		{
-			graphics = new Graphics(this);
-			mgrTask.setup();
-		}
-
-		/// <summary>
-		/// Allows the game to run logic such as updating the world,
-		/// checking for collisions, gathering input, and playing audio.
-		/// </summary>
-		/// <param name="gameTime">Provides a snapshot of timing values.</param>
-		protected override void Update(GameTime gameTime)
-		{
-			mgrTask.update();
-			if (mgrScene.nowScene == null)
-			{
-				Exit();
-			}
-			base.Update(gameTime);
+			IGraphicsData graphicsData = new Graphics(this);
+			Services.AddService(typeof(IGraphicsData), graphicsData);
+			spriteBatch = graphicsData.spriteBatch;
+			IKeyStatus keyStatus = new KeyStatus(this);
+			Services.AddService(typeof(IKeyStatus), keyStatus);
+			Components.Add(keyStatus);
+			IScore score = new Score(this);
+			Services.AddService(typeof(IScore), score);
+			Components.Add(score);
+			Components.Add(new Title(this));
+			base.Initialize();
 		}
 
 		/// <summary>
@@ -67,10 +51,9 @@ namespace Sample1_11
 		protected override void Draw(GameTime gameTime)
 		{
 			GraphicsDevice.Clear(Color.CornflowerBlue);
-			graphics.spriteBatch.Begin();
-			mgrTask.draw(graphics);
-			graphics.spriteBatch.End();
+			spriteBatch.Begin();
 			base.Draw(gameTime);
+			spriteBatch.End();
 		}
 	}
 }

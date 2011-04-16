@@ -1,0 +1,4 @@
+﻿メモ
+
+Sample1_12欠番かも
+(GameComponent.Initializeが使えない？)
