@@ -23,10 +23,10 @@ namespace Sample1_11.character
 		private static readonly Vector2 firstPosition = new Vector2(-SIZE);
 
 		/// <summary>移動速度と方角。</summary>
-		protected Vector2 velocity;
+		protected Vector2 velocity = Vector2.Zero;
 
 		/// <summary>現在座標。</summary>
-		private Vector2 position;
+		private Vector2 position = firstPosition;
 
 		/// <summary>色。</summary>
 		private Color color;
@@ -38,7 +38,14 @@ namespace Sample1_11.character
 		public Enemy(Color color)
 		{
 			this.color = color;
-			setup();
+		}
+
+		/// <summary>
+		/// タスクを開始します。
+		/// </summary>
+		public void setup()
+		{
+			// 特にすることはない。
 		}
 
 		/// <summary>
@@ -86,15 +93,6 @@ namespace Sample1_11.character
 				startForce(speed);
 			}
 			return result;
-		}
-
-		/// <summary>
-		/// 敵機を強制的にスリープにします。
-		/// </summary>
-		public void setup()
-		{
-			position = firstPosition;
-			velocity = Vector2.Zero;
 		}
 
 		/// <summary>

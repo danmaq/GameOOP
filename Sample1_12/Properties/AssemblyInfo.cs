@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("SAMPLE 1")]
 [assembly: AssemblyProduct("SAMPLE 1")]
-[assembly: AssemblyDescription("継承を使った機能分割。")]
+[assembly: AssemblyDescription("Flyweightパターンの実装。")]
 [assembly: AssemblyCompany("danmaq")]
 
 [assembly: AssemblyCopyright("©2011 danmaq All rights reserved.")]

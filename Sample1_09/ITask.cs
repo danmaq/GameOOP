@@ -25,6 +25,5 @@ namespace Sample1_09
 		/// </summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		void draw(Graphics graphics);
-
 	}
 }

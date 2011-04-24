@@ -24,50 +24,27 @@ namespace Sample1_11.character
 		/// 敵機を作成します。
 		/// </summary>
 		/// <param name="speed">基準速度。</param>
-		public bool create(float speed)
+		public void create(float speed)
 		{
-			bool result = false;
+			Enemy result = null;
 			int percentage = rnd.Next(100);
 			if (percentage - HOMING_PERCENTAGE < 0)
 			{
-				result = create<EnemyHoming>(speed);
+				result = new EnemyHoming();
 			}
 			else if (percentage - INFERIORITY_PERCENTAGE < 0)
 			{
-				result = create<EnemyInferiority>(speed);
+				result = new EnemyInferiority();
 			}
 			else
 			{
-				result = create<EnemyStraight>(speed);
+				result = new EnemyStraight();
 			}
-			return result;
-		}
-
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
-		/// <param name="speed">基準速度。</param>
-		/// <returns>敵機を作成できた場合、true。</returns>
-		public bool create<T>(float speed)
-			where T : Enemy, new()
-		{
-			bool result = false;
-			int length = tasks.Count;
-			for (int i = 0; !result && i < length; i++)
+			if (result != null)
 			{
-				if (tasks[i] is T)
-				{
-					result = tasks[i].start(speed);
-				}
+				result.start(speed);
+				tasks.Add(result);
 			}
-			if (!result)
-			{
-				T enemy = new T();
-				enemy.start(speed);
-				tasks.Add(enemy);
-				result = true;
-			}
-			return result;
 		}
 
 		/// <summary>
@@ -84,7 +61,7 @@ namespace Sample1_11.character
 			}
 			if (hit)
 			{
-				setup();
+				tasks.Clear();
 			}
 			return hit;
 		}

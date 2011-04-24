@@ -137,6 +137,8 @@ namespace Sample1_09
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{
+			graphics.spriteBatch.DrawString(graphics.spriteFont,
+				"PLAYER: " + amountString, new Vector2(600, 560), Color.Black);
 			graphics.spriteBatch.Draw(graphics.gameThumbnail, position,
 				null, Color.White, 0f, new Vector2(Graphics.RECT * 0.5f),
 				Player.SIZE / Graphics.RECT, SpriteEffects.None, 0f);

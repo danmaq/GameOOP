@@ -67,11 +67,13 @@ namespace Sample1_11.scene
 		/// </summary>
 		private void createEnemy()
 		{
-			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0 &&
-				enemies.create(counter * 0.001f) &&
-				Score.instance.add(10))
+			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0)
 			{
-				Player.instance.extend();
+				enemies.create(counter * 0.001f);
+				if (Score.instance.add(10))
+				{
+					Player.instance.extend();
+				}
 			}
 		}
 

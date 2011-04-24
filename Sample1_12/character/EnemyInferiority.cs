@@ -26,7 +26,7 @@ namespace Sample1_11.character
 		protected override void initVelocity(float speed)
 		{
 			base.initVelocity(speed);
-			// ここで精度を落とす
+			// ここでベクトルをわざと乱して、精度を落とす
 			Quaternion q = Quaternion.CreateFromAxisAngle(
 				Vector3.UnitZ, (float)rnd.NextDouble() - 0.5f);
 			velocity = Vector2.Transform(velocity, q);

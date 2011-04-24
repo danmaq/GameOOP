@@ -24,6 +24,9 @@ namespace Sample1_09
 		/// <summary>描画周りデータ。</summary>
 		private Graphics graphics;
 
+		/// <summary>キー入力管理クラス。</summary>
+		private readonly KeyState mgrInput = new KeyState();
+
 		/// <summary>スコア データ。</summary>
 		private readonly Score score = new Score();
 
@@ -33,8 +36,11 @@ namespace Sample1_09
 		/// <summary>自機データ。</summary>
 		private readonly Player player = new Player();
 
-		/// <summary>タスク一覧。</summary>
-		private readonly ITask[] tasks;
+		/// <summary>タイトル画面のタスク一覧。</summary>
+		private readonly ITask[] taskTitle;
+
+		/// <summary>ゲームプレイ画面のタスク一覧。</summary>
+		private readonly ITask[] taskGame;
 
 		/// <summary>
 		/// Constructor.
@@ -43,7 +49,8 @@ namespace Sample1_09
 		{
 			new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
-			tasks = new ITask[] { enemies, player, score };
+			taskTitle = new ITask[] { score, mgrInput };
+			taskGame = new ITask[] { enemies, player, score, mgrInput };
 		}
 
 		/// <summary>
@@ -62,13 +69,14 @@ namespace Sample1_09
 		/// <param name="gameTime">Provides a snapshot of timing values.</param>
 		protected override void Update(GameTime gameTime)
 		{
-			KeyboardState keyState = Keyboard.GetState();
+			KeyboardState keyState = mgrInput.keyboardState;
+			ITask[] tasks = game ? taskGame : taskTitle;
+			for (int i = 0; i < tasks.Length; i++)
+			{
+				tasks[i].update(keyState);
+			}
 			if (game)
 			{
-				for (int i = 0; i < tasks.Length; i++)
-				{
-					tasks[i].update(keyState);
-				}
 				createEnemy();
 				if (enemies.hitTest(player.position))
 				{
@@ -112,9 +120,9 @@ namespace Sample1_09
 				// ゲーム開始
 				game = true;
 				counter = 0;
-				for (int i = 0; i < tasks.Length; i++)
+				for (int i = 0; i < taskGame.Length; i++)
 				{
-					tasks[i].reset();
+					taskGame[i].reset();
 				}
 			}
 		}
@@ -127,32 +135,17 @@ namespace Sample1_09
 		{
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 			graphics.spriteBatch.Begin();
-			if (game)
+			ITask[] tasks = game ? taskGame : taskTitle;
+			for (int i = 0; i < tasks.Length; i++)
 			{
-				drawGame();
+				tasks[i].draw(graphics);
 			}
-			else
+			if (!game)
 			{
 				drawTitle();
 			}
-			drawHUD(game);
 			graphics.spriteBatch.End();
 			base.Draw(gameTime);
-		}
-
-		/// <summary>
-		/// HUDを描画します。
-		/// </summary>
-		/// <param name="all">全情報を描画するかどうか。</param>
-		private void drawHUD(bool all)
-		{
-			if (all)
-			{
-				graphics.spriteBatch.DrawString(graphics.spriteFont,
-					"PLAYER: " + player.amountString,
-					new Vector2(600, 560), Color.Black);
-			}
-			score.draw(graphics);
 		}
 
 		/// <summary>
@@ -165,15 +158,6 @@ namespace Sample1_09
 				Color.Black, 0f, Vector2.Zero, 5f, SpriteEffects.None, 0f);
 			graphics.spriteBatch.DrawString(graphics.spriteFont,
 				"PUSH SPACE KEY.", new Vector2(340, 400), Color.Black);
-		}
-
-		/// <summary>
-		/// ゲーム画面を描画します。
-		/// </summary>
-		private void drawGame()
-		{
-			player.draw(graphics);
-			enemies.draw(graphics);
 		}
 	}
 }
