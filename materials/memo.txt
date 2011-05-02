@@ -1,4 +1,8 @@
 ﻿メモ
 
-Sample1_12欠番かも
-(GameComponent.Initializeが使えない？)
+
+項目	Static	Singleton
+継承	不可	可能
+実装	不可	可能
+複数	不可	可能
+ｲﾝｽﾀﾝｽ	ない	ある
