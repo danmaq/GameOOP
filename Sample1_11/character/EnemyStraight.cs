@@ -13,8 +13,9 @@ namespace Sample1_11.character
 		/// <summary>
 		/// コンストラクタ。
 		/// </summary>
-		public EnemyStraight() :
-			base(Color.Red)
+		/// <param name="speed">基準速度。</param>
+		public EnemyStraight(float speed) :
+			base(speed, Color.Red)
 		{
 		}
 	}

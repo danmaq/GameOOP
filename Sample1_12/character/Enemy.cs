@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sample1_11.core;
+using Sample1_12.core;
 
-namespace Sample1_11.character
+namespace Sample1_12.character
 {
 
 	/// <summary>
@@ -39,6 +39,15 @@ namespace Sample1_11.character
 		{
 			this.color = color;
 			setup();
+		}
+
+		/// <summary>
+		/// 敵機を強制的にスリープにします。
+		/// </summary>
+		public void setup()
+		{
+			position = firstPosition;
+			velocity = Vector2.Zero;
 		}
 
 		/// <summary>
@@ -86,15 +95,6 @@ namespace Sample1_11.character
 				startForce(speed);
 			}
 			return result;
-		}
-
-		/// <summary>
-		/// 敵機を強制的にスリープにします。
-		/// </summary>
-		public void setup()
-		{
-			position = firstPosition;
-			velocity = Vector2.Zero;
 		}
 
 		/// <summary>

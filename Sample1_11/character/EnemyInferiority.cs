@@ -14,8 +14,9 @@ namespace Sample1_11.character
 		/// <summary>
 		/// コンストラクタ。
 		/// </summary>
-		public EnemyInferiority() :
-			base(Color.Magenta)
+		/// <param name="speed">基準速度。</param>
+		public EnemyInferiority(float speed) :
+			base(speed, Color.Magenta)
 		{
 		}
 

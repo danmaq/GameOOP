@@ -1,4 +1,4 @@
-﻿namespace Sample1_11.core
+﻿namespace Sample1_12.core
 {
 
 	/// <summary>

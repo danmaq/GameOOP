@@ -30,19 +30,18 @@ namespace Sample1_11.character
 			int percentage = rnd.Next(100);
 			if (percentage - HOMING_PERCENTAGE < 0)
 			{
-				result = new EnemyHoming();
+				result = new EnemyHoming(speed);
 			}
 			else if (percentage - INFERIORITY_PERCENTAGE < 0)
 			{
-				result = new EnemyInferiority();
+				result = new EnemyInferiority(speed);
 			}
 			else
 			{
-				result = new EnemyStraight();
+				result = new EnemyStraight(speed);
 			}
 			if (result != null)
 			{
-				result.start(speed);
 				tasks.Add(result);
 			}
 		}

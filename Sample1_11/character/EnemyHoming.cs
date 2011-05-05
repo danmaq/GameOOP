@@ -19,9 +19,11 @@ namespace Sample1_11.character
 		/// <summary>
 		/// コンストラクタ。
 		/// </summary>
-		public EnemyHoming() :
-			base(Color.Orange)
+		/// <param name="speed">基準速度。</param>
+		public EnemyHoming(float speed) :
+			base(speed, Color.Orange)
 		{
+			homingAmount = HOMING_LIMIT;
 		}
 
 		/// <summary>
@@ -34,21 +36,6 @@ namespace Sample1_11.character
 			{
 				initVelocity(velocity.Length());
 			}
-		}
-
-		/// <summary>
-		/// 敵機をアクティブにします。
-		/// </summary>
-		/// <param name="speed">基準速度。</param>
-		/// <returns>敵機をアクティブにできた場合、true。</returns>
-		public override bool start(float speed)
-		{
-			bool result = base.start(speed);
-			if (result)
-			{
-				homingAmount = HOMING_LIMIT;
-			}
-			return result;
 		}
 	}
 }
