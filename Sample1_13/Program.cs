@@ -1,6 +1,6 @@
 using System;
 
-namespace Sample1_12
+namespace Sample1_13
 {
 	static class Program
 	{

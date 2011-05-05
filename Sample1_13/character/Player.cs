@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Sample1_12.core;
+using Sample1_13.core;
 
-namespace Sample1_12.character
+namespace Sample1_13.character
 {
 
 	/// <summary>

@@ -1,15 +1,16 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sample1_12.core;
+using Sample1_13.character.state;
+using Sample1_13.core;
 
-namespace Sample1_12.character
+namespace Sample1_13.character
 {
 
 	/// <summary>
 	/// 敵機の情報。
 	/// </summary>
-	abstract class Enemy
+	sealed class Enemy
 		: ITask
 	{
 
@@ -17,28 +18,46 @@ namespace Sample1_12.character
 		private const float SIZE = 32;
 
 		/// <summary>疑似乱数ジェネレータ。</summary>
-		protected static readonly Random rnd = new Random();
+		private static readonly Random rnd = new Random();
 
 		/// <summary>初期位置。</summary>
 		private static readonly Vector2 firstPosition = new Vector2(-SIZE);
 
+		/// <summary>色。</summary>
+		public Color color;
+
 		/// <summary>移動速度と方角。</summary>
-		protected Vector2 velocity;
+		public Vector2 velocity;
+
+		/// <summary>ホーミング有効時間。</summary>
+		public int homingAmount;
+
+		/// <summary>現在の敵機の状態。</summary>
+		public IEnemyState currentState;
 
 		/// <summary>現在座標。</summary>
 		private Vector2 position;
 
-		/// <summary>色。</summary>
-		private Color color;
-
 		/// <summary>
 		/// コンストラクタ。
 		/// </summary>
-		/// <param name="color">色。</param>
-		public Enemy(Color color)
+		/// <param name="firstState">敵機の状態。</param>
+		public Enemy(IEnemyState firstState)
 		{
-			this.color = color;
+			currentState = firstState;
 			setup();
+		}
+
+		/// <summary>
+		/// 現在活動中かどうかを取得します。
+		/// </summary>
+		/// <value>現在活動中である場合、true。</value>
+		public bool active
+		{
+			get
+			{
+				return Game1.SCREEN.Contains((int)position.X, (int)position.Y);
+			}
 		}
 
 		/// <summary>
@@ -53,9 +72,10 @@ namespace Sample1_12.character
 		/// <summary>
 		/// 1フレーム分の更新を行います。
 		/// </summary>
-		public virtual void update()
+		public void update()
 		{
 			position += velocity;
+			currentState.onUpdate(this);
 		}
 
 		/// <summary>
@@ -83,25 +103,10 @@ namespace Sample1_12.character
 		}
 
 		/// <summary>
-		/// 敵機をアクティブにします。
-		/// </summary>
-		/// <param name="speed">基準速度。</param>
-		/// <returns>敵機をアクティブにできた場合、true。</returns>
-		public virtual bool start(float speed)
-		{
-			bool result = !Game1.SCREEN.Contains((int)position.X, (int)position.Y);
-			if (result)
-			{
-				startForce(speed);
-			}
-			return result;
-		}
-
-		/// <summary>
 		/// 敵機を強制的にアクティブにします。
 		/// </summary>
 		/// <param name="speed">基準速度。</param>
-		private void startForce(float speed)
+		public void start(float speed)
 		{
 			float AROUND_HALF = Game1.SCREEN.Width + Game1.SCREEN.Height;
 			float AROUND_HALF_QUARTER = Game1.SCREEN.Width * 2 + Game1.SCREEN.Height;
@@ -120,6 +125,7 @@ namespace Sample1_12.character
 				pos.Y = p % Game1.SCREEN.Height;
 			}
 			position = pos;
+			currentState.onStarted(this);
 			initVelocity(rnd.Next(1, 3) + speed);
 		}
 
@@ -127,7 +133,7 @@ namespace Sample1_12.character
 		/// 敵機の移動速度と方角を初期化します。
 		/// </summary>
 		/// <param name="speed">速度。</param>
-		protected virtual void initVelocity(float speed)
+		public void initVelocity(float speed)
 		{
 			Vector2 v = Player.instance.position - position;
 			if (v == Vector2.Zero)
@@ -137,6 +143,7 @@ namespace Sample1_12.character
 			}
 			v.Normalize();
 			velocity = v * speed;
+			currentState.onInitializedVelocity(this);
 		}
 	}
 }

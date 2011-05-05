@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Sample1_12.character;
-using Sample1_12.core;
+using Sample1_13.character;
+using Sample1_13.core;
 
-namespace Sample1_12.scene
+namespace Sample1_13.scene
 {
 
 	/// <summary>

@@ -1,9 +1,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sample1_12.core;
-using Sample1_12.scene;
+using Sample1_13.core;
+using Sample1_13.scene;
 
-namespace Sample1_12
+namespace Sample1_13
 {
 
 	/// <summary>

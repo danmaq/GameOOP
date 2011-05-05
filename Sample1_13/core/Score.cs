@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sample1_12.core
+namespace Sample1_13.core
 {
 
 	/// <summary>

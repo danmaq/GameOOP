@@ -1,7 +1,8 @@
 ﻿using System;
-using Sample1_12.core;
+using Sample1_13.character.state;
+using Sample1_13.core;
 
-namespace Sample1_12.character
+namespace Sample1_13.character
 {
 
 	/// <summary>
@@ -30,15 +31,15 @@ namespace Sample1_12.character
 			int percentage = rnd.Next(100);
 			if (percentage - HOMING_PERCENTAGE < 0)
 			{
-				result = create<EnemyHoming>(speed);
+				result = create(speed, EnemyHoming.instance);
 			}
 			else if (percentage - INFERIORITY_PERCENTAGE < 0)
 			{
-				result = create<EnemyInferiority>(speed);
+				result = create(speed, EnemyInferiority.instance);
 			}
 			else
 			{
-				result = create<EnemyStraight>(speed);
+				result = create(speed, EnemyStraight.instance);
 			}
 			return result;
 		}
@@ -47,22 +48,25 @@ namespace Sample1_12.character
 		/// 敵機を作成します。
 		/// </summary>
 		/// <param name="speed">基準速度。</param>
+		/// <param name="state">敵機の状態。</param>
 		/// <returns>敵機を作成できた場合、true。</returns>
-		public bool create<T>(float speed)
-			where T : Enemy, new()
+		public bool create(float speed, IEnemyState state)
 		{
 			bool result = false;
 			int length = tasks.Count;
 			for (int i = 0; !result && i < length; i++)
 			{
-				if (tasks[i] is T)
+				result = !tasks[i].active;
+				if (result)
 				{
-					result = tasks[i].start(speed);
+					Enemy enemy = tasks[i];
+					enemy.currentState = state;
+					enemy.start(speed);
 				}
 			}
 			if (!result)
 			{
-				T enemy = new T();
+				Enemy enemy = new Enemy(state);
 				enemy.start(speed);
 				tasks.Add(enemy);
 				result = true;
