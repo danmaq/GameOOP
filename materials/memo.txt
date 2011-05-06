@@ -1,15 +1,12 @@
-﻿メモ
+﻿■メモ
 
-
-項目	Static	Singleton
-継承	不可	可能
-実装	不可	可能
-複数	不可	可能
-ｲﾝｽﾀﾝｽ	ない	ある
-
-完全なデータ隠ぺいを行うのが難しい
-Stateパターンでは状態クラスに積極干渉してもらうのが前提のため、
-「現在適用されている状態クラスにしか弄らせてあげない」というロジックを実装するのが難しくなります。
-厳密にはできないわけではないのですが、実装が複雑になり、判定や分岐も増えることになります。
-コードを一目見て、そのプロパティが外部からの読み書き対応か、状態からのみ読み書き対応かの区別がつきにくくなります。
-
+public class Entity // namespace foo.entity
+{
+　public IState currentState{ get; private set; }
+　public int hoge{ get; private set; }
+　public void update(){ currentState.update(this); }
+}
+public interface IState // namespace foo.state
+{
+　void update(Entity e);
+}
