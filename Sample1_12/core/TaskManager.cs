@@ -15,13 +15,6 @@ namespace Sample1_12.core
 		public readonly List<T> tasks = new List<T>();
 
 		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
-		public TaskManager()
-		{
-		}
-
-		/// <summary>
 		/// タスクを開始します。
 		/// </summary>
 		public void setup()

@@ -63,9 +63,7 @@ namespace Sample1_02
 		/// <summary>ホーミング対応の敵かどうか。</summary>
 		bool[] enemyHoming = new bool[100];
 
-		/// <summary>
-		/// Constructor.
-		/// </summary>
+		/// <summary>Constructor.</summary>
 		public Game1()
 		{
 			new GraphicsDeviceManager(this);

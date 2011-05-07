@@ -106,9 +106,7 @@ namespace Sample1_04
 		/// <summary>ホーミング対応の敵かどうか。</summary>
 		bool[] enemyHoming = new bool[ENEMY_MAX];
 
-		/// <summary>
-		/// Constructor.
-		/// </summary>
+		/// <summary>Constructor.</summary>
 		public Game1()
 		{
 			new GraphicsDeviceManager(this);
@@ -153,9 +151,7 @@ namespace Sample1_04
 			base.Update(gameTime);
 		}
 
-		/// <summary>
-		/// 自機を移動します。
-		/// </summary>
+		/// <summary>自機を移動します。</summary>
 		/// <param name="keyState">現在のキー入力状態。</param>
 		private void movePlayer(KeyboardState keyState)
 		{
@@ -193,9 +189,7 @@ namespace Sample1_04
 			}
 		}
 
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
+		/// <summary>敵機を作成します。</summary>
 		private void createEnemy()
 		{
 			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0)
@@ -242,9 +236,7 @@ namespace Sample1_04
 			}
 		}
 
-		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
-		/// </summary>
+		/// <summary>敵機の移動、及び接触判定をします。</summary>
 		/// <returns>接触した場合、true。</returns>
 		private bool enemyMoveAndHitTest()
 		{
@@ -270,9 +262,7 @@ namespace Sample1_04
 			return hit;
 		}
 
-		/// <summary>
-		/// 敵機を初期状態にリセットします。
-		/// </summary>
+		/// <summary>敵機を初期状態にリセットします。</summary>
 		private void enemyReset()
 		{
 			const float FIRST_POSITION = -RECT_SIZE * ENEMY_SCALE;
@@ -284,9 +274,7 @@ namespace Sample1_04
 			}
 		}
 
-		/// <summary>
-		/// タイトル画面を更新します。
-		/// </summary>
+		/// <summary>タイトル画面を更新します。</summary>
 		/// <param name="keyState">現在のキー入力状態。</param>
 		private void updateTitle(KeyboardState keyState)
 		{
@@ -330,9 +318,7 @@ namespace Sample1_04
 			base.Draw(gameTime);
 		}
 
-		/// <summary>
-		/// タイトル画面を描画します。
-		/// </summary>
+		/// <summary>タイトル画面を描画します。</summary>
 		private void drawTitle()
 		{
 			spriteBatch.DrawString(spriteFont, "SAMPLE 1", new Vector2(200, 100),
@@ -341,9 +327,7 @@ namespace Sample1_04
 				new Vector2(340, 400), Color.Black);
 		}
 
-		/// <summary>
-		/// ゲーム画面を描画します。
-		/// </summary>
+		/// <summary>ゲーム画面を描画します。</summary>
 		private void drawGame()
 		{
 			drawPlayer();
@@ -351,9 +335,7 @@ namespace Sample1_04
 			drawHUD();
 		}
 
-		/// <summary>
-		/// 自機を描画します。
-		/// </summary>
+		/// <summary>自機を描画します。</summary>
 		private void drawPlayer()
 		{
 			spriteBatch.Draw(
@@ -362,9 +344,7 @@ namespace Sample1_04
 				SpriteEffects.None, 0f);
 		}
 
-		/// <summary>
-		/// 敵機を描画します。
-		/// </summary>
+		/// <summary>敵機を描画します。</summary>
 		private void drawEnemy()
 		{
 			for (int i = 0; i < ENEMY_MAX; i++)
@@ -376,9 +356,7 @@ namespace Sample1_04
 			}
 		}
 
-		/// <summary>
-		/// HUDを描画します。
-		/// </summary>
+		/// <summary>HUDを描画します。</summary>
 		private void drawHUD()
 		{
 			spriteBatch.DrawString(spriteFont, "SCORE: " + score.ToString(),

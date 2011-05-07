@@ -1,11 +1,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sample1_13.core;
-using Sample1_13.scene;
+using Sample1_14.core;
+using Sample1_14.state;
+using Sample1_14.state.scene;
+using Sample1_14.task;
+using Sample1_14.task.entity;
 
-namespace Sample1_13
+namespace Sample1_14
 {
-
 	/// <summary>
 	/// This is the main type for your game
 	/// </summary>
@@ -20,7 +22,7 @@ namespace Sample1_13
 		private Graphics graphics;
 
 		/// <summary>シーン管理クラス。</summary>
-		private SceneManager mgrScene = new SceneManager(Title.instance);
+		private Entity mgrScene = new Entity(SceneTitle.instance);
 
 		/// <summary>タスク管理クラス。</summary>
 		private readonly TaskManager<ITask> mgrTask = new TaskManager<ITask>();
@@ -30,7 +32,7 @@ namespace Sample1_13
 		{
 			new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
-			mgrTask.tasks.AddRange(new ITask[] { KeyStatus.instance, mgrScene });
+			mgrTask.tasks.AddRange(new ITask[] { KeyStatus.instance, Score.instance, mgrScene });
 		}
 
 		/// <summary>
@@ -40,7 +42,6 @@ namespace Sample1_13
 		protected override void LoadContent()
 		{
 			graphics = new Graphics(this);
-			mgrTask.setup();
 		}
 
 		/// <summary>
@@ -51,8 +52,9 @@ namespace Sample1_13
 		protected override void Update(GameTime gameTime)
 		{
 			mgrTask.update();
-			if (mgrScene.nowScene == null)
+			if (mgrScene.currentState == StateEmpty.instance)
 			{
+				mgrTask.release();
 				Exit();
 			}
 			base.Update(gameTime);
