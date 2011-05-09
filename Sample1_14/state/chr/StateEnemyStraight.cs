@@ -1,4 +1,5 @@
-﻿using Sample1_14.task.entity;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Sample1_14.task.entity;
 using Sample1_14.task.entity.chr;
 
 namespace Sample1_14.state.chr
@@ -10,15 +11,17 @@ namespace Sample1_14.state.chr
 	{
 
 		/// <summary>クラス オブジェクト。</summary>
-		public static readonly StateEnemy instance = new StateEnemyStraight();
+		public static readonly StateEnemy normal = new StateEnemyStraight(Color.Red);
 
-		/// <summary>確率。</summary>
-		public override float percentage
+		/// <summary>ホーミングした後のオブジェクト。</summary>
+		public static readonly StateEnemy homing =
+			new StateEnemyStraight(StateEnemyHoming.instance.color);
+
+		/// <summary>コンストラクタ。</summary>
+		/// <param name="color">乗算色。</param>
+		private StateEnemyStraight(Color color)
+			: base(50, color)
 		{
-			get
-			{
-				return 50;
-			}
 		}
 
 		/// <summary>
@@ -36,6 +39,7 @@ namespace Sample1_14.state.chr
 		/// <returns>続行可能な場合、true。</returns>
 		public override bool damage(Character entity, int value)
 		{
+			return true;
 		}
 	}
 }
