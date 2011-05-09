@@ -5,9 +5,7 @@ using Sample1_13.core;
 namespace Sample1_13.character
 {
 
-	/// <summary>
-	/// 敵機の情報。
-	/// </summary>
+	/// <summary>敵機の情報。</summary>
 	class EnemyManager
 		: TaskManager<Enemy>
 	{
@@ -25,6 +23,7 @@ namespace Sample1_13.character
 		/// 敵機を作成します。
 		/// </summary>
 		/// <param name="speed">基準速度。</param>
+		/// <returns>敵機が生成された場合、true。</returns>
 		public bool create(float speed)
 		{
 			bool result = false;

@@ -87,8 +87,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="state\chr\StateCharacter.cs" />
+    <Compile Include="state\chr\StateEnemy.cs" />
+    <Compile Include="state\chr\StateEnemyStraight.cs" />
     <Compile Include="state\chr\StatePlayer.cs" />
     <Compile Include="task\entity\chr\Character.cs" />
+    <Compile Include="task\entity\chr\EnemyManager.cs" />
     <Compile Include="task\KeyStatus.cs" />
     <Compile Include="task\entity\Entity.cs" />
     <Compile Include="core\Graphics.cs" />

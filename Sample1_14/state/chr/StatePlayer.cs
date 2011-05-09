@@ -9,6 +9,8 @@ using Sample1_14.task.entity.chr;
 
 namespace Sample1_14.state.chr
 {
+
+	/// <summary>自機の状態。</summary>
 	sealed class StatePlayer
 		: StateCharacter
 	{
