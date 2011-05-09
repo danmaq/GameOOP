@@ -1,12 +1,7 @@
 ﻿■メモ
 
-public class Entity // namespace foo.entity
-{
-　public IState currentState{ get; private set; }
-　public int hoge{ get; private set; }
-　public void update(){ currentState.update(this); }
-}
-public interface IState // namespace foo.state
-{
-　void update(Entity e);
-}
+109P
+
+このようなことをポリモーフィズムと言います。
+→
+このように～のようなことをポリモーフィズムと言います。
