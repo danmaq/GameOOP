@@ -71,7 +71,7 @@ namespace Sample1_12.character
 		}
 
 		/// <summary>
-		/// 描画します。
+		/// 1フレーム分の描画を行います。
 		/// </summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
@@ -112,11 +112,11 @@ namespace Sample1_12.character
 				p < AROUND_HALF_QUARTER)
 			{
 				pos.X = p % Game1.SCREEN.Width;
-				pos.Y = p < AROUND_HALF ? 0 : Game1.SCREEN.Height;
+				pos.Y = p < AROUND_HALF ? 0 : Game1.SCREEN.Height - 1;
 			}
 			else
 			{
-				pos.X = p < AROUND_HALF ? 0 : Game1.SCREEN.Width;
+				pos.X = p < AROUND_HALF ? 0 : Game1.SCREEN.Width - 1;
 				pos.Y = p % Game1.SCREEN.Height;
 			}
 			position = pos;

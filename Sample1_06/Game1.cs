@@ -7,9 +7,7 @@ using Microsoft.Xna.Framework.Input;
 namespace Sample1_06
 {
 
-	/// <summary>
-	/// This is the main type for your game
-	/// </summary>
+	/// <summary>This is the main type for your game</summary>
 	public class Game1
 		: Game
 	{
@@ -38,9 +36,7 @@ namespace Sample1_06
 		/// <summary>敵機一覧データ。</summary>
 		Enemy[] enemies = new Enemy[Enemy.MAX];
 
-		/// <summary>
-		/// Constructor.
-		/// </summary>
+		/// <summary>Constructor.</summary>
 		public Game1()
 		{
 			new GraphicsDeviceManager(this);
@@ -103,9 +99,7 @@ namespace Sample1_06
 			base.Update(gameTime);
 		}
 
-		/// <summary>
-		/// 自機を移動します。
-		/// </summary>
+		/// <summary>自機を移動します。</summary>
 		/// <param name="keyState">現在のキー入力状態。</param>
 		private void movePlayer(KeyboardState keyState)
 		{
@@ -124,9 +118,7 @@ namespace Sample1_06
 			}
 		}
 
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
+		/// <summary>敵機を作成します。</summary>
 		private void createEnemy()
 		{
 			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0)
@@ -145,11 +137,11 @@ namespace Sample1_06
 							p < AROUND_HALF_QUARTER)
 						{
 							enemies[i].position.X = p % SCREEN.Width;
-							enemies[i].position.Y = p < AROUND_HALF ? 0 : SCREEN.Height;
+							enemies[i].position.Y = p < AROUND_HALF ? 0 : SCREEN.Height - 1;
 						}
 						else
 						{
-							enemies[i].position.X = p < AROUND_HALF ? 0 : SCREEN.Width;
+							enemies[i].position.X = p < AROUND_HALF ? 0 : SCREEN.Width - 1;
 							enemies[i].position.Y = p % SCREEN.Height;
 						}
 						enemies[i].velocity = createVelocity(
@@ -163,9 +155,7 @@ namespace Sample1_06
 			}
 		}
 
-		/// <summary>
-		/// スコアを加算します。
-		/// </summary>
+		/// <summary>スコアを加算します。</summary>
 		/// <param name="add">加算されるスコア値。</param>
 		private void addScore(int add)
 		{
@@ -182,9 +172,7 @@ namespace Sample1_06
 			}
 		}
 
-		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
-		/// </summary>
+		/// <summary>敵機の移動、及び接触判定をします。</summary>
 		/// <returns>接触した場合、true。</returns>
 		private bool enemyMoveAndHitTest()
 		{
@@ -210,9 +198,7 @@ namespace Sample1_06
 			return hit;
 		}
 
-		/// <summary>
-		/// 敵機の移動速度と方角を計算します。
-		/// </summary>
+		/// <summary>敵機の移動速度と方角を計算します。</summary>
 		/// <param name="position">位置。</param>
 		/// <param name="speed">速度。</param>
 		/// <returns>計算された敵機の新しい移動速度と方角。</returns>
@@ -228,9 +214,7 @@ namespace Sample1_06
 			return (velocity * speed);
 		}
 
-		/// <summary>
-		/// 敵機を初期状態にリセットします。
-		/// </summary>
+		/// <summary>敵機を初期状態にリセットします。</summary>
 		private void enemyReset()
 		{
 			Vector2 firstPosition = new Vector2(-Enemy.SIZE);
@@ -241,9 +225,7 @@ namespace Sample1_06
 			}
 		}
 
-		/// <summary>
-		/// タイトル画面を更新します。
-		/// </summary>
+		/// <summary>タイトル画面を更新します。</summary>
 		/// <param name="keyState">現在のキー入力状態。</param>
 		private void updateTitle(KeyboardState keyState)
 		{
@@ -287,9 +269,7 @@ namespace Sample1_06
 			base.Draw(gameTime);
 		}
 
-		/// <summary>
-		/// タイトル画面を描画します。
-		/// </summary>
+		/// <summary>タイトル画面を1フレーム分の描画を行います。</summary>
 		private void drawTitle()
 		{
 			graphics.spriteBatch.DrawString(
@@ -299,9 +279,7 @@ namespace Sample1_06
 				"PUSH SPACE KEY.", new Vector2(340, 400), Color.Black);
 		}
 
-		/// <summary>
-		/// ゲーム画面を描画します。
-		/// </summary>
+		/// <summary>ゲーム画面を1フレーム分の描画を行います。</summary>
 		private void drawGame()
 		{
 			drawPlayer();
@@ -309,9 +287,7 @@ namespace Sample1_06
 			drawHUD();
 		}
 
-		/// <summary>
-		/// 自機を描画します。
-		/// </summary>
+		/// <summary>自機を1フレーム分の描画を行います。</summary>
 		private void drawPlayer()
 		{
 			graphics.spriteBatch.Draw(graphics.gameThumbnail, player.position,
@@ -319,9 +295,7 @@ namespace Sample1_06
 				Player.SIZE / RECT, SpriteEffects.None, 0f);
 		}
 
-		/// <summary>
-		/// 敵機を描画します。
-		/// </summary>
+		/// <summary>敵機を1フレーム分の描画を行います。</summary>
 		private void drawEnemy()
 		{
 			const float SCALE = Enemy.SIZE / RECT;
@@ -334,9 +308,7 @@ namespace Sample1_06
 			}
 		}
 
-		/// <summary>
-		/// HUDを描画します。
-		/// </summary>
+		/// <summary> HUDを1フレーム分の描画を行います。</summary>
 		private void drawHUD()
 		{
 			graphics.spriteBatch.DrawString(graphics.spriteFont,

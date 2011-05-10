@@ -5,9 +5,7 @@ using Microsoft.Xna.Framework.Input;
 namespace Sample1_09
 {
 
-	/// <summary>
-	/// スコア情報。
-	/// </summary>
+	/// <summary>スコア情報。</summary>
 	class Score
 		: ITask
 	{
@@ -35,9 +33,7 @@ namespace Sample1_09
 			private set;
 		}
 
-		/// <summary>
-		/// スコアをリセットします。
-		/// </summary>
+		/// <summary>スコアをリセットします。</summary>
 		public void reset()
 		{
 			now = 0;
@@ -45,18 +41,14 @@ namespace Sample1_09
 			drawNowScore = true;
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		/// <param name="keyState">現在のキー入力状態。</param>
 		public void update(KeyboardState keyState)
 		{
 			// スコアクラスは別段毎フレーム更新するようなものはない。
 		}
 
-		/// <summary>
-		/// スコアを加算します。
-		/// </summary>
+		/// <summary>スコアを加算します。</summary>
 		/// <param name="score">加算されるスコア値。</param>
 		/// <returns>エクステンド該当となる場合、true。</returns>
 		public bool add(int score)
@@ -71,9 +63,7 @@ namespace Sample1_09
 			return extend;
 		}
 
-		/// <summary>
-		/// 描画します。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{

@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 namespace Sample1_06
 {
 
-	/// <summary>
-	/// 自機の情報。
-	/// </summary>
+	/// <summary>自機の情報。</summary>
 	struct Player
 	{
 		/// <summary>大きさ。</summary>

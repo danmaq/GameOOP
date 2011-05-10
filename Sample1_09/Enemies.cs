@@ -1,13 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Sample1_09
 {
 
-	/// <summary>
-	/// 敵機の情報。
-	/// </summary>
+	/// <summary>敵機の情報。</summary>
 	class Enemies
 		: ITask
 	{
@@ -18,9 +15,7 @@ namespace Sample1_09
 		/// <summary>敵機一覧データ。</summary>
 		private Enemy[] list = new Enemy[MAX];
 
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
+		/// <summary>敵機を作成します。</summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <param name="speed">基準速度。</param>
 		/// <returns>敵機を作成できた場合、true。</returns>
@@ -34,9 +29,7 @@ namespace Sample1_09
 			return result;
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		/// <param name="keyState">現在のキー入力状態。</param>
 		public void update(KeyboardState keyState)
 		{
@@ -46,9 +39,7 @@ namespace Sample1_09
 			}
 		}
 
-		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
-		/// </summary>
+		/// <summary>敵機の移動、及び接触判定をします。</summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <returns>接触した場合、true。</returns>
 		public bool hitTest(Vector2 playerPosition)
@@ -65,9 +56,7 @@ namespace Sample1_09
 			return hit;
 		}
 
-		/// <summary>
-		/// 敵機を初期状態にリセットします。
-		/// </summary>
+		/// <summary>敵機を初期状態にリセットします。</summary>
 		public void reset()
 		{
 			Vector2 firstPosition = new Vector2(-Enemy.SIZE);
@@ -77,9 +66,7 @@ namespace Sample1_09
 			}
 		}
 
-		/// <summary>
-		/// 描画します。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{

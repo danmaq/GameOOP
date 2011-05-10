@@ -3,9 +3,7 @@
 namespace Sample1_06
 {
 
-	/// <summary>
-	/// 敵機の情報。
-	/// </summary>
+	/// <summary>敵機の情報。</summary>
 	struct Enemy
 	{
 

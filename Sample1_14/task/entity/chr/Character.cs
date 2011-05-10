@@ -44,13 +44,6 @@ namespace Sample1_14.task.entity.chr
 			base.reset();
 		}
 
-		/// <summary>1フレーム分の更新を行います。</summary>
-		public override void update()
-		{
-			position += velocity;
-			base.update();
-		}
-
 		/// <summary>
 		/// 敵機の接触判定をします。
 		/// </summary>

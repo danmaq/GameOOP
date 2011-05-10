@@ -33,9 +33,7 @@ namespace Sample1_08
 		/// <summary>自機データ。</summary>
 		private readonly Player player = new Player();
 
-		/// <summary>
-		/// Constructor.
-		/// </summary>
+		/// <summary>Constructor.</summary>
 		public Game1()
 		{
 			new GraphicsDeviceManager(this);
@@ -76,9 +74,7 @@ namespace Sample1_08
 			base.Update(gameTime);
 		}
 
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
+		/// <summary>敵機を作成します。</summary>
 		private void createEnemy()
 		{
 			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0 &&
@@ -89,9 +85,7 @@ namespace Sample1_08
 			}
 		}
 
-		/// <summary>
-		/// タイトル画面を更新します。
-		/// </summary>
+		/// <summary>タイトル画面を更新します。</summary>
 		/// <param name="keyState">現在のキー入力状態。</param>
 		private void updateTitle(KeyboardState keyState)
 		{
@@ -131,9 +125,7 @@ namespace Sample1_08
 			base.Draw(gameTime);
 		}
 
-		/// <summary>
-		/// HUDを描画します。
-		/// </summary>
+		/// <summary>HUDを1フレーム分の描画を行います。</summary>
 		/// <param name="all">全情報を描画するかどうか。</param>
 		private void drawHUD(bool all)
 		{
@@ -146,9 +138,7 @@ namespace Sample1_08
 			score.draw(graphics, all);
 		}
 
-		/// <summary>
-		/// タイトル画面を描画します。
-		/// </summary>
+		/// <summary>タイトル画面を1フレーム分の描画を行います。</summary>
 		private void drawTitle()
 		{
 			graphics.spriteBatch.DrawString(
@@ -158,9 +148,7 @@ namespace Sample1_08
 				"PUSH SPACE KEY.", new Vector2(340, 400), Color.Black);
 		}
 
-		/// <summary>
-		/// ゲーム画面を描画します。
-		/// </summary>
+		/// <summary>ゲーム画面を1フレーム分の描画を行います。</summary>
 		private void drawGame()
 		{
 			player.draw(graphics);

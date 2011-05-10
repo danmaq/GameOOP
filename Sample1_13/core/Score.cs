@@ -80,7 +80,7 @@ namespace Sample1_13.core
 		}
 
 		/// <summary>
-		/// 描画します。
+		/// 1フレーム分の描画を行います。
 		/// </summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)

@@ -6,9 +6,7 @@ using Microsoft.Xna.Framework.Input;
 namespace Sample1_07
 {
 
-	/// <summary>
-	/// 自機の情報。
-	/// </summary>
+	/// <summary>自機の情報。</summary>
 	class Player
 	{
 
@@ -33,9 +31,7 @@ namespace Sample1_07
 		/// <summary>現在座標。</summary>
 		public Vector2 position;
 
-		/// <summary>
-		/// 各種値を初期化します。
-		/// </summary>
+		/// <summary>コンストラクタ。各種値を初期化します。</summary>
 		public Player()
 		{
 			acceptInputKeyList =
@@ -47,9 +43,7 @@ namespace Sample1_07
 			velocity.Add(Keys.Right, new Vector2(Player.SPEED, 0));
 		}
 
-		/// <summary>
-		/// キー入力に応じて移動します。
-		/// </summary>
+		/// <summary>キー入力に応じて移動します。</summary>
 		/// <param name="keyState">現在のキー入力状態。</param>
 		public void move(KeyboardState keyState)
 		{
@@ -68,9 +62,7 @@ namespace Sample1_07
 			}
 		}
 
-		/// <summary>
-		/// 描画します。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{

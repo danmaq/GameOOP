@@ -1,6 +1,6 @@
 ﻿using System;
-using Sample1_14.state.chr;
 using Microsoft.Xna.Framework;
+using Sample1_14.state.chr;
 
 namespace Sample1_14.task.entity.chr
 {
@@ -39,22 +39,20 @@ namespace Sample1_14.task.entity.chr
 		/// 敵機を作成します。
 		/// </summary>
 		/// <param name="speed">基準速度。</param>
-		/// <returns>敵機が生成された場合、true。</returns>
-		public bool create(float speed)
+		public void create(float speed)
 		{
-			bool result = false;
+			bool created = false;
 			int percentage = random.Next(denominator);
-			for (int i = enemyTypeList.Length; --i >= 0; )
+			for (int i = enemyTypeList.Length; !created && --i >= 0; )
 			{
 				StateEnemy state = enemyTypeList[i];
 				percentage -= state.percentage;
-				result = percentage < 0;
-				if (result)
+				created = percentage < 0;
+				if (created)
 				{
 					create(speed, state);
 				}
 			}
-			return result;
 		}
 
 		/// <summary>
@@ -62,27 +60,24 @@ namespace Sample1_14.task.entity.chr
 		/// </summary>
 		/// <param name="speed">基準速度。</param>
 		/// <param name="state">敵機の状態。</param>
-		/// <returns>敵機が生成された場合、true。</returns>
 		public void create(float speed, StateEnemy state)
 		{
-			Character chr;
-			bool created = false;
-			for (int i = tasks.Count; !created && --i >= 0; )
+			Character chr = null;
+			for (int i = tasks.Count; chr == null && --i >= 0; )
 			{
-				chr = tasks[i];
-				created = !chr.contains;
-				if (created)
+				Character item = tasks[i];
+				if (!item.contains)
 				{
-					chr.nextState = state;
-					chr.velocity = Vector2.UnitX * speed;
+					chr = item;
 				}
 			}
-			if (!created)
+			if (chr == null)
 			{
 				chr = new Character();
-				chr.nextState = state;
 				tasks.Add(chr);
 			}
+			chr.velocity = Vector2.UnitX * speed;
+			chr.nextState = state;
 		}
 
 		/// <summary>
@@ -99,7 +94,7 @@ namespace Sample1_14.task.entity.chr
 			}
 			if (result)
 			{
-				for (int i = tasks.Count; !result && --i >= 0; )
+				for (int i = tasks.Count; --i >= 0; )
 				{
 					tasks[i].damage(1);
 				}

@@ -93,16 +93,16 @@ namespace Sample1_14.state.chr
 				p < aroundHalf_plusQ)
 			{
 				pos.X = p % Game1.SCREEN.Width;
-				pos.Y = p < aroundHalf ? 0 : Game1.SCREEN.Height;
+				pos.Y = p < aroundHalf ? 0 : Game1.SCREEN.Height - 1;
 			}
 			else
 			{
-				pos.X = p < aroundHalf ? 0 : Game1.SCREEN.Width;
+				pos.X = p < aroundHalf ? 0 : Game1.SCREEN.Width - 1;
 				pos.Y = p % Game1.SCREEN.Height;
 			}
 			Character chr = (Character)entity;
 			chr.position = pos;
-			initVelocity(entity, chr.velocity.Length());
+			initVelocity(entity, chr.velocity.Length() + random.Next(1, 3));
 		}
 	}
 }

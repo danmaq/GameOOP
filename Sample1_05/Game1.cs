@@ -52,9 +52,7 @@ namespace Sample1_05
 		/// <summary>敵機一覧データ。</summary>
 		Enemy[] enemies = new Enemy[Enemy.MAX];
 
-		/// <summary>
-		/// Constructor.
-		/// </summary>
+		/// <summary>Constructor.</summary>
 		public Game1()
 		{
 			new GraphicsDeviceManager(this);
@@ -99,9 +97,7 @@ namespace Sample1_05
 			base.Update(gameTime);
 		}
 
-		/// <summary>
-		/// 自機を移動します。
-		/// </summary>
+		/// <summary>自機を移動します。</summary>
 		/// <param name="keyState">現在のキー入力状態。</param>
 		private void movePlayer(KeyboardState keyState)
 		{
@@ -139,9 +135,7 @@ namespace Sample1_05
 			}
 		}
 
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
+		/// <summary>敵機を作成します。</summary>
 		private void createEnemy()
 		{
 			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0)
@@ -190,9 +184,7 @@ namespace Sample1_05
 			}
 		}
 
-		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
-		/// </summary>
+		/// <summary>敵機の移動、及び接触判定をします。</summary>
 		/// <returns>接触した場合、true。</returns>
 		private bool enemyMoveAndHitTest()
 		{
@@ -218,9 +210,7 @@ namespace Sample1_05
 			return hit;
 		}
 
-		/// <summary>
-		/// 敵機を初期状態にリセットします。
-		/// </summary>
+		/// <summary>敵機を初期状態にリセットします。</summary>
 		private void enemyReset()
 		{
 			const float FIRST_POSITION = -Enemy.SIZE;
@@ -232,9 +222,7 @@ namespace Sample1_05
 			}
 		}
 
-		/// <summary>
-		/// タイトル画面を更新します。
-		/// </summary>
+		/// <summary>タイトル画面を更新します。</summary>
 		/// <param name="keyState">現在のキー入力状態。</param>
 		private void updateTitle(KeyboardState keyState)
 		{
@@ -279,9 +267,7 @@ namespace Sample1_05
 			base.Draw(gameTime);
 		}
 
-		/// <summary>
-		/// タイトル画面を描画します。
-		/// </summary>
+		/// <summary>タイトル画面を1フレーム分の描画を行います。</summary>
 		private void drawTitle()
 		{
 			graphics.spriteBatch.DrawString(
@@ -291,9 +277,7 @@ namespace Sample1_05
 				"PUSH SPACE KEY.", new Vector2(340, 400), Color.Black);
 		}
 
-		/// <summary>
-		/// ゲーム画面を描画します。
-		/// </summary>
+		/// <summary>ゲーム画面を1フレーム分の描画を行います。</summary>
 		private void drawGame()
 		{
 			drawPlayer();
@@ -301,9 +285,7 @@ namespace Sample1_05
 			drawHUD();
 		}
 
-		/// <summary>
-		/// 自機を描画します。
-		/// </summary>
+		/// <summary>自機を1フレーム分の描画を行います。</summary>
 		private void drawPlayer()
 		{
 			graphics.spriteBatch.Draw(graphics.gameThumbnail,
@@ -311,9 +293,7 @@ namespace Sample1_05
 				new Vector2(RECT * 0.5f), Player.SIZE / RECT, SpriteEffects.None, 0f);
 		}
 
-		/// <summary>
-		/// 敵機を描画します。
-		/// </summary>
+		/// <summary>敵機を1フレーム分の描画を行います。</summary>
 		private void drawEnemy()
 		{
 			const float SCALE = Enemy.SIZE / RECT;
@@ -327,9 +307,7 @@ namespace Sample1_05
 			}
 		}
 
-		/// <summary>
-		/// HUDを描画します。
-		/// </summary>
+		/// <summary>HUDを1フレーム分の描画を行います。</summary>
 		private void drawHUD()
 		{
 			graphics.spriteBatch.DrawString(graphics.spriteFont,

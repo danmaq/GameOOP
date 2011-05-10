@@ -35,7 +35,7 @@ namespace Sample1_14.task
 			}
 		}
 
-		/// <summary>描画します。</summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{

@@ -5,9 +5,7 @@ using Microsoft.Xna.Framework.Input;
 namespace Sample1_10
 {
 
-	/// <summary>
-	/// タイトル画面。
-	/// </summary>
+	/// <summary>タイトル画面。</summary>
 	class Title
 		: IScene
 	{
@@ -15,9 +13,7 @@ namespace Sample1_10
 		/// <summary>クラス オブジェクト。</summary>
 		public static readonly IScene instance = new Title();
 
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
+		/// <summary>コンストラクタ。</summary>
 		private Title()
 		{
 			next = this;
@@ -30,17 +26,13 @@ namespace Sample1_10
 			private set;
 		}
 
-		/// <summary>
-		/// ゲーム シーンの初期化を行います。
-		/// </summary>
+		/// <summary>ゲーム シーンの初期化を行います。</summary>
 		public void setup()
 		{
 			Score.instance.drawNowScore = false;
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		public void update()
 		{
 			next = this;
@@ -56,9 +48,7 @@ namespace Sample1_10
 			}
 		}
 
-		/// <summary>
-		/// 1フレーム分の描画を行います。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{

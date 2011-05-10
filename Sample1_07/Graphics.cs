@@ -4,9 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Sample1_07
 {
 
-	/// <summary>
-	/// スプライト バッチやコンテンツなど描画周りのデータ一覧。
-	/// </summary>
+	/// <summary>スプライト バッチやコンテンツなど描画周りのデータ一覧。</summary>
 	class Graphics
 	{
 
@@ -22,10 +20,7 @@ namespace Sample1_07
 		/// <summary>フォント画像。</summary>
 		public SpriteFont spriteFont;
 
-		/// <summary>
-		/// コンストラクタ。
-		/// コンテンツを読み込みます。
-		/// </summary>
+		/// <summary>コンストラクタ。コンテンツを読み込みます。</summary>
 		/// <param name="game">ゲーム メイン オブジェクト。</param>
 		public Graphics(Game game)
 		{

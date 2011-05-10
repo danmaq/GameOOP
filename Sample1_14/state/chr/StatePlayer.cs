@@ -95,6 +95,7 @@ namespace Sample1_14.state.chr
 			if (!chr.contains)
 			{
 				chr.position = prev;
+				chr.velocity = Vector2.Zero;
 			}
 		}
 
@@ -124,7 +125,10 @@ namespace Sample1_14.state.chr
 		/// <returns>続行可能な場合、true。</returns>
 		public override bool damage(Character entity, int value)
 		{
-			entity.position = defaultPosition;
+			if (value > 0)
+			{
+				entity.position = defaultPosition;
+			}
 			amount -= value;
 			return amount >= 0;
 		}

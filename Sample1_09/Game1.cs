@@ -42,9 +42,7 @@ namespace Sample1_09
 		/// <summary>ゲームプレイ画面のタスク一覧。</summary>
 		private readonly ITask[] taskGame;
 
-		/// <summary>
-		/// Constructor.
-		/// </summary>
+		/// <summary>Constructor.</summary>
 		public Game1()
 		{
 			new GraphicsDeviceManager(this);
@@ -92,9 +90,7 @@ namespace Sample1_09
 			base.Update(gameTime);
 		}
 
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
+		/// <summary>敵機を作成します。</summary>
 		private void createEnemy()
 		{
 			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0 &&
@@ -105,9 +101,7 @@ namespace Sample1_09
 			}
 		}
 
-		/// <summary>
-		/// タイトル画面を更新します。
-		/// </summary>
+		/// <summary>タイトル画面を更新します。</summary>
 		/// <param name="keyState">現在のキー入力状態。</param>
 		private void updateTitle(KeyboardState keyState)
 		{
@@ -148,9 +142,7 @@ namespace Sample1_09
 			base.Draw(gameTime);
 		}
 
-		/// <summary>
-		/// タイトル画面を描画します。
-		/// </summary>
+		/// <summary>タイトル画面を1フレーム分の描画を行います。</summary>
 		private void drawTitle()
 		{
 			graphics.spriteBatch.DrawString(

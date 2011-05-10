@@ -1,9 +1,7 @@
 ﻿namespace Sample1_07
 {
 
-	/// <summary>
-	/// スコア情報。
-	/// </summary>
+	/// <summary>スコア情報。</summary>
 	class Score
 	{
 
@@ -19,18 +17,14 @@
 		/// <summary>ハイスコア。</summary>
 		public int highest;
 
-		/// <summary>
-		/// スコアをリセットします。
-		/// </summary>
+		/// <summary>スコアをリセットします。</summary>
 		public void reset()
 		{
 			now = 0;
 			prev = 0;
 		}
 
-		/// <summary>
-		/// スコアを加算します。
-		/// </summary>
+		/// <summary>スコアを加算します。</summary>
 		/// <param name="score">加算されるスコア値。</param>
 		/// <returns>エクステンド該当となる場合、true。</returns>
 		public bool add(int score)

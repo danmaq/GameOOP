@@ -1,9 +1,7 @@
 ﻿namespace Sample1_05
 {
 
-	/// <summary>
-	/// 自機の情報。
-	/// </summary>
+	/// <summary>自機の情報。</summary>
 	struct Player
 	{
 

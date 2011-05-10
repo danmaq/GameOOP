@@ -5,9 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Sample1_08
 {
 
-	/// <summary>
-	/// 敵機の情報。
-	/// </summary>
+	/// <summary>敵機の情報。</summary>
 	struct Enemy
 	{
 
@@ -46,9 +44,7 @@ namespace Sample1_08
 			private set;
 		}
 
-		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
-		/// </summary>
+		/// <summary>敵機の移動、及び接触判定をします。</summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <returns>接触した場合、true。</returns>
 		public bool moveAndHitTest(Vector2 playerPosition)
@@ -64,9 +60,7 @@ namespace Sample1_08
 			return hit;
 		}
 
-		/// <summary>
-		/// 描画します。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{
@@ -76,9 +70,7 @@ namespace Sample1_08
 				0f, new Vector2(Graphics.RECT * 0.5f), SCALE, SpriteEffects.None, 0f);
 		}
 
-		/// <summary>
-		/// 敵機をアクティブにします。
-		/// </summary>
+		/// <summary>敵機をアクティブにします。</summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <param name="speed">基準速度。</param>
 		/// <returns>敵機をアクティブにできた場合、true。</returns>
@@ -92,18 +84,14 @@ namespace Sample1_08
 			return result;
 		}
 
-		/// <summary>
-		/// 敵機を強制的にスリープにします。
-		/// </summary>
+		/// <summary>敵機を強制的にスリープにします。</summary>
 		public void sleep()
 		{
 			position = firstPosition;
 			velocity = Vector2.Zero;
 		}
 
-		/// <summary>
-		/// 敵機を強制的にアクティブにします。
-		/// </summary>
+		/// <summary>敵機を強制的にアクティブにします。</summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <param name="speed">基準速度。</param>
 		private void startForce(Vector2 playerPosition, float speed)
@@ -118,11 +106,11 @@ namespace Sample1_08
 				p < AROUND_HALF_QUARTER)
 			{
 				pos.X = p % Game1.SCREEN.Width;
-				pos.Y = p < AROUND_HALF ? 0 : Game1.SCREEN.Height;
+				pos.Y = p < AROUND_HALF ? 0 : Game1.SCREEN.Height - 1;
 			}
 			else
 			{
-				pos.X = p < AROUND_HALF ? 0 : Game1.SCREEN.Width;
+				pos.X = p < AROUND_HALF ? 0 : Game1.SCREEN.Width - 1;
 				pos.Y = p % Game1.SCREEN.Height;
 			}
 			position = pos;
@@ -132,9 +120,7 @@ namespace Sample1_08
 			homingAmount = Enemy.HOMING_LIMIT;
 		}
 
-		/// <summary>
-		/// 敵機の移動速度と方角を初期化します。
-		/// </summary>
+		/// <summary>敵機の移動速度と方角を初期化します。</summary>
 		/// <param name="playerPosition">プレイヤーの位置。</param>
 		/// <param name="speed">速度。</param>
 		private void initVelocity(Vector2 playerPosition, float speed)

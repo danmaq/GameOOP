@@ -32,7 +32,7 @@ namespace Sample1_13.character
 			{
 				result = create(speed, EnemyHoming.instance);
 			}
-			else if (percentage - INFERIORITY_PERCENTAGE < 0)
+			else if (percentage - HOMING_PERCENTAGE - INFERIORITY_PERCENTAGE < 0)
 			{
 				result = create(speed, EnemyInferiority.instance);
 			}

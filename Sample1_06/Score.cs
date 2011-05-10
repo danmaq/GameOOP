@@ -1,9 +1,7 @@
 ﻿namespace Sample1_06
 {
 
-	/// <summary>
-	/// スコア情報。
-	/// </summary>
+	/// <summary>スコア情報。</summary>
 	struct Score
 	{
 

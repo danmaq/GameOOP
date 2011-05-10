@@ -23,9 +23,7 @@ namespace Sample1_10
 		/// <summary>タスク管理クラス。</summary>
 		private readonly TaskManager mgrTask;
 
-		/// <summary>
-		/// Constructor.
-		/// </summary>
+		/// <summary>Constructor.</summary>
 		public Game1()
 		{
 			new GraphicsDeviceManager(this);

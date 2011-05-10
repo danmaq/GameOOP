@@ -4,9 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Sample1_08
 {
 
-	/// <summary>
-	/// スコア情報。
-	/// </summary>
+	/// <summary>スコア情報。</summary>
 	class Score
 	{
 
@@ -30,18 +28,14 @@ namespace Sample1_08
 			private set;
 		}
 
-		/// <summary>
-		/// スコアをリセットします。
-		/// </summary>
+		/// <summary>スコアをリセットします。</summary>
 		public void reset()
 		{
 			now = 0;
 			prev = 0;
 		}
 
-		/// <summary>
-		/// スコアを加算します。
-		/// </summary>
+		/// <summary>スコアを加算します。</summary>
 		/// <param name="score">加算されるスコア値。</param>
 		/// <returns>エクステンド該当となる場合、true。</returns>
 		public bool add(int score)
@@ -56,9 +50,7 @@ namespace Sample1_08
 			return extend;
 		}
 
-		/// <summary>
-		/// 描画します。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		/// <param name="nowScore">現在のスコアも描画するかどうか。</param>
 		public void draw(Graphics graphics, bool nowScore)

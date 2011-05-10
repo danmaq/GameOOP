@@ -269,7 +269,7 @@ namespace Sample1_03
 			base.Draw(gameTime);
 		}
 
-		/// <summary>タイトル画面を描画します。</summary>
+		/// <summary>タイトル画面を1フレーム分の描画を行います。</summary>
 		private void drawTitle()
 		{
 			spriteBatch.DrawString(spriteFont, "SAMPLE 1", new
@@ -279,7 +279,7 @@ namespace Sample1_03
 				new Vector2(340, 400), Color.Black);
 		}
 
-		/// <summary>ゲーム画面を描画します。</summary>
+		/// <summary>ゲーム画面を1フレーム分の描画を行います。</summary>
 		private void drawGame()
 		{
 			drawPlayer();
@@ -287,7 +287,7 @@ namespace Sample1_03
 			drawHUD();
 		}
 
-		/// <summary>自機を描画します。</summary>
+		/// <summary>自機を1フレーム分の描画を行います。</summary>
 		private void drawPlayer()
 		{
 			spriteBatch.Draw(
@@ -295,7 +295,7 @@ namespace Sample1_03
 				Color.White, 0f, new Vector2(32, 32), 1f, SpriteEffects.None, 0f);
 		}
 
-		/// <summary>敵機を描画します。</summary>
+		/// <summary>敵機を1フレーム分の描画を行います。</summary>
 		private void drawEnemy()
 		{
 			for (int i = 0; i < enemyX.Length; i++)
@@ -307,7 +307,7 @@ namespace Sample1_03
 			}
 		}
 
-		/// <summary>HUDを描画します。</summary>
+		/// <summary>HUDを1フレーム分の描画を行います。</summary>
 		private void drawHUD()
 		{
 			spriteBatch.DrawString(spriteFont, "SCORE: " + score.ToString(),

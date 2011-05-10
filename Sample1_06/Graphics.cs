@@ -1,12 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace Sample1_06
 {
 
-	/// <summary>
-	/// スプライト バッチやコンテンツなど描画周りのデータ一覧。
-	/// </summary>
+	/// <summary>スプライト バッチやコンテンツなど描画周りのデータ一覧。</summary>
 	struct Graphics
 	{
 

@@ -28,7 +28,7 @@ namespace Sample1_14.state.scene
 		/// <summary>コンストラクタ。</summary>
 		private ScenePlay()
 		{
-			mgrTask.tasks.AddRange(new ITask[] { mgrEnemy, player });
+			mgrTask.tasks.AddRange(new ITask[] { player, mgrEnemy });
 		}
 
 		/// <summary>
@@ -53,7 +53,6 @@ namespace Sample1_14.state.scene
 			{
 				entity.nextState = SceneTitle.instance;
 			}
-			entity.nextState = null;
 		}
 
 		/// <summary>1フレーム分の描画処理を実行します。</summary>
@@ -72,6 +71,7 @@ namespace Sample1_14.state.scene
 		public void teardown(Entity entity)
 		{
 			mgrTask.reset();
+			Score.instance.reset();
 		}
 
 		/// <summary>
@@ -81,11 +81,13 @@ namespace Sample1_14.state.scene
 		private void createEnemy(Entity entity)
 		{
 			int counter = entity.counter;
-			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0 &&
-				mgrEnemy.create(counter * 0.001f) &&
-				Score.instance.add(10))
+			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0)
 			{
-				player.damage(-1);
+				mgrEnemy.create(counter * 0.001f);
+				if(Score.instance.add(10))
+				{
+					player.damage(-1);
+				}
 			}
 		}
 	}

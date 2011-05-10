@@ -4,9 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Sample1_05
 {
 
-	/// <summary>
-	/// スプライト バッチやコンテンツなど描画周りのデータ一覧。
-	/// </summary>
+	/// <summary>スプライト バッチやコンテンツなど描画周りのデータ一覧。</summary>
 	struct Graphics
 	{
 

@@ -4,9 +4,7 @@ using Microsoft.Xna.Framework;
 namespace Sample1_07
 {
 
-	/// <summary>
-	/// 敵機の情報。
-	/// </summary>
+	/// <summary>敵機の情報。</summary>
 	struct Enemy
 	{
 
@@ -31,9 +29,7 @@ namespace Sample1_07
 		/// <summary>ホーミング有効時間。</summary>
 		public int homingAmount;
 
-		/// <summary>
-		/// 敵機をアクティブにします。
-		/// </summary>
+		/// <summary>敵機をアクティブにします。</summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <param name="speed">基準速度。</param>
 		/// <returns>敵機をアクティブにできた場合、true。</returns>
@@ -47,9 +43,7 @@ namespace Sample1_07
 			return result;
 		}
 
-		/// <summary>
-		/// 敵機を強制的にアクティブにします。
-		/// </summary>
+		/// <summary>敵機を強制的にアクティブにします。</summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <param name="speed">基準速度。</param>
 		public void startForce(Vector2 playerPosition, float speed)
@@ -63,11 +57,11 @@ namespace Sample1_07
 				p < AROUND_HALF_QUARTER)
 			{
 				position.X = p % Game1.SCREEN.Width;
-				position.Y = p < AROUND_HALF ? 0 : Game1.SCREEN.Height;
+				position.Y = p < AROUND_HALF ? 0 : Game1.SCREEN.Height - 1;
 			}
 			else
 			{
-				position.X = p < AROUND_HALF ? 0 : Game1.SCREEN.Width;
+				position.X = p < AROUND_HALF ? 0 : Game1.SCREEN.Width - 1;
 				position.Y = p % Game1.SCREEN.Height;
 			}
 			initVelocity(playerPosition, rnd.Next(1, 3) + speed);
@@ -75,9 +69,7 @@ namespace Sample1_07
 			homingAmount = Enemy.HOMING_LIMIT;
 		}
 
-		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
-		/// </summary>
+		/// <summary>敵機の移動、及び接触判定をします。</summary>
 		/// <param name="playerPosition">自機の座標。</param>
 		/// <returns>接触した場合、true。</returns>
 		public bool moveAndHitTest(Vector2 playerPosition)
@@ -93,9 +85,7 @@ namespace Sample1_07
 			return hit;
 		}
 
-		/// <summary>
-		/// 敵機の移動速度と方角を初期化します。
-		/// </summary>
+		/// <summary>敵機の移動速度と方角を初期化します。</summary>
 		/// <param name="playerPosition">プレイヤーの位置。</param>
 		/// <param name="speed">速度。</param>
 		public void initVelocity(Vector2 playerPosition, float speed)
