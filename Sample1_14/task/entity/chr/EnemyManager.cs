@@ -1,5 +1,6 @@
 ﻿using System;
 using Sample1_14.state.chr;
+using Microsoft.Xna.Framework;
 
 namespace Sample1_14.task.entity.chr
 {
@@ -50,9 +51,10 @@ namespace Sample1_14.task.entity.chr
 			{
 				StateEnemy state = enemyTypeList[i];
 				percentage -= state.percentage;
-				if (percentage < 0)
+				result = percentage < 0;
+				if (result)
 				{
-					result = create(speed, state);
+					create(speed, state);
 				}
 			}
 			return result;
@@ -64,10 +66,26 @@ namespace Sample1_14.task.entity.chr
 		/// <param name="speed">基準速度。</param>
 		/// <param name="state">敵機の状態。</param>
 		/// <returns>敵機が生成された場合、true。</returns>
-		public bool create(float speed, StateEnemy state)
+		public void create(float speed, StateEnemy state)
 		{
-			bool result = false;
-			return result;
+			Character chr;
+			bool created = false;
+			for (int i = tasks.Count; !created && --i >= 0; )
+			{
+				chr = tasks[i];
+				created = !chr.contains;
+				if (created)
+				{
+					chr.nextState = state;
+					chr.velocity = Vector2.UnitX * speed;
+				}
+			}
+			if (!created)
+			{
+				chr = new Character();
+				chr.nextState = state;
+				tasks.Add(chr);
+			}
 		}
 	}
 }

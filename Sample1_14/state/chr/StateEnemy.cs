@@ -3,6 +3,7 @@ using Sample1_14.task.entity.chr;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Microsoft.Xna.Framework;
+using Sample1_14.state.scene;
 
 namespace Sample1_14.state.chr
 {
@@ -23,6 +24,9 @@ namespace Sample1_14.state.chr
 
 		/// <summary>乗算色。</summary>
 		public readonly Color color;
+
+		/// <summary>自機オブジェクト。</summary>
+		protected readonly Character player = ScenePlay.instance.player;
 
 		/// <summary>コンストラクタ。</summary>
 		/// <param name="percentage">確率。</param>
@@ -49,6 +53,21 @@ namespace Sample1_14.state.chr
 			}
 		}
 
+		protected void initVelocity(Entity entity, float speed)
+		{
+			Character chr = (Character)entity;
+			Vector2 v = player.position - chr.position;
+			if (v == Vector2.Zero)
+			{
+				// 長さが0だと単位ベクトル計算時にNaNが出るため対策
+				v = Vector2.UnitX;
+			}
+			v.Normalize();
+			chr.velocity = v * speed;
+		}
+
+		/// <summary>休眠している敵機を起動します。。</summary>
+		/// <param name="entity">この状態を適用されたオブジェクト。</param>
 		private void start(Entity entity)
 		{
 			float aroundHalf = Game1.SCREEN.Width + Game1.SCREEN.Height;
@@ -69,6 +88,7 @@ namespace Sample1_14.state.chr
 			}
 			Character chr = (Character)entity;
 			chr.position = pos;
+			initVelocity(entity, chr.velocity.Length());
 		}
 	}
 }

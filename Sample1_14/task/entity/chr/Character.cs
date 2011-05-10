@@ -12,7 +12,7 @@ namespace Sample1_14.task.entity.chr
 		public float size;
 
 		/// <summary>現在座標。</summary>
-		public Vector2 position;
+		public Vector2 position = -Vector2.One;
 
 		/// <summary>移動速度と方角。</summary>
 		public Vector2 velocity;

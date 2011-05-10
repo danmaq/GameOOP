@@ -125,7 +125,8 @@ namespace Sample1_14.state.chr
 		public override bool damage(Character entity, int value)
 		{
 			entity.position = defaultPosition;
-			return --amount >= 0;
+			amount -= value;
+			return amount >= 0;
 		}
 
 		/// <summary>キー入力から進行方向を計算します。</summary>
