@@ -47,7 +47,7 @@ namespace Sample1_14.task.entity
 		}
 
 		/// <summary>オブジェクトをリセットします。</summary>
-		public virtual void release()
+		public virtual void reset()
 		{
 			nextState = StateEmpty.instance;
 			commitNextState();

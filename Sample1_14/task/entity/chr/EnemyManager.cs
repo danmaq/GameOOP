@@ -10,9 +10,6 @@ namespace Sample1_14.task.entity.chr
 		: TaskManager<Character>
 	{
 
-		/// <summary>クラス オブジェクト。</summary>
-		public static readonly EnemyManager instance = new EnemyManager();
-
 		/// <summary>疑似乱数ジェネレータ。</summary>
 		private readonly Random random = new Random();
 
@@ -28,7 +25,7 @@ namespace Sample1_14.task.entity.chr
 		private readonly int denominator;
 
 		/// <summary>コンストラクタ。</summary>
-		private EnemyManager()
+		public EnemyManager()
 		{
 			int d = 0;
 			for (int i = enemyTypeList.Length; --i >= 0; )
@@ -86,6 +83,28 @@ namespace Sample1_14.task.entity.chr
 				chr.nextState = state;
 				tasks.Add(chr);
 			}
+		}
+
+		/// <summary>
+		/// 敵機の接触判定をします。
+		/// </summary>
+		/// <param name="expr">対象キャラクタ。</param>
+		/// <returns>接触した場合、true。</returns>
+		public bool hitTest(Character expr)
+		{
+			bool result = false;
+			for (int i = tasks.Count; !result && --i >= 0; )
+			{
+				result = tasks[i].hitTest(expr);
+			}
+			if (result)
+			{
+				for (int i = tasks.Count; !result && --i >= 0; )
+				{
+					tasks[i].damage(1);
+				}
+			}
+			return result;
 		}
 	}
 }

@@ -54,7 +54,7 @@ namespace Sample1_14
 			mgrTask.update();
 			if (mgrScene.currentState == StateEmpty.instance)
 			{
-				mgrTask.release();
+				mgrTask.reset();
 				Exit();
 			}
 			base.Update(gameTime);

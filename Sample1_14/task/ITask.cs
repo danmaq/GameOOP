@@ -15,6 +15,6 @@ namespace Sample1_14.task
 		void draw(Graphics graphics);
 
 		/// <summary>オブジェクトをリセットします。</summary>
-		void release();
+		void reset();
 	}
 }

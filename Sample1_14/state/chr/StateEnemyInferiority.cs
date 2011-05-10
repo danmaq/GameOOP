@@ -16,7 +16,7 @@ namespace Sample1_14.state.chr
 
 		/// <summary>コンストラクタ。</summary>
 		private StateEnemyInferiority()
-			: base(50, Color.Magenta)
+			: base(30, Color.Magenta)
 		{
 		}
 
@@ -39,7 +39,7 @@ namespace Sample1_14.state.chr
 			base.initVelocity(entity, speed);
 			// ここでベクトルをわざと乱して、精度を落とす
 			Quaternion q = Quaternion.CreateFromAxisAngle(
-				Vector3.UnitZ, (float)rnd.NextDouble() - 0.5f);
+				Vector3.UnitZ, (float)random.NextDouble() - 0.5f);
 			Character chr = (Character)entity;
 			chr.velocity = Vector2.Transform(chr.velocity, q);
 		}

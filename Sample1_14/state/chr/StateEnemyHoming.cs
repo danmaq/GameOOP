@@ -18,7 +18,7 @@ namespace Sample1_14.state.chr
 
 		/// <summary>コンストラクタ。</summary>
 		private StateEnemyHoming()
-			: base(50, Color.Yellow)
+			: base(20, Color.Yellow)
 		{
 		}
 

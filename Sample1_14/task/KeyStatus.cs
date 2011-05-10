@@ -40,7 +40,7 @@ namespace Sample1_14.task
 		}
 
 		/// <summary>オブジェクトをリセットします。</summary>
-		public void release()
+		public void reset()
 		{
 			// 特にすることはない。
 		}

@@ -34,7 +34,7 @@ namespace Sample1_14.state.chr
 		{
 			Character chr = (Character)entity;
 			graphics.spriteBatch.Draw(graphics.gameThumbnail, chr.position,
-				null, Color.White, 0f, new Vector2(Graphics.RECT * 0.5f),
+				null, chr.color, 0f, new Vector2(Graphics.RECT * 0.5f),
 				chr.size / Graphics.RECT, SpriteEffects.None, 0f);
 		}
 

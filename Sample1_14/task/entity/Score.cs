@@ -49,11 +49,11 @@ namespace Sample1_14.task.entity
 		}
 
 		/// <summary>オブジェクトをリセットします。</summary>
-		public override void release()
+		public override void reset()
 		{
 			now = 0;
 			prev = 0;
-			base.release();
+			base.reset();
 		}
 
 		/// <summary>

@@ -16,16 +16,19 @@ namespace Sample1_14.state.scene
 		/// <summary>クラス オブジェクト。</summary>
 		public static readonly ScenePlay instance = new ScenePlay();
 
+		/// <summary>プレイヤー。</summary>
+		public readonly Character player = new Character();
+
 		/// <summary>タスク管理クラス。</summary>
 		private readonly TaskManager<ITask> mgrTask = new TaskManager<ITask>();
 
-		/// <summary>プレイヤー。</summary>
-		public readonly Character player = new Character();
+		/// <summary>敵機管理クラス。</summary>
+		private readonly EnemyManager mgrEnemy = new EnemyManager();
 
 		/// <summary>コンストラクタ。</summary>
 		private ScenePlay()
 		{
-			mgrTask.tasks.AddRange(new ITask[] { EnemyManager.instance, player });
+			mgrTask.tasks.AddRange(new ITask[] { mgrEnemy, player });
 		}
 
 		/// <summary>
@@ -46,6 +49,10 @@ namespace Sample1_14.state.scene
 		{
 			mgrTask.update();
 			createEnemy(entity);
+			if (mgrEnemy.hitTest(player) && !player.damage(1))
+			{
+				entity.nextState = SceneTitle.instance;
+			}
 			entity.nextState = null;
 		}
 
@@ -64,7 +71,7 @@ namespace Sample1_14.state.scene
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
 		public void teardown(Entity entity)
 		{
-			mgrTask.release();
+			mgrTask.reset();
 		}
 
 		/// <summary>
@@ -75,7 +82,7 @@ namespace Sample1_14.state.scene
 		{
 			int counter = entity.counter;
 			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0 &&
-				EnemyManager.instance.create(counter * 0.001f) &&
+				mgrEnemy.create(counter * 0.001f) &&
 				Score.instance.add(10))
 			{
 				player.damage(-1);

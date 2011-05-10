@@ -12,7 +12,7 @@ namespace Sample1_14.task.entity.chr
 		public float size;
 
 		/// <summary>現在座標。</summary>
-		public Vector2 position = -Vector2.One;
+		public Vector2 position;
 
 		/// <summary>移動速度と方角。</summary>
 		public Vector2 velocity;
@@ -24,6 +24,7 @@ namespace Sample1_14.task.entity.chr
 		public Character()
 			: base(null)
 		{
+			reset();
 		}
 
 		/// <summary>画面内に収まっているかどうか。</summary>
@@ -35,6 +36,14 @@ namespace Sample1_14.task.entity.chr
 			}
 		}
 
+		/// <summary>オブジェクトをリセットします。</summary>
+		public override void reset()
+		{
+			position = -Vector2.One;
+			velocity = Vector2.Zero;
+			base.reset();
+		}
+
 		/// <summary>1フレーム分の更新を行います。</summary>
 		public override void update()
 		{
@@ -43,7 +52,7 @@ namespace Sample1_14.task.entity.chr
 		}
 
 		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
+		/// 敵機の接触判定をします。
 		/// </summary>
 		/// <param name="expr">対象キャラクタ。</param>
 		/// <returns>接触した場合、true。</returns>

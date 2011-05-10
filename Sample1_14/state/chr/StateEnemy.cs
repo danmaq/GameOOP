@@ -17,16 +17,13 @@ namespace Sample1_14.state.chr
 		private const float SIZE = 32;
 
 		/// <summary>疑似乱数ジェネレータ。</summary>
-		protected static readonly Random rnd = new Random();
+		protected static readonly Random random = new Random();
 
 		/// <summary>確率。</summary>
 		public readonly int percentage;
 
 		/// <summary>乗算色。</summary>
 		public readonly Color color;
-
-		/// <summary>自機オブジェクト。</summary>
-		protected readonly Character player = ScenePlay.instance.player;
 
 		/// <summary>コンストラクタ。</summary>
 		/// <param name="percentage">確率。</param>
@@ -60,6 +57,7 @@ namespace Sample1_14.state.chr
 		/// <returns>続行可能な場合、true。</returns>
 		public override bool damage(Character entity, int value)
 		{
+			entity.reset();
 			return true;
 		}
 
@@ -71,6 +69,7 @@ namespace Sample1_14.state.chr
 		protected virtual void initVelocity(Entity entity, float speed)
 		{
 			Character chr = (Character)entity;
+			Character player = ScenePlay.instance.player;
 			Vector2 v = player.position - chr.position;
 			if (v == Vector2.Zero)
 			{
@@ -88,7 +87,7 @@ namespace Sample1_14.state.chr
 			float aroundHalf = Game1.SCREEN.Width + Game1.SCREEN.Height;
 			float aroundHalf_plusQ = Game1.SCREEN.Width * 2 + Game1.SCREEN.Height;
 			int around = (int)aroundHalf * 2;
-			int p = rnd.Next(around);
+			int p = random.Next(around);
 			Vector2 pos;
 			if (p < Game1.SCREEN.Width || p >= aroundHalf &&
 				p < aroundHalf_plusQ)

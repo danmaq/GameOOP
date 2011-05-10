@@ -16,12 +16,12 @@ namespace Sample1_14.task
 		public readonly List<T> tasks = new List<T>();
 
 		/// <summary>タスクをリセットします。</summary>
-		public void release()
+		public void reset()
 		{
 			int length = tasks.Count;
 			for (int i = 0; i < length; i++)
 			{
-				tasks[i].release();
+				tasks[i].reset();
 			}
 		}
 
