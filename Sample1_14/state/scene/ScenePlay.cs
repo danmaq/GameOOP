@@ -22,9 +22,6 @@ namespace Sample1_14.state.scene
 		/// <summary>プレイヤー。</summary>
 		public readonly Character player = new Character();
 
-		/// <summary>ゲームの進行カウンタ。</summary>
-		private int counter;
-
 		/// <summary>コンストラクタ。</summary>
 		private ScenePlay()
 		{
@@ -40,7 +37,7 @@ namespace Sample1_14.state.scene
 		{
 			player.nextState = StatePlayer.instance;
 			Score.instance.drawNowScore = true;
-			counter = 0;
+			entity.counter = 0;
 		}
 
 		/// <summary>1フレーム分の更新処理を実行します。</summary>
@@ -48,9 +45,8 @@ namespace Sample1_14.state.scene
 		public void update(Entity entity)
 		{
 			mgrTask.update();
-			createEnemy();
+			createEnemy(entity);
 			entity.nextState = null;
-			counter++;
 		}
 
 		/// <summary>1フレーム分の描画処理を実行します。</summary>
@@ -74,8 +70,10 @@ namespace Sample1_14.state.scene
 		/// <summary>
 		/// 敵機を作成します。
 		/// </summary>
-		private void createEnemy()
+		/// <param name="entity">この状態を適用されたオブジェクト。</param>
+		private void createEnemy(Entity entity)
 		{
+			int counter = entity.counter;
 			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0 &&
 				EnemyManager.instance.create(counter * 0.001f) &&
 				Score.instance.add(10))

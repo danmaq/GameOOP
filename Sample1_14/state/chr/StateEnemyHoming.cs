@@ -10,6 +10,9 @@ namespace Sample1_14.state.chr
 		: StateEnemy
 	{
 
+		/// <summary>ホーミング時間。</summary>
+		private const int HOMING_LIMIT = 60;
+
 		/// <summary>クラス オブジェクト。</summary>
 		public static readonly StateEnemy instance = new StateEnemyHoming();
 
@@ -20,21 +23,26 @@ namespace Sample1_14.state.chr
 		}
 
 		/// <summary>
+		/// 1フレーム分の更新を行う時に呼び出されます。
+		/// </summary>
+		/// <param name="entity">対象の敵機。</param>
+		public override void update(Entity entity)
+		{
+			if (entity.counter >= HOMING_LIMIT)
+			{
+				entity.nextState = StateEnemyStraight.homing;
+			}
+			initVelocity(entity, ((Character)entity).velocity.Length());
+			base.update(entity);
+		}
+
+		/// <summary>
 		/// <para>状態が開始された時に呼び出されます。</para>
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
 		public override void teardown(Entity entity)
 		{
-		}
-
-		/// <summary>ダメージを与えます。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="value">ダメージ値(負数で回復)。</param>
-		/// <returns>続行可能な場合、true。</returns>
-		public override bool damage(Character entity, int value)
-		{
-			return true;
 		}
 	}
 }

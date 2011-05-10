@@ -32,14 +32,5 @@ namespace Sample1_14.state.chr
 		public override void teardown(Entity entity)
 		{
 		}
-
-		/// <summary>ダメージを与えます。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="value">ダメージ値(負数で回復)。</param>
-		/// <returns>続行可能な場合、true。</returns>
-		public override bool damage(Character entity, int value)
-		{
-			return true;
-		}
 	}
 }

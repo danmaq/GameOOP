@@ -12,6 +12,9 @@ namespace Sample1_14.task.entity
 		/// <summary>次に変化する状態。</summary>
 		public IState nextState;
 
+		/// <summary>汎用カウンタ。</summary>
+		public int counter;
+
 		/// <summary>コンストラクタ。</summary>
 		/// <param name="firstState">初期の状態。</param>
 		public Entity(IState firstState)
@@ -33,6 +36,7 @@ namespace Sample1_14.task.entity
 		{
 			currentState.update(this);
 			commitNextState();
+			counter++;
 		}
 
 		/// <summary>1フレーム分の描画を行います。</summary>
@@ -47,6 +51,7 @@ namespace Sample1_14.task.entity
 		{
 			nextState = StateEmpty.instance;
 			commitNextState();
+			counter = 0;
 		}
 
 		/// <summary>予約していた次の状態を強制的に確定します。</summary>

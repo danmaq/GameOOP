@@ -1,9 +1,9 @@
-﻿using Sample1_14.task.entity;
-using Sample1_14.task.entity.chr;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Sample1_14.state.scene;
+using Sample1_14.task.entity;
+using Sample1_14.task.entity.chr;
 
 namespace Sample1_14.state.chr
 {
@@ -45,6 +45,7 @@ namespace Sample1_14.state.chr
 		public override void setup(Entity entity)
 		{
 			Character chr = (Character)entity;
+			chr.counter = 0;
 			chr.size = SIZE;
 			chr.color = color;
 			if (!chr.contains)
@@ -53,7 +54,21 @@ namespace Sample1_14.state.chr
 			}
 		}
 
-		protected void initVelocity(Entity entity, float speed)
+		/// <summary>ダメージを与えます。</summary>
+		/// <param name="entity">この状態を適用されたオブジェクト。</param>
+		/// <param name="value">ダメージ値(負数で回復)。</param>
+		/// <returns>続行可能な場合、true。</returns>
+		public override bool damage(Character entity, int value)
+		{
+			return true;
+		}
+
+		/// <summary>
+		/// 敵機の移動速度と方角を初期化します。
+		/// </summary>
+		/// <param name="entity">この状態を適用されたオブジェクト。</param>
+		/// <param name="speed">速度。</param>
+		protected virtual void initVelocity(Entity entity, float speed)
 		{
 			Character chr = (Character)entity;
 			Vector2 v = player.position - chr.position;

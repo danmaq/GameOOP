@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Sample1_14.task.entity;
 using Sample1_14.task.entity.chr;
 
@@ -28,13 +29,19 @@ namespace Sample1_14.state.chr
 		{
 		}
 
-		/// <summary>ダメージを与えます。</summary>
+		/// <summary>
+		/// 敵機の移動速度と方角を初期化します。
+		/// </summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="value">ダメージ値(負数で回復)。</param>
-		/// <returns>続行可能な場合、true。</returns>
-		public override bool damage(Character entity, int value)
+		/// <param name="speed">速度。</param>
+		protected override void initVelocity(Entity entity, float speed)
 		{
-			return true;
+			base.initVelocity(entity, speed);
+			// ここでベクトルをわざと乱して、精度を落とす
+			Quaternion q = Quaternion.CreateFromAxisAngle(
+				Vector3.UnitZ, (float)rnd.NextDouble() - 0.5f);
+			Character chr = (Character)entity;
+			chr.velocity = Vector2.Transform(chr.velocity, q);
 		}
 	}
 }
