@@ -3,9 +3,7 @@
 namespace Sample1_12.core
 {
 
-	/// <summary>
-	/// キー入力管理クラス。
-	/// </summary>
+	/// <summary>キー入力管理クラス。</summary>
 	class KeyStatus
 		: ITask
 	{
@@ -13,9 +11,7 @@ namespace Sample1_12.core
 		/// <summary>クラス オブジェクト。</summary>
 		public static readonly KeyStatus instance = new KeyStatus();
 
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
+		/// <summary>コンストラクタ。</summary>
 		private KeyStatus()
 		{
 		}
@@ -27,25 +23,19 @@ namespace Sample1_12.core
 			private set;
 		}
 
-		/// <summary>
-		/// タスクを開始します。
-		/// </summary>
+		/// <summary>タスクを開始します。</summary>
 		public void setup()
 		{
 			// 特にすることはない。
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		public void update()
 		{
 			keyboardState = Keyboard.GetState();
 		}
 
-		/// <summary>
-		/// 1フレーム分の描画を行います。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{

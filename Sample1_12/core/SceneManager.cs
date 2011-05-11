@@ -1,9 +1,7 @@
 ﻿namespace Sample1_12.core
 {
 
-	/// <summary>
-	/// シーン管理クラス。
-	/// </summary>
+	/// <summary>シーン管理クラス。</summary>
 	class SceneManager
 		: ITask
 	{
@@ -15,44 +13,34 @@
 			private set;
 		}
 
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
+		/// <summary>コンストラクタ。</summary>
 		/// <param name="first">最初のシーン。</param>
 		public SceneManager(IScene first)
 		{
 			changeScene(first);
 		}
 
-		/// <summary>
-		/// タスクを開始します。
-		/// </summary>
+		/// <summary>タスクを開始します。</summary>
 		public void setup()
 		{
 			// 特にすることはない。
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		public void update()
 		{
 			nowScene.update();
 			changeScene(nowScene.next);
 		}
 
-		/// <summary>
-		/// 1フレーム分の描画を行います。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{
 			nowScene.draw(graphics);
 		}
 
-		/// <summary>
-		/// シーンを切り替えます。
-		/// </summary>
+		/// <summary>シーンを切り替えます。</summary>
 		/// <param name="next">次のシーン。</param>
 		private void changeScene(IScene next)
 		{

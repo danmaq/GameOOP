@@ -6,9 +6,7 @@ using Sample1_12.core;
 namespace Sample1_12.character
 {
 
-	/// <summary>
-	/// 敵機の情報。
-	/// </summary>
+	/// <summary>敵機の情報。</summary>
 	abstract class Enemy
 		: ITask
 	{
@@ -31,9 +29,7 @@ namespace Sample1_12.character
 		/// <summary>色。</summary>
 		private Color color;
 
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
+		/// <summary>コンストラクタ。</summary>
 		/// <param name="color">色。</param>
 		public Enemy(Color color)
 		{
@@ -41,26 +37,20 @@ namespace Sample1_12.character
 			setup();
 		}
 
-		/// <summary>
-		/// 敵機を強制的にスリープにします。
-		/// </summary>
+		/// <summary>敵機を強制的にスリープにします。</summary>
 		public void setup()
 		{
 			position = firstPosition;
 			velocity = Vector2.Zero;
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		public virtual void update()
 		{
 			position += velocity;
 		}
 
-		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
-		/// </summary>
+		/// <summary>敵機の移動、及び接触判定をします。</summary>
 		/// <returns>接触した場合、true。</returns>
 		public bool hitTest()
 		{
@@ -70,9 +60,7 @@ namespace Sample1_12.character
 			return hit;
 		}
 
-		/// <summary>
-		/// 1フレーム分の描画を行います。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{
@@ -82,9 +70,7 @@ namespace Sample1_12.character
 				0f, new Vector2(Graphics.RECT * 0.5f), SCALE, SpriteEffects.None, 0f);
 		}
 
-		/// <summary>
-		/// 敵機をアクティブにします。
-		/// </summary>
+		/// <summary>敵機をアクティブにします。</summary>
 		/// <param name="speed">基準速度。</param>
 		/// <returns>敵機をアクティブにできた場合、true。</returns>
 		public virtual bool start(float speed)
@@ -97,9 +83,7 @@ namespace Sample1_12.character
 			return result;
 		}
 
-		/// <summary>
-		/// 敵機を強制的にアクティブにします。
-		/// </summary>
+		/// <summary>敵機を強制的にアクティブにします。</summary>
 		/// <param name="speed">基準速度。</param>
 		private void startForce(float speed)
 		{
@@ -123,9 +107,7 @@ namespace Sample1_12.character
 			initVelocity(rnd.Next(1, 3) + speed);
 		}
 
-		/// <summary>
-		/// 敵機の移動速度と方角を初期化します。
-		/// </summary>
+		/// <summary>敵機の移動速度と方角を初期化します。</summary>
 		/// <param name="speed">速度。</param>
 		protected virtual void initVelocity(float speed)
 		{

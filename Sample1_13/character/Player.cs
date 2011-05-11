@@ -7,9 +7,7 @@ using Sample1_13.core;
 namespace Sample1_13.character
 {
 
-	/// <summary>
-	/// 自機の情報。
-	/// </summary>
+	/// <summary>自機の情報。</summary>
 	class Player
 		: ITask
 	{
@@ -63,9 +61,7 @@ namespace Sample1_13.character
 			private set;
 		}
 
-		/// <summary>
-		/// 各種値を初期化します。
-		/// </summary>
+		/// <summary>コンストラクタ。各種値を初期化します。</summary>
 		private Player()
 		{
 			acceptInputKeyList =
@@ -77,17 +73,13 @@ namespace Sample1_13.character
 			velocity.Add(Keys.Right, new Vector2(Player.SPEED, 0));
 		}
 
-		/// <summary>
-		/// 残機を増やします。
-		/// </summary>
+		/// <summary>残機を増やします。</summary>
 		public void extend()
 		{
 			amount++;
 		}
 
-		/// <summary>
-		/// 残機を減らします。
-		/// </summary>
+		/// <summary>残機を減らします。</summary>
 		/// <returns>ゲームが続行可能である場合、true。</returns>
 		public bool miss()
 		{
@@ -96,27 +88,21 @@ namespace Sample1_13.character
 			return --amount >= 0;
 		}
 
-		/// <summary>
-		/// 現在位置を初期化します。
-		/// </summary>
+		/// <summary>現在位置を初期化します。</summary>
 		private void resetPosition()
 		{
 			Point center = Game1.SCREEN.Center;
 			position = new Vector2(center.X, center.Y);
 		}
 
-		/// <summary>
-		/// 座標や残機情報を初期化します。
-		/// </summary>
+		/// <summary>座標や残機情報を初期化します。</summary>
 		public void setup()
 		{
 			resetPosition();
 			amount = DEFAULT_AMOUNT;
 		}
 
-		/// <summary>
-		/// キー入力に応じて移動します。
-		/// </summary>
+		/// <summary>キー入力に応じて移動します。</summary>
 		public void update()
 		{
 			KeyboardState keyState = KeyStatus.instance.keyboardState;
@@ -135,9 +121,7 @@ namespace Sample1_13.character
 			}
 		}
 
-		/// <summary>
-		/// 1フレーム分の描画を行います。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{

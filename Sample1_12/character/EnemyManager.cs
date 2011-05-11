@@ -4,9 +4,7 @@ using Sample1_12.core;
 namespace Sample1_12.character
 {
 
-	/// <summary>
-	/// 敵機の情報。
-	/// </summary>
+	/// <summary>敵機の情報。</summary>
 	class EnemyManager
 		: TaskManager<Enemy>
 	{
@@ -20,9 +18,7 @@ namespace Sample1_12.character
 		/// <summary>疑似乱数ジェネレータ。</summary>
 		private readonly Random rnd = new Random();
 
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
+		/// <summary>敵機を作成します。</summary>
 		/// <param name="speed">基準速度。</param>
 		public bool create(float speed)
 		{
@@ -43,9 +39,7 @@ namespace Sample1_12.character
 			return result;
 		}
 
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
+		/// <summary>敵機を作成します。</summary>
 		/// <param name="speed">基準速度。</param>
 		/// <returns>敵機を作成できた場合、true。</returns>
 		public bool create<T>(float speed)
@@ -70,9 +64,7 @@ namespace Sample1_12.character
 			return result;
 		}
 
-		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
-		/// </summary>
+		/// <summary>敵機の移動、及び接触判定をします。</summary>
 		/// <returns>接触した場合、true。</returns>
 		public bool hitTest()
 		{

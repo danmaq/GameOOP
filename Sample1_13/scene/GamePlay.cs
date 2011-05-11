@@ -5,9 +5,7 @@ using Sample1_13.core;
 namespace Sample1_13.scene
 {
 
-	/// <summary>
-	/// ゲームプレイ画面。
-	/// </summary>
+	/// <summary>ゲームプレイ画面。</summary>
 	class GamePlay
 		: IScene
 	{
@@ -24,9 +22,7 @@ namespace Sample1_13.scene
 		/// <summary>ゲームの進行カウンタ。</summary>
 		private int counter;
 
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
+		/// <summary>コンストラクタ。</summary>
 		private GamePlay()
 		{
 			next = this;
@@ -40,18 +36,14 @@ namespace Sample1_13.scene
 			private set;
 		}
 
-		/// <summary>
-		/// ゲーム シーンの初期化を行います。
-		/// </summary>
+		/// <summary>ゲーム シーンの初期化を行います。</summary>
 		public void setup()
 		{
 			mgrTask.setup();
 			counter = 0;
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		public void update()
 		{
 			next = this;
@@ -62,9 +54,7 @@ namespace Sample1_13.scene
 			counter++;
 		}
 
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
+		/// <summary>敵機を作成します。</summary>
 		private void createEnemy()
 		{
 			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0 &&
@@ -75,9 +65,7 @@ namespace Sample1_13.scene
 			}
 		}
 
-		/// <summary>
-		/// 1フレーム分の描画を行います。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{

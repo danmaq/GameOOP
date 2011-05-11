@@ -7,9 +7,7 @@ using Sample1_13.core;
 namespace Sample1_13.character
 {
 
-	/// <summary>
-	/// 敵機の情報。
-	/// </summary>
+	/// <summary>敵機の情報。</summary>
 	sealed class Enemy
 		: ITask
 	{
@@ -38,9 +36,7 @@ namespace Sample1_13.character
 		/// <summary>現在座標。</summary>
 		private Vector2 position;
 
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
+		/// <summary>コンストラクタ。</summary>
 		/// <param name="firstState">敵機の状態。</param>
 		public Enemy(IEnemyState firstState)
 		{
@@ -48,9 +44,7 @@ namespace Sample1_13.character
 			setup();
 		}
 
-		/// <summary>
-		/// 現在活動中かどうかを取得します。
-		/// </summary>
+		/// <summary>現在活動中かどうかを取得します。</summary>
 		/// <value>現在活動中である場合、true。</value>
 		public bool active
 		{
@@ -60,27 +54,21 @@ namespace Sample1_13.character
 			}
 		}
 
-		/// <summary>
-		/// 敵機を強制的にスリープにします。
-		/// </summary>
+		/// <summary>敵機を強制的にスリープにします。</summary>
 		public void setup()
 		{
 			position = firstPosition;
 			velocity = Vector2.Zero;
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		public void update()
 		{
 			position += velocity;
 			currentState.onUpdate(this);
 		}
 
-		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
-		/// </summary>
+		/// <summary>敵機の移動、及び接触判定をします。</summary>
 		/// <returns>接触した場合、true。</returns>
 		public bool hitTest()
 		{
@@ -90,9 +78,7 @@ namespace Sample1_13.character
 			return hit;
 		}
 
-		/// <summary>
-		/// 1フレーム分の描画を行います。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{
@@ -102,9 +88,7 @@ namespace Sample1_13.character
 				0f, new Vector2(Graphics.RECT * 0.5f), SCALE, SpriteEffects.None, 0f);
 		}
 
-		/// <summary>
-		/// 敵機を強制的にアクティブにします。
-		/// </summary>
+		/// <summary>敵機を強制的にアクティブにします。</summary>
 		/// <param name="speed">基準速度。</param>
 		public void start(float speed)
 		{
@@ -129,9 +113,7 @@ namespace Sample1_13.character
 			initVelocity(rnd.Next(1, 3) + speed);
 		}
 
-		/// <summary>
-		/// 敵機の移動速度と方角を初期化します。
-		/// </summary>
+		/// <summary>敵機の移動速度と方角を初期化します。</summary>
 		/// <param name="speed">速度。</param>
 		public void initVelocity(float speed)
 		{

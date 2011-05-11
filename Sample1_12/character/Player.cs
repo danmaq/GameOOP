@@ -7,9 +7,7 @@ using Sample1_12.core;
 namespace Sample1_12.character
 {
 
-	/// <summary>
-	/// 自機の情報。
-	/// </summary>
+	/// <summary>自機の情報。</summary>
 	class Player
 		: ITask
 	{

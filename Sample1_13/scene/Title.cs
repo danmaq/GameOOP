@@ -6,9 +6,7 @@ using Sample1_13.core;
 namespace Sample1_13.scene
 {
 
-	/// <summary>
-	/// タイトル画面。
-	/// </summary>
+	/// <summary>タイトル画面。</summary>
 	class Title
 		: IScene
 	{
@@ -31,17 +29,13 @@ namespace Sample1_13.scene
 			private set;
 		}
 
-		/// <summary>
-		/// ゲーム シーンの初期化を行います。
-		/// </summary>
+		/// <summary>ゲーム シーンの初期化を行います。</summary>
 		public void setup()
 		{
 			Score.instance.drawNowScore = false;
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		public void update()
 		{
 			next = this;
@@ -57,9 +51,7 @@ namespace Sample1_13.scene
 			}
 		}
 
-		/// <summary>
-		/// 1フレーム分の描画を行います。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{

@@ -19,9 +19,7 @@ namespace Sample1_13.character
 		/// <summary>疑似乱数ジェネレータ。</summary>
 		private readonly Random rnd = new Random();
 
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
+		/// <summary>敵機を作成します。</summary>
 		/// <param name="speed">基準速度。</param>
 		/// <returns>敵機が生成された場合、true。</returns>
 		public bool create(float speed)
@@ -43,9 +41,7 @@ namespace Sample1_13.character
 			return result;
 		}
 
-		/// <summary>
-		/// 敵機を作成します。
-		/// </summary>
+		/// <summary>敵機を作成します。</summary>
 		/// <param name="speed">基準速度。</param>
 		/// <param name="state">敵機の状態。</param>
 		/// <returns>敵機を作成できた場合、true。</returns>
@@ -73,9 +69,7 @@ namespace Sample1_13.character
 			return result;
 		}
 
-		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
-		/// </summary>
+		/// <summary>敵機の移動、及び接触判定をします。</summary>
 		/// <returns>接触した場合、true。</returns>
 		public bool hitTest()
 		{

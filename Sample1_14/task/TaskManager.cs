@@ -4,9 +4,7 @@ using Sample1_14.core;
 namespace Sample1_14.task
 {
 
-	/// <summary>
-	/// タスク管理クラス。
-	/// </summary>
+	/// <summary>タスク管理クラス。</summary>
 	class TaskManager<T>
 		: ITask
 		where T : ITask
