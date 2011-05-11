@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Sample1_14.core;
-using Sample1_14.task;
-using Sample1_14.task.entity;
+using Sample1_15.core;
+using Sample1_15.task;
+using Sample1_15.task.entity;
+using Sample1_15.task.entity.score;
 
-namespace Sample1_14.state.scene
+namespace Sample1_15.state.scene
 {
 
 	/// <summary>タイトル シーンの状態。</summary>
@@ -14,7 +15,7 @@ namespace Sample1_14.state.scene
 	{
 
 		/// <summary>クラス オブジェクト。</summary>
-		public static readonly IState instance = new SceneTitle();
+		internal static readonly IState instance = new SceneTitle();
 
 		/// <summary>コンストラクタ。</summary>
 		private SceneTitle()

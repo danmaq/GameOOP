@@ -1,34 +1,34 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sample1_14.state.chr;
+using Sample1_15.state.chr;
 
-namespace Sample1_14.task.entity.chr
+namespace Sample1_15.task.entity.chr
 {
 	class Character
 		: Entity
 	{
 
 		/// <summary>判定の大きさ。</summary>
-		public float size;
+		internal float size;
 
 		/// <summary>現在座標。</summary>
-		public Vector2 position;
+		internal Vector2 position;
 
 		/// <summary>移動速度と方角。</summary>
-		public Vector2 velocity;
+		internal Vector2 velocity;
 
 		/// <summary>色。</summary>
-		public Color color;
+		internal Color color;
 
 		/// <summary>コンストラクタ。</summary>
-		public Character()
+		internal Character()
 			: base(null)
 		{
 			reset();
 		}
 
 		/// <summary>画面内に収まっているかどうか。</summary>
-		public bool contains
+		internal bool contains
 		{
 			get
 			{
@@ -49,7 +49,7 @@ namespace Sample1_14.task.entity.chr
 		/// </summary>
 		/// <param name="expr">対象キャラクタ。</param>
 		/// <returns>接触した場合、true。</returns>
-		public bool hitTest(Character expr)
+		internal bool hitTest(Character expr)
 		{
 			float hitarea = expr.size * 0.5f + size * 0.5f;
 			bool hit = ((hitarea * hitarea) > Vector2.DistanceSquared(position, expr.position));
@@ -59,7 +59,7 @@ namespace Sample1_14.task.entity.chr
 		/// <summary>ダメージを与えます。</summary>
 		/// <param name="value">ダメージ値(負数で回復)。</param>
 		/// <returns>続行可能な場合、true。</returns>
-		public bool damage(int value)
+		internal bool damage(int value)
 		{
 			bool resullt = true;
 			StateCharacter state = currentState as StateCharacter;

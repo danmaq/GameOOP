@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sample1_14.state.scene;
-using Sample1_14.task.entity;
-using Sample1_14.task.entity.chr;
+using Sample1_15.state.scene;
+using Sample1_15.task.entity;
+using Sample1_15.task.entity.chr;
 
-namespace Sample1_14.state.chr
+namespace Sample1_15.state.chr
 {
 
 	/// <summary>敵機の基底の状態。</summary>
@@ -20,15 +20,15 @@ namespace Sample1_14.state.chr
 		protected static readonly Random random = new Random();
 
 		/// <summary>確率。</summary>
-		public readonly int percentage;
+		internal readonly int percentage;
 
 		/// <summary>乗算色。</summary>
-		public readonly Color color;
+		internal readonly Color color;
 
 		/// <summary>コンストラクタ。</summary>
 		/// <param name="percentage">確率。</param>
 		/// <param name="color">乗算色。</param>
-		public StateEnemy(int percentage, Color color)
+		internal StateEnemy(int percentage, Color color)
 		{
 			this.percentage = percentage;
 			this.color = color;
@@ -42,7 +42,7 @@ namespace Sample1_14.state.chr
 		public override void setup(Entity entity)
 		{
 			Character chr = (Character)entity;
-			chr.counter = 0;
+			chr.resetCounter();
 			chr.size = SIZE;
 			chr.color = color;
 			if (!chr.contains)

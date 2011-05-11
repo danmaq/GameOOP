@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("SAMPLE 1")]
 [assembly: AssemblyProduct("SAMPLE 1")]
-[assembly: AssemblyDescription("汎用化したStateパターンの実装。")]
+[assembly: AssemblyDescription("カプセル化したStateパターンの実装。")]
 [assembly: AssemblyCompany("danmaq")]
 
 [assembly: AssemblyCopyright("©2011 danmaq All rights reserved.")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("79ce33e2-24dd-4242-a1ec-c3f4016fd464")]
+[assembly: Guid("f6401d70-df12-40f9-9bdd-853871dde905")]
 
 
 // Version information for an assembly consists of the following four values:

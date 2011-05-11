@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using Sample1_14.core;
+using Sample1_15.core;
 
-namespace Sample1_14.task
+namespace Sample1_15.task
 {
 
 	/// <summary>キー入力管理クラス。</summary>
@@ -10,7 +10,7 @@ namespace Sample1_14.task
 	{
 
 		/// <summary>クラス オブジェクト。</summary>
-		public static readonly KeyStatus instance = new KeyStatus();
+		internal static readonly KeyStatus instance = new KeyStatus();
 
 		/// <summary>
 		/// コンストラクタ。
@@ -20,7 +20,7 @@ namespace Sample1_14.task
 		}
 
 		/// <summary>キーボードの入力状態。</summary>
-		public KeyboardState keyboardState
+		internal KeyboardState keyboardState
 		{
 			get;
 			private set;

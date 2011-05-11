@@ -1,7 +1,7 @@
-﻿using Sample1_14.core;
-using Sample1_14.task.entity;
+﻿using Sample1_15.core;
+using Sample1_15.task.entity;
 
-namespace Sample1_14.state
+namespace Sample1_15.state
 {
 
 	/// <summary>何もしない状態。</summary>
@@ -10,7 +10,7 @@ namespace Sample1_14.state
 	{
 
 		/// <summary>クラス オブジェクト。</summary>
-		public static readonly IState instance = new StateEmpty();
+		internal static readonly IState instance = new StateEmpty();
 
 		/// <summary>コンストラクタ。</summary>
 		private StateEmpty()

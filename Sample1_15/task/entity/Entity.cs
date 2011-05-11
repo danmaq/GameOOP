@@ -1,7 +1,7 @@
-﻿using Sample1_14.core;
-using Sample1_14.state;
+﻿using Sample1_15.core;
+using Sample1_15.state;
 
-namespace Sample1_14.task.entity
+namespace Sample1_15.task.entity
 {
 
 	/// <summary>Stateパターンにおける実体となるクラス。</summary>
@@ -10,14 +10,11 @@ namespace Sample1_14.task.entity
 	{
 
 		/// <summary>次に変化する状態。</summary>
-		public IState nextState;
-
-		/// <summary>汎用カウンタ。</summary>
-		public int counter;
+		internal IState nextState;
 
 		/// <summary>コンストラクタ。</summary>
 		/// <param name="firstState">初期の状態。</param>
-		public Entity(IState firstState)
+		internal Entity(IState firstState)
 		{
 			currentState = StateEmpty.instance;
 			nextState = firstState;
@@ -25,7 +22,14 @@ namespace Sample1_14.task.entity
 
 		/// <summary>現在の状態を取得します。</summary>
 		/// <value>現在の状態。初期値は<c>CState.empty</c>。</value>
-		public IState currentState
+		internal IState currentState
+		{
+			get;
+			private set;
+		}
+
+		/// <summary>汎用カウンタ。</summary>
+		internal int counter
 		{
 			get;
 			private set;
@@ -51,11 +55,17 @@ namespace Sample1_14.task.entity
 		{
 			nextState = StateEmpty.instance;
 			commitNextState();
+			resetCounter();
+		}
+
+		/// <summary>汎用カウンタをリセットします。</summary>
+		internal void resetCounter()
+		{
 			counter = 0;
 		}
 
 		/// <summary>予約していた次の状態を強制的に確定します。</summary>
-		public void commitNextState()
+		private void commitNextState()
 		{
 			if (nextState != null)
 			{

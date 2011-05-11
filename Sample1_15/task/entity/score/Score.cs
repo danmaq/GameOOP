@@ -1,15 +1,15 @@
-﻿using Sample1_14.state.score;
+﻿using Sample1_15.state.score;
 
-namespace Sample1_14.task.entity
+namespace Sample1_15.task.entity.score
 {
 
 	/// <summary>スコア情報。</summary>
 	class Score
-		: Entity
+		: Entity, IScore
 	{
 
 		/// <summary>クラス オブジェクト。</summary>
-		public static readonly Score instance = new Score();
+		internal static readonly IScore instance = new Score();
 
 		/// <summary>
 		/// コンストラクタ。

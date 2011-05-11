@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sample1_14.core;
-using Sample1_14.task.entity;
+using Sample1_15.core;
+using Sample1_15.task.entity;
+using Sample1_15.task.entity.score;
 
-namespace Sample1_14.state.score
+namespace Sample1_15.state.score
 {
 
 	/// <summary>ハイスコアを描画する状態。</summary>
@@ -12,7 +13,7 @@ namespace Sample1_14.state.score
 	{
 
 		/// <summary>クラス オブジェクト。</summary>
-		public static readonly IState instance = new StateHiScoreOnly();
+		internal static readonly IState instance = new StateHiScoreOnly();
 
 		/// <summary>コンストラクタ。</summary>
 		private StateHiScoreOnly()

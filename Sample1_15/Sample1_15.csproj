@@ -1,17 +1,17 @@
 ﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
-    <ProjectGuid>{C1DE04CB-FE53-4126-9CDD-9E54CF39331E}</ProjectGuid>
+    <ProjectGuid>{31F25638-9578-4148-ADD6-24E3DD583192}</ProjectGuid>
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sample1_14</RootNamespace>
-    <AssemblyName>Sample1_14</AssemblyName>
+    <RootNamespace>Sample1_15</RootNamespace>
+    <AssemblyName>Sample1_15</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <XnaFrameworkVersion>v3.1</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
-    <XnaCrossPlatformGroupID>2061cb9d-d049-4778-b240-cb97af78e6e9</XnaCrossPlatformGroupID>
+    <XnaCrossPlatformGroupID>700e6e5c-f35f-4d49-a466-c9cca2f233b3</XnaCrossPlatformGroupID>
     <ApplicationIcon>Game.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
     <PublishUrl>publish\</PublishUrl>
@@ -42,7 +42,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>false</XnaCompressContent>
-    <DocumentationFile>bin\x86\Debug\Sample1_14.XML</DocumentationFile>
+    <DocumentationFile>bin\x86\Debug\Sample1_15.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
@@ -55,7 +55,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>true</XnaCompressContent>
-    <DocumentationFile>bin\x86\Release\Sample1_14.XML</DocumentationFile>
+    <DocumentationFile>bin\x86\Release\Sample1_15.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=3.1.0.0, Culture=neutral, PublicKeyToken=6d5c3888ef60e27d, processorArchitecture=x86">
@@ -94,12 +94,13 @@
     <Compile Include="state\chr\StatePlayer.cs" />
     <Compile Include="task\entity\chr\Character.cs" />
     <Compile Include="task\entity\chr\EnemyManager.cs" />
+    <Compile Include="task\entity\score\IScore.cs" />
     <Compile Include="task\KeyStatus.cs" />
     <Compile Include="task\entity\Entity.cs" />
     <Compile Include="core\Graphics.cs" />
     <Compile Include="task\ITask.cs" />
     <Compile Include="task\TaskManager.cs" />
-    <Compile Include="task\entity\Score.cs" />
+    <Compile Include="task\entity\score\Score.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
@@ -116,7 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <NestedContentProject Include="Content\Content.contentproj">
-      <Project>2d3a0820-4710-4821-8b5f-e8e14b8f027c</Project>
+      <Project>3278b457-cd49-4c48-99c0-5b73cff6bb18</Project>
       <Visible>False</Visible>
     </NestedContentProject>
   </ItemGroup>

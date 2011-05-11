@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Sample1_14.task.entity;
-using Sample1_14.task.entity.chr;
+using Sample1_15.task.entity;
+using Sample1_15.task.entity.chr;
 
-namespace Sample1_14.state.chr
+namespace Sample1_15.state.chr
 {
 
 	/// <summary>正確に自機を狙う敵機の状態。</summary>
@@ -11,10 +11,10 @@ namespace Sample1_14.state.chr
 	{
 
 		/// <summary>クラス オブジェクト。</summary>
-		public static readonly StateEnemy normal = new StateEnemyStraight(Color.Red);
+		internal static readonly StateEnemy normal = new StateEnemyStraight(Color.Red);
 
 		/// <summary>ホーミングした後のオブジェクト。</summary>
-		public static readonly StateEnemy homing =
+		internal static readonly StateEnemy homing =
 			new StateEnemyStraight(StateEnemyHoming.instance.color);
 
 		/// <summary>コンストラクタ。</summary>

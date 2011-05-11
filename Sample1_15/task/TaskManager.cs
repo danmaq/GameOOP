@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Sample1_14.core;
+using Sample1_15.core;
 
-namespace Sample1_14.task
+namespace Sample1_15.task
 {
 
 	/// <summary>タスク管理クラス。</summary>
@@ -11,7 +11,7 @@ namespace Sample1_14.task
 	{
 
 		/// <summary>タスク一覧。</summary>
-		public readonly List<T> tasks = new List<T>();
+		internal readonly List<T> tasks = new List<T>();
 
 		/// <summary>タスクをリセットします。</summary>
 		public void reset()

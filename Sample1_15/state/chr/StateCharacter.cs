@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sample1_14.core;
-using Sample1_14.task.entity;
-using Sample1_14.task.entity.chr;
+using Sample1_15.core;
+using Sample1_15.task.entity;
+using Sample1_15.task.entity.chr;
 
-namespace Sample1_14.state.chr
+namespace Sample1_15.state.chr
 {
 
 	/// <summary>キャラクタの基底状態。</summary>

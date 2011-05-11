@@ -1,7 +1,7 @@
-﻿using Sample1_14.core;
-using Sample1_14.task.entity;
+﻿using Sample1_15.core;
+using Sample1_15.task.entity;
 
-namespace Sample1_14.state
+namespace Sample1_15.state
 {
 	/// <summary>状態表現のためのインターフェイス。</summary>
 	interface IState

@@ -1,6 +1,6 @@
-﻿using Sample1_14.core;
+﻿using Sample1_15.core;
 
-namespace Sample1_14.task
+namespace Sample1_15.task
 {
 
 	/// <summary>タスク インターフェイス。</summary>

@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Sample1_14.core;
-using Sample1_14.state.chr;
-using Sample1_14.task;
-using Sample1_14.task.entity;
-using Sample1_14.task.entity.chr;
+using Sample1_15.core;
+using Sample1_15.state.chr;
+using Sample1_15.task;
+using Sample1_15.task.entity;
+using Sample1_15.task.entity.chr;
+using Sample1_15.task.entity.score;
 
-namespace Sample1_14.state.scene
+namespace Sample1_15.state.scene
 {
 
 	/// <summary>ゲームプレイ シーンの状態。</summary>
@@ -14,10 +15,10 @@ namespace Sample1_14.state.scene
 	{
 
 		/// <summary>クラス オブジェクト。</summary>
-		public static readonly ScenePlay instance = new ScenePlay();
+		internal static readonly ScenePlay instance = new ScenePlay();
 
 		/// <summary>プレイヤー。</summary>
-		public readonly Character player = new Character();
+		internal readonly Character player = new Character();
 
 		/// <summary>タスク管理クラス。</summary>
 		private readonly TaskManager<ITask> mgrTask = new TaskManager<ITask>();
@@ -40,7 +41,7 @@ namespace Sample1_14.state.scene
 		{
 			player.nextState = StatePlayer.instance;
 			Score.instance.drawNowScore = true;
-			entity.counter = 0;
+			entity.resetCounter();
 		}
 
 		/// <summary>1フレーム分の更新処理を実行します。</summary>

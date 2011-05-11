@@ -1,22 +1,23 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sample1_14.core;
-using Sample1_14.state;
-using Sample1_14.state.scene;
-using Sample1_14.task;
-using Sample1_14.task.entity;
+using Sample1_15.core;
+using Sample1_15.state;
+using Sample1_15.state.scene;
+using Sample1_15.task;
+using Sample1_15.task.entity;
+using Sample1_15.task.entity.score;
 
-namespace Sample1_14
+namespace Sample1_15
 {
 	/// <summary>
 	/// This is the main type for your game
 	/// </summary>
-	public class Game1
+	internal class Game1
 		: Game
 	{
 
 		/// <summary>画面矩形情報。</summary>
-		public static readonly Rectangle SCREEN = new Rectangle(0, 0, 800, 600);
+		internal static readonly Rectangle SCREEN = new Rectangle(0, 0, 800, 600);
 
 		/// <summary>描画周りデータ。</summary>
 		private Graphics graphics;
@@ -28,7 +29,7 @@ namespace Sample1_14
 		private readonly TaskManager<ITask> mgrTask = new TaskManager<ITask>();
 
 		/// <summary>Constructor.</summary>
-		public Game1()
+		internal Game1()
 		{
 			new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";

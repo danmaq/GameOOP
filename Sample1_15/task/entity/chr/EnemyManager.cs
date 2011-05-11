@@ -1,8 +1,8 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
-using Sample1_14.state.chr;
+using Sample1_15.state.chr;
 
-namespace Sample1_14.task.entity.chr
+namespace Sample1_15.task.entity.chr
 {
 
 	/// <summary>敵機の情報。</summary>
@@ -25,7 +25,7 @@ namespace Sample1_14.task.entity.chr
 		private readonly int denominator;
 
 		/// <summary>コンストラクタ。</summary>
-		public EnemyManager()
+		internal EnemyManager()
 		{
 			int d = 0;
 			for (int i = enemyTypeList.Length; --i >= 0; )
@@ -39,7 +39,7 @@ namespace Sample1_14.task.entity.chr
 		/// 敵機を作成します。
 		/// </summary>
 		/// <param name="speed">基準速度。</param>
-		public void create(float speed)
+		internal void create(float speed)
 		{
 			bool created = false;
 			int percentage = random.Next(denominator);
@@ -60,7 +60,7 @@ namespace Sample1_14.task.entity.chr
 		/// </summary>
 		/// <param name="speed">基準速度。</param>
 		/// <param name="state">敵機の状態。</param>
-		public void create(float speed, StateEnemy state)
+		internal void create(float speed, StateEnemy state)
 		{
 			Character chr = null;
 			for (int i = tasks.Count; chr == null && --i >= 0; )
@@ -85,7 +85,7 @@ namespace Sample1_14.task.entity.chr
 		/// </summary>
 		/// <param name="expr">対象キャラクタ。</param>
 		/// <returns>接触した場合、true。</returns>
-		public bool hitTest(Character expr)
+		internal bool hitTest(Character expr)
 		{
 			bool result = false;
 			for (int i = tasks.Count; !result && --i >= 0; )
