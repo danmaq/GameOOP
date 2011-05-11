@@ -3,9 +3,7 @@
 namespace Sample1_11.character
 {
 
-	/// <summary>
-	/// 自機めがけて直進する敵機の情報。
-	/// </summary>
+	/// <summary>自機めがけて直進する敵機の情報。</summary>
 	class EnemyStraight
 		: Enemy
 	{

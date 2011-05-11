@@ -61,9 +61,7 @@ namespace Sample1_14.state.chr
 			return true;
 		}
 
-		/// <summary>
-		/// 敵機の移動速度と方角を初期化します。
-		/// </summary>
+		/// <summary>敵機の移動速度と方角を初期化します。</summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
 		/// <param name="speed">速度。</param>
 		protected virtual void initVelocity(Entity entity, float speed)

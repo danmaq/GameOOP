@@ -4,25 +4,19 @@ using Microsoft.Xna.Framework.Graphics;
 namespace Sample1_11.character
 {
 
-	/// <summary>
-	/// 粗悪な精度で自機めがけて直進する敵機の情報。
-	/// </summary>
+	/// <summary>粗悪な精度で自機めがけて直進する敵機の情報。</summary>
 	class EnemyInferiority
 		: Enemy
 	{
 
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
+		/// <summary>コンストラクタ。</summary>
 		/// <param name="speed">基準速度。</param>
 		public EnemyInferiority(float speed) :
 			base(speed, Color.Magenta)
 		{
 		}
 
-		/// <summary>
-		/// 敵機の移動速度と方角を初期化します。
-		/// </summary>
+		/// <summary>敵機の移動速度と方角を初期化します。</summary>
 		/// <param name="speed">速度。</param>
 		protected override void initVelocity(float speed)
 		{

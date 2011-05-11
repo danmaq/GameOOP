@@ -6,9 +6,7 @@ using Sample1_11.core;
 namespace Sample1_11.character
 {
 
-	/// <summary>
-	/// 敵機の情報。
-	/// </summary>
+	/// <summary>敵機の情報。</summary>
 	abstract class Enemy
 		: ITask
 	{
@@ -28,9 +26,7 @@ namespace Sample1_11.character
 		/// <summary>色。</summary>
 		private Color color;
 
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
+		/// <summary>コンストラクタ。</summary>
 		/// <param name="speed">基準速度。</param>
 		/// <param name="color">色。</param>
 		public Enemy(float speed, Color color)
@@ -56,25 +52,19 @@ namespace Sample1_11.character
 			initVelocity(rnd.Next(1, 3) + speed);
 		}
 
-		/// <summary>
-		/// タスクを開始します。
-		/// </summary>
+		/// <summary>タスクを開始します。</summary>
 		public void setup()
 		{
 			// 特にすることはない。
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		public virtual void update()
 		{
 			position += velocity;
 		}
 
-		/// <summary>
-		/// 敵機の移動、及び接触判定をします。
-		/// </summary>
+		/// <summary>敵機の移動、及び接触判定をします。</summary>
 		/// <returns>接触した場合、true。</returns>
 		public bool hitTest()
 		{
@@ -84,9 +74,7 @@ namespace Sample1_11.character
 			return hit;
 		}
 
-		/// <summary>
-		/// 1フレーム分の描画を行います。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{
@@ -96,9 +84,7 @@ namespace Sample1_11.character
 				0f, new Vector2(Graphics.RECT * 0.5f), SCALE, SpriteEffects.None, 0f);
 		}
 
-		/// <summary>
-		/// 敵機の移動速度と方角を初期化します。
-		/// </summary>
+		/// <summary>敵機の移動速度と方角を初期化します。</summary>
 		/// <param name="speed">速度。</param>
 		protected virtual void initVelocity(float speed)
 		{

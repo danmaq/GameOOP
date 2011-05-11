@@ -3,9 +3,7 @@
 namespace Sample1_11.character
 {
 
-	/// <summary>
-	/// 自機めがけてホーミングする敵機の情報。
-	/// </summary>
+	/// <summary>自機めがけてホーミングする敵機の情報。</summary>
 	class EnemyHoming
 		: Enemy
 	{
@@ -16,9 +14,7 @@ namespace Sample1_11.character
 		/// <summary>ホーミング有効時間。</summary>
 		private int homingAmount;
 
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
+		/// <summary>コンストラクタ。</summary>
 		/// <param name="speed">基準速度。</param>
 		public EnemyHoming(float speed) :
 			base(speed, Color.Orange)
@@ -26,9 +22,7 @@ namespace Sample1_11.character
 			homingAmount = HOMING_LIMIT;
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		public override void update()
 		{
 			base.update();
