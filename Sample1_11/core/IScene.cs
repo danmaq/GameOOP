@@ -1,9 +1,7 @@
 ﻿namespace Sample1_11.core
 {
 
-	/// <summary>
-	/// シーン インターフェイス。
-	/// </summary>
+	/// <summary>シーン インターフェイス。</summary>
 	interface IScene
 		: ITask
 	{

@@ -8,9 +8,7 @@ namespace Sample1_11.character
 		: Enemy
 	{
 
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
+		/// <summary>コンストラクタ。</summary>
 		/// <param name="speed">基準速度。</param>
 		public EnemyStraight(float speed) :
 			base(speed, Color.Red)

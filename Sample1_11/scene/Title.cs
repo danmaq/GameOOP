@@ -6,9 +6,7 @@ using Sample1_11.core;
 namespace Sample1_11.scene
 {
 
-	/// <summary>
-	/// タイトル画面。
-	/// </summary>
+	/// <summary>タイトル画面。</summary>
 	class Title
 		: IScene
 	{
@@ -16,9 +14,7 @@ namespace Sample1_11.scene
 		/// <summary>クラス オブジェクト。</summary>
 		public static readonly IScene instance = new Title();
 
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
+		/// <summary>コンストラクタ。</summary>
 		private Title()
 		{
 			next = this;
@@ -31,17 +27,13 @@ namespace Sample1_11.scene
 			private set;
 		}
 
-		/// <summary>
-		/// ゲーム シーンの初期化を行います。
-		/// </summary>
+		/// <summary>ゲーム シーンの初期化を行います。</summary>
 		public void setup()
 		{
 			Score.instance.drawNowScore = false;
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		public void update()
 		{
 			next = this;

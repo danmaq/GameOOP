@@ -3,9 +3,7 @@
 namespace Sample1_11.core
 {
 
-	/// <summary>
-	/// タスク管理クラス。
-	/// </summary>
+	/// <summary>タスク管理クラス。</summary>
 	class TaskManager<T>
 		: ITask
 		where T : ITask
@@ -14,16 +12,12 @@ namespace Sample1_11.core
 		/// <summary>タスク一覧。</summary>
 		public readonly List<T> tasks = new List<T>();
 
-		/// <summary>
-		/// コンストラクタ。
-		/// </summary>
+		/// <summary>コンストラクタ。</summary>
 		public TaskManager()
 		{
 		}
 
-		/// <summary>
-		/// タスクを開始します。
-		/// </summary>
+		/// <summary>タスクを開始します。</summary>
 		public void setup()
 		{
 			int length = tasks.Count;
@@ -33,9 +27,7 @@ namespace Sample1_11.core
 			}
 		}
 
-		/// <summary>
-		/// 1フレーム分の更新を行います。
-		/// </summary>
+		/// <summary>1フレーム分の更新を行います。</summary>
 		public void update()
 		{
 			int length = tasks.Count;
@@ -45,9 +37,7 @@ namespace Sample1_11.core
 			}
 		}
 
-		/// <summary>
-		/// 1フレーム分の描画を行います。
-		/// </summary>
+		/// <summary>1フレーム分の描画を行います。</summary>
 		/// <param name="graphics">グラフィック データ。</param>
 		public void draw(Graphics graphics)
 		{
