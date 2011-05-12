@@ -29,40 +29,37 @@ namespace Sample1_15.state.scene
 		/// <summary>コンストラクタ。</summary>
 		private ScenePlay()
 		{
-			mgrTask.tasks.AddRange(new ITask[] { player, mgrEnemy });
+			mgrTask.tasks.AddRange(new ITask[] { mgrEnemy, player });
 		}
 
 		/// <summary>
 		/// <para>状態が開始された時に呼び出されます。</para>
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public void setup(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public void setup(IEntityAccessor accessor)
 		{
 			player.nextState = StatePlayer.instance;
 			Score.instance.drawNowScore = true;
-			entity.resetCounter();
+			accessor.counter = 0;
 		}
 
 		/// <summary>1フレーム分の更新処理を実行します。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public void update(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public void update(IEntityAccessor accessor)
 		{
 			mgrTask.update();
-			createEnemy(entity);
+			createEnemy(accessor);
 			if (mgrEnemy.hitTest(player) && !player.damage(1))
 			{
-				entity.nextState = SceneTitle.instance;
+				accessor.entity.nextState = SceneTitle.instance;
 			}
 		}
 
 		/// <summary>1フレーム分の描画処理を実行します。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
 		/// <param name="graphics">グラフィック データ。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public void draw(Entity entity, Graphics graphics, object accessor)
+		public void draw(IEntityAccessor accessor, Graphics graphics)
 		{
 			mgrTask.draw(graphics);
 		}
@@ -71,9 +68,8 @@ namespace Sample1_15.state.scene
 		/// <para>状態が開始された時に呼び出されます。</para>
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public void teardown(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public void teardown(IEntityAccessor accessor)
 		{
 			mgrTask.reset();
 			Score.instance.reset();
@@ -82,10 +78,10 @@ namespace Sample1_15.state.scene
 		/// <summary>
 		/// 敵機を作成します。
 		/// </summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		private void createEnemy(Entity entity)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		private void createEnemy(IEntityAccessor accessor)
 		{
-			int counter = entity.counter;
+			int counter = accessor.counter;
 			if (counter % (int)MathHelper.Max(60 - counter * 0.01f, 1) == 0)
 			{
 				mgrEnemy.create(counter * 0.001f);

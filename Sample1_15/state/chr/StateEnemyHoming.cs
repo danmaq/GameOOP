@@ -25,26 +25,16 @@ namespace Sample1_15.state.chr
 		/// <summary>
 		/// 1フレーム分の更新を行う時に呼び出されます。
 		/// </summary>
-		/// <param name="entity">対象の敵機。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public override void update(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public override void update(IEntityAccessor accessor)
 		{
-			if (entity.counter >= HOMING_LIMIT)
+			if (accessor.counter >= HOMING_LIMIT)
 			{
-				entity.nextState = StateEnemyStraight.homing;
+				accessor.entity.nextState = StateEnemyStraight.homing;
 			}
-			initVelocity(entity, ((Character)entity).velocity.Length());
-			base.update(entity, accessor);
-		}
-
-		/// <summary>
-		/// <para>状態が開始された時に呼び出されます。</para>
-		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
-		/// </summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public override void teardown(Entity entity, object accessor)
-		{
+			Character.CharacterAccessor chr = (Character.CharacterAccessor)accessor;
+			initVelocity(chr, chr.velocity.Length());
+			base.update(accessor);
 		}
 	}
 }

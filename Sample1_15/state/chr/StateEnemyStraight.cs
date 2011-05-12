@@ -1,6 +1,4 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Sample1_15.task.entity;
-using Sample1_15.task.entity.chr;
 
 namespace Sample1_15.state.chr
 {
@@ -21,16 +19,6 @@ namespace Sample1_15.state.chr
 		/// <param name="color">乗算色。</param>
 		private StateEnemyStraight(Color color)
 			: base(50, color)
-		{
-		}
-
-		/// <summary>
-		/// <para>状態が開始された時に呼び出されます。</para>
-		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
-		/// </summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public override void teardown(Entity entity, object accessor)
 		{
 		}
 	}

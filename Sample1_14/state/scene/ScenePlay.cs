@@ -28,7 +28,7 @@ namespace Sample1_14.state.scene
 		/// <summary>コンストラクタ。</summary>
 		private ScenePlay()
 		{
-			mgrTask.tasks.AddRange(new ITask[] { player, mgrEnemy });
+			mgrTask.tasks.AddRange(new ITask[] { mgrEnemy, player });
 		}
 
 		/// <summary>

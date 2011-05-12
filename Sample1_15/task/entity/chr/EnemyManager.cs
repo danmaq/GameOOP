@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using Sample1_15.state.chr;
 
 namespace Sample1_15.task.entity.chr
@@ -76,7 +75,7 @@ namespace Sample1_15.task.entity.chr
 				chr = new Character();
 				tasks.Add(chr);
 			}
-			chr.velocity = Vector2.UnitX * speed;
+			chr.firstVelocity = speed;
 			chr.nextState = state;
 		}
 

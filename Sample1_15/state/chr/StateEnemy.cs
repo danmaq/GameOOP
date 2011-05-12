@@ -38,51 +38,48 @@ namespace Sample1_15.state.chr
 		/// <para>状態が開始された時に呼び出されます。</para>
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public override void setup(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public override void setup(IEntityAccessor accessor)
 		{
-			Character chr = (Character)entity;
-			Character.Accessor writer = (Character.Accessor)accessor;
-			chr.resetCounter();
-			writer.size = SIZE;
+			Character.CharacterAccessor chr = (Character.CharacterAccessor)accessor;
+			chr.counter = 0;
+			chr.size = SIZE;
 			chr.color = color;
-			if (!chr.contains)
+			if (!chr.entity.contains)
 			{
-				start(entity);
+				start(chr);
 			}
 		}
 
 		/// <summary>ダメージを与えます。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
 		/// <param name="value">ダメージ値(負数で回復)。</param>
 		/// <returns>続行可能な場合、true。</returns>
-		public override bool damage(Character entity, int value)
+		public override bool damage(Character.CharacterAccessor accessor, int value)
 		{
-			entity.reset();
+			accessor.entity.reset();
 			return true;
 		}
 
 		/// <summary>敵機の移動速度と方角を初期化します。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
 		/// <param name="speed">速度。</param>
-		protected virtual void initVelocity(Entity entity, float speed)
+		protected virtual void initVelocity(Character.CharacterAccessor accessor, float speed)
 		{
-			Character chr = (Character)entity;
 			Character player = ScenePlay.instance.player;
-			Vector2 v = player.position - chr.position;
+			Vector2 v = player.position - accessor.position;
 			if (v == Vector2.Zero)
 			{
 				// 長さが0だと単位ベクトル計算時にNaNが出るため対策
 				v = Vector2.UnitX;
 			}
 			v.Normalize();
-			chr.velocity = v * speed;
+			accessor.velocity = v * speed;
 		}
 
 		/// <summary>休眠している敵機を起動します。。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		private void start(Entity entity)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		private void start(Character.CharacterAccessor accessor)
 		{
 			float aroundHalf = Game1.SCREEN.Width + Game1.SCREEN.Height;
 			float aroundHalf_plusQ = Game1.SCREEN.Width * 2 + Game1.SCREEN.Height;
@@ -100,9 +97,8 @@ namespace Sample1_15.state.chr
 				pos.X = p < aroundHalf ? 0 : Game1.SCREEN.Width - 1;
 				pos.Y = p % Game1.SCREEN.Height;
 			}
-			Character chr = (Character)entity;
-			chr.position = pos;
-			initVelocity(entity, chr.velocity.Length() + random.Next(1, 3));
+			accessor.position = pos;
+			initVelocity(accessor, accessor.entity.firstVelocity + random.Next(1, 3));
 		}
 	}
 }

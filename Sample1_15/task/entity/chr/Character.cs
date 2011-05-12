@@ -6,22 +6,29 @@ namespace Sample1_15.task.entity.chr
 {
 
 	/// <summary>汎用キャラクタ。</summary>
-	class Character
+	sealed class Character
 		: Entity
 	{
 
 		/// <summary>汎用キャラクタへのアクセサ クラス。</summary>
-		public sealed class Accessor
+		public sealed class CharacterAccessor
+			: Entity.EntityAccessor
 		{
-
-			/// <summary>本体オブジェクト。</summary>
-			private readonly Character entity;
 
 			/// <summary>コンストラクタ。</summary>
 			/// <param name="entity">本体オブジェクト。</param>
-			internal Accessor(Character entity)
+			internal CharacterAccessor(Character entity)
+				: base(entity)
 			{
-				this.entity = entity;
+			}
+
+			/// <summary>実体オブジェクト。</summary>
+			public new Character entity
+			{
+				get
+				{
+					return (Character)base.entity;
+				}
 			}
 
 			/// <summary>判定の大きさ。</summary>
@@ -37,7 +44,7 @@ namespace Sample1_15.task.entity.chr
 				}
 			}
 
-			/// <summary>判定の大きさ。</summary>
+			/// <summary>現在座標。</summary>
 			public Vector2 position
 			{
 				get
@@ -50,7 +57,7 @@ namespace Sample1_15.task.entity.chr
 				}
 			}
 
-			/// <summary>判定の大きさ。</summary>
+			/// <summary>移動速度と方角。</summary>
 			public Vector2 velocity
 			{
 				get
@@ -77,8 +84,8 @@ namespace Sample1_15.task.entity.chr
 			}
 		}
 
-		/// <summary>汎用キャラクタへのアクセサ クラス。</summary>
-		protected Accessor m_accessor;
+		/// <summary>初期速度。</summary>
+		public float firstVelocity;
 
 		/// <summary>判定の大きさ。</summary>
 		public float size
@@ -95,21 +102,28 @@ namespace Sample1_15.task.entity.chr
 		}
 
 		/// <summary>移動速度と方角。</summary>
-		internal Vector2 velocity;
+		public Vector2 velocity
+		{
+			get;
+			private set;
+		}
 
-		/// <summary>色。</summary>
-		internal Color color;
+		/// <summary>乗算色。</summary>
+		public Color color
+		{
+			get;
+			private set;
+		}
 
 		/// <summary>コンストラクタ。</summary>
 		internal Character()
 			: base(null)
 		{
-			m_accessor = new Accessor(this);
 			reset();
 		}
 
 		/// <summary>画面内に収まっているかどうか。</summary>
-		internal bool contains
+		public bool contains
 		{
 			get
 			{
@@ -122,6 +136,7 @@ namespace Sample1_15.task.entity.chr
 		{
 			position = -Vector2.One;
 			velocity = Vector2.Zero;
+			firstVelocity = 0f;
 			base.reset();
 		}
 
@@ -130,7 +145,7 @@ namespace Sample1_15.task.entity.chr
 		/// </summary>
 		/// <param name="expr">対象キャラクタ。</param>
 		/// <returns>接触した場合、true。</returns>
-		internal bool hitTest(Character expr)
+		public bool hitTest(Character expr)
 		{
 			float hitarea = expr.size * 0.5f + size * 0.5f;
 			bool hit = ((hitarea * hitarea) > Vector2.DistanceSquared(position, expr.position));
@@ -140,15 +155,22 @@ namespace Sample1_15.task.entity.chr
 		/// <summary>ダメージを与えます。</summary>
 		/// <param name="value">ダメージ値(負数で回復)。</param>
 		/// <returns>続行可能な場合、true。</returns>
-		internal bool damage(int value)
+		public bool damage(int value)
 		{
 			bool resullt = true;
 			StateCharacter state = currentState as StateCharacter;
 			if (state != null)
 			{
-				resullt = state.damage(this, value);
+				resullt = state.damage((CharacterAccessor)accessor, value);
 			}
 			return resullt;
+		}
+
+		/// <summary>Stateパターンにおける実体へのアクセサを生成します。</summary>
+		/// <returns>Stateパターンにおける実体へのアクセサ。</returns>
+		protected override IEntityAccessor createAccessor()
+		{
+			return new CharacterAccessor(this);
 		}
 	}
 }

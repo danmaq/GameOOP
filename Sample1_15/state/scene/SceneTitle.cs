@@ -26,17 +26,15 @@ namespace Sample1_15.state.scene
 		/// <para>状態が開始された時に呼び出されます。</para>
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public void setup(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public void setup(IEntityAccessor accessor)
 		{
 			Score.instance.drawNowScore = false;
 		}
 
 		/// <summary>1フレーム分の更新処理を実行します。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public void update(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public void update(IEntityAccessor accessor)
 		{
 			KeyboardState keyState = KeyStatus.instance.keyboardState;
 			IState nextState = null;
@@ -49,14 +47,13 @@ namespace Sample1_15.state.scene
 				// ゲーム開始
 				nextState = ScenePlay.instance;
 			}
-			entity.nextState = nextState;
+			accessor.entity.nextState = nextState;
 		}
 
 		/// <summary>1フレーム分の描画処理を実行します。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
 		/// <param name="graphics">グラフィック データ。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public void draw(Entity entity, Graphics graphics, object accessor)
+		public void draw(IEntityAccessor accessor, Graphics graphics)
 		{
 			graphics.spriteBatch.DrawString(
 				graphics.spriteFont, "SAMPLE 1", new Vector2(200, 100),
@@ -69,9 +66,8 @@ namespace Sample1_15.state.scene
 		/// <para>状態が開始された時に呼び出されます。</para>
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public void teardown(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public void teardown(IEntityAccessor accessor)
 		{
 		}
 	}

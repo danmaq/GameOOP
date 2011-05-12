@@ -32,7 +32,7 @@ namespace Sample1_14
 		{
 			new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
-			mgrTask.tasks.AddRange(new ITask[] { KeyStatus.instance, Score.instance, mgrScene });
+			mgrTask.tasks.AddRange(new ITask[] { KeyStatus.instance, mgrScene, Score.instance });
 		}
 
 		/// <summary>

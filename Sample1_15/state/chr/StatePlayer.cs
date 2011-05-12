@@ -74,66 +74,50 @@ namespace Sample1_15.state.chr
 		/// <para>状態が開始された時に呼び出されます。</para>
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public override void setup(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public override void setup(IEntityAccessor accessor)
 		{
-			Character chr = (Character)entity;
-			Character.Accessor writer = (Character.Accessor)accessor;
+			Character.CharacterAccessor chr = (Character.CharacterAccessor)accessor;
 			chr.color = Color.White;
-			writer.size = SIZE;
-			writer.position = defaultPosition;
+			chr.size = SIZE;
+			chr.position = defaultPosition;
 			amount = DEFAULT_AMOUNT;
 		}
 
 		/// <summary>1フレーム分の更新処理を実行します。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public override void update(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public override void update(IEntityAccessor accessor)
 		{
-			Character chr = (Character)entity;
-			Character.Accessor writer = (Character.Accessor)accessor;
+			Character.CharacterAccessor chr = (Character.CharacterAccessor)accessor;
 			chr.velocity = createVelocity();
 			Vector2 prev = chr.position;
-			base.update(entity, accessor);
-			if (!chr.contains)
+			base.update(accessor);
+			if (!chr.entity.contains)
 			{
-				writer.position = prev;
+				chr.position = prev;
 				chr.velocity = Vector2.Zero;
 			}
 		}
 
 		/// <summary>1フレーム分の描画処理を実行します。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
 		/// <param name="graphics">グラフィック データ。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public override void draw(Entity entity, Graphics graphics, object accessor)
+		public override void draw(IEntityAccessor accessor, Graphics graphics)
 		{
-			Character chr = (Character)entity;
+			base.draw(accessor, graphics);
 			graphics.spriteBatch.DrawString(graphics.spriteFont,
 				"PLAYER: " + m_amountString, new Vector2(600, 560), Color.Black);
-			base.draw(entity, graphics, accessor);
-		}
-
-		/// <summary>
-		/// <para>状態が開始された時に呼び出されます。</para>
-		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
-		/// </summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public override void teardown(Entity entity, object accessor)
-		{
 		}
 
 		/// <summary>ダメージを与えます。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
 		/// <param name="value">ダメージ値(負数で回復)。</param>
 		/// <returns>続行可能な場合、true。</returns>
-		public override bool damage(Character entity, int value)
+		public override bool damage(Character.CharacterAccessor accessor, int value)
 		{
 			if (value > 0)
 			{
-				entity.position = defaultPosition;
+				accessor.position = defaultPosition;
 			}
 			amount -= value;
 			return amount >= 0;

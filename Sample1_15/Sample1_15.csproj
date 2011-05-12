@@ -94,7 +94,7 @@
     <Compile Include="state\chr\StatePlayer.cs" />
     <Compile Include="task\entity\chr\Character.cs" />
     <Compile Include="task\entity\chr\EnemyManager.cs" />
-    <Compile Include="task\entity\EntityAccessor.cs" />
+    <Compile Include="task\entity\IEntityAccessor.cs" />
     <Compile Include="task\entity\score\IScore.cs" />
     <Compile Include="task\KeyStatus.cs" />
     <Compile Include="task\entity\Entity.cs" />

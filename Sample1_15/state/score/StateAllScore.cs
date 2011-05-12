@@ -24,38 +24,34 @@ namespace Sample1_15.state.score
 		/// <para>状態が開始された時に呼び出されます。</para>
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public void setup(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public void setup(IEntityAccessor accessor)
 		{
 		}
 
 		/// <summary>1フレーム分の更新処理を実行します。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public void update(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public void update(IEntityAccessor accessor)
 		{
 		}
 
 		/// <summary>1フレーム分の描画処理を実行します。</summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
 		/// <param name="graphics">グラフィック データ。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public void draw(Entity entity, Graphics graphics, object accessor)
+		public void draw(IEntityAccessor accessor, Graphics graphics)
 		{
-			Score score = (Score)entity;
+			Score score = (Score)accessor.entity;
 			graphics.spriteBatch.DrawString(graphics.spriteFont,
 				"SCORE: " + score.now.ToString(), new Vector2(300, 560), Color.Black);
-			StateHiScoreOnly.instance.draw(entity, graphics, accessor);
+			StateHiScoreOnly.instance.draw(accessor, graphics);
 		}
 
 		/// <summary>
 		/// <para>状態が開始された時に呼び出されます。</para>
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
-		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
-		public void teardown(Entity entity, object accessor)
+		/// <param name="accessor">この状態を適用されたオブジェクトへのアクセサ。</param>
+		public void teardown(IEntityAccessor accessor)
 		{
 		}
 	}

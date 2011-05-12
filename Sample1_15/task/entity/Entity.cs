@@ -9,6 +9,39 @@ namespace Sample1_15.task.entity
 		: ITask
 	{
 
+		/// <summary>Stateパターンにおける実体へのアクセサ。</summary>
+		public class EntityAccessor
+			: IEntityAccessor
+		{
+
+			/// <summary>コンストラクタ。</summary>
+			/// <param name="entity">実体オブジェクト。</param>
+			public EntityAccessor(Entity entity)
+			{
+				this.entity = entity;
+			}
+
+			/// <summary>実体オブジェクト。</summary>
+			public Entity entity
+			{
+				get;
+				private set;
+			}
+
+			/// <summary>汎用カウンタ。</summary>
+			public int counter
+			{
+				get
+				{
+					return entity.counter;
+				}
+				set
+				{
+					entity.counter = value;
+				}
+			}
+		}
+
 		/// <summary>次に変化する状態。</summary>
 		public IState nextState;
 
@@ -16,6 +49,7 @@ namespace Sample1_15.task.entity
 		/// <param name="firstState">初期の状態。</param>
 		public Entity(IState firstState)
 		{
+			accessor = createAccessor();
 			currentState = StateEmpty.instance;
 			nextState = firstState;
 		}
@@ -35,19 +69,17 @@ namespace Sample1_15.task.entity
 			private set;
 		}
 
-		/// <summary>隠蔽されたメンバへのアクセサ。</summary>
-		protected virtual object accessor
+		/// <summary>この状態を適用されたオブジェクトへのアクセサ。</summary>
+		protected IEntityAccessor accessor
 		{
-			get
-			{
-				return null;
-			}
+			get;
+			private set;
 		}
 
 		/// <summary>1フレーム分の更新を行います。</summary>
 		public virtual void update()
 		{
-			currentState.update(this, accessor);
+			currentState.update(accessor);
 			commitNextState();
 			counter++;
 		}
@@ -56,7 +88,7 @@ namespace Sample1_15.task.entity
 		/// <param name="graphics">グラフィック データ。</param>
 		public virtual void draw(Graphics graphics)
 		{
-			currentState.draw(this, graphics, accessor);
+			currentState.draw(accessor, graphics);
 		}
 
 		/// <summary>オブジェクトをリセットします。</summary>
@@ -64,13 +96,14 @@ namespace Sample1_15.task.entity
 		{
 			nextState = StateEmpty.instance;
 			commitNextState();
-			resetCounter();
+			counter = 0;
 		}
 
-		/// <summary>汎用カウンタをリセットします。</summary>
-		public void resetCounter()
+		/// <summary>Stateパターンにおける実体へのアクセサを生成します。</summary>
+		/// <returns>Stateパターンにおける実体へのアクセサ。</returns>
+		protected virtual IEntityAccessor createAccessor()
 		{
-			counter = 0;
+			return new EntityAccessor(this);
 		}
 
 		/// <summary>予約していた次の状態を強制的に確定します。</summary>
@@ -81,8 +114,8 @@ namespace Sample1_15.task.entity
 				IState prev = currentState;
 				currentState = nextState;
 				nextState = null;
-				prev.teardown(this, accessor);
-				currentState.setup(this, accessor);
+				prev.teardown(accessor);
+				currentState.setup(accessor);
 			}
 		}
 	}
