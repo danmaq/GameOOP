@@ -39,11 +39,13 @@ namespace Sample1_15.state.chr
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		public override void setup(Entity entity)
+		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
+		public override void setup(Entity entity, object accessor)
 		{
 			Character chr = (Character)entity;
+			Character.Accessor writer = (Character.Accessor)accessor;
 			chr.resetCounter();
-			chr.size = SIZE;
+			writer.size = SIZE;
 			chr.color = color;
 			if (!chr.contains)
 			{

@@ -4,15 +4,95 @@ using Sample1_15.state.chr;
 
 namespace Sample1_15.task.entity.chr
 {
+
+	/// <summary>汎用キャラクタ。</summary>
 	class Character
 		: Entity
 	{
 
+		/// <summary>汎用キャラクタへのアクセサ クラス。</summary>
+		public sealed class Accessor
+		{
+
+			/// <summary>本体オブジェクト。</summary>
+			private readonly Character entity;
+
+			/// <summary>コンストラクタ。</summary>
+			/// <param name="entity">本体オブジェクト。</param>
+			internal Accessor(Character entity)
+			{
+				this.entity = entity;
+			}
+
+			/// <summary>判定の大きさ。</summary>
+			public float size
+			{
+				get
+				{
+					return entity.size;
+				}
+				set
+				{
+					entity.size = value;
+				}
+			}
+
+			/// <summary>判定の大きさ。</summary>
+			public Vector2 position
+			{
+				get
+				{
+					return entity.position;
+				}
+				set
+				{
+					entity.position = value;
+				}
+			}
+
+			/// <summary>判定の大きさ。</summary>
+			public Vector2 velocity
+			{
+				get
+				{
+					return entity.velocity;
+				}
+				set
+				{
+					entity.velocity = value;
+				}
+			}
+
+			/// <summary>乗算色。</summary>
+			public Color color
+			{
+				get
+				{
+					return entity.color;
+				}
+				set
+				{
+					entity.color = value;
+				}
+			}
+		}
+
+		/// <summary>汎用キャラクタへのアクセサ クラス。</summary>
+		protected Accessor m_accessor;
+
 		/// <summary>判定の大きさ。</summary>
-		internal float size;
+		public float size
+		{
+			get;
+			private set;
+		}
 
 		/// <summary>現在座標。</summary>
-		internal Vector2 position;
+		public Vector2 position
+		{
+			get;
+			private set;
+		}
 
 		/// <summary>移動速度と方角。</summary>
 		internal Vector2 velocity;
@@ -24,6 +104,7 @@ namespace Sample1_15.task.entity.chr
 		internal Character()
 			: base(null)
 		{
+			m_accessor = new Accessor(this);
 			reset();
 		}
 

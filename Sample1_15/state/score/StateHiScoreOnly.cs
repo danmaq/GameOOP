@@ -25,20 +25,23 @@ namespace Sample1_15.state.score
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		public void setup(Entity entity)
+		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
+		public void setup(Entity entity, object accessor)
 		{
 		}
 
 		/// <summary>1フレーム分の更新処理を実行します。</summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		public void update(Entity entity)
+		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
+		public void update(Entity entity, object accessor)
 		{
 		}
 
 		/// <summary>1フレーム分の描画処理を実行します。</summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
 		/// <param name="graphics">グラフィック データ。</param>
-		public void draw(Entity entity, Graphics graphics)
+		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
+		public void draw(Entity entity, Graphics graphics, object accessor)
 		{
 			Score score = (Score)entity;
 			graphics.spriteBatch.DrawString(graphics.spriteFont,
@@ -50,7 +53,8 @@ namespace Sample1_15.state.score
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		public void teardown(Entity entity)
+		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
+		public void teardown(Entity entity, object accessor)
 		{
 		}
 	}

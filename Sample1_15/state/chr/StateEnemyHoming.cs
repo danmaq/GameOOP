@@ -26,14 +26,15 @@ namespace Sample1_15.state.chr
 		/// 1フレーム分の更新を行う時に呼び出されます。
 		/// </summary>
 		/// <param name="entity">対象の敵機。</param>
-		public override void update(Entity entity)
+		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
+		public override void update(Entity entity, object accessor)
 		{
 			if (entity.counter >= HOMING_LIMIT)
 			{
 				entity.nextState = StateEnemyStraight.homing;
 			}
 			initVelocity(entity, ((Character)entity).velocity.Length());
-			base.update(entity);
+			base.update(entity, accessor);
 		}
 
 		/// <summary>
@@ -41,7 +42,8 @@ namespace Sample1_15.state.chr
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		public override void teardown(Entity entity)
+		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
+		public override void teardown(Entity entity, object accessor)
 		{
 		}
 	}

@@ -75,26 +75,30 @@ namespace Sample1_15.state.chr
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		public override void setup(Entity entity)
+		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
+		public override void setup(Entity entity, object accessor)
 		{
 			Character chr = (Character)entity;
+			Character.Accessor writer = (Character.Accessor)accessor;
 			chr.color = Color.White;
-			chr.size = SIZE;
-			chr.position = defaultPosition;
+			writer.size = SIZE;
+			writer.position = defaultPosition;
 			amount = DEFAULT_AMOUNT;
 		}
 
 		/// <summary>1フレーム分の更新処理を実行します。</summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		public override void update(Entity entity)
+		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
+		public override void update(Entity entity, object accessor)
 		{
 			Character chr = (Character)entity;
+			Character.Accessor writer = (Character.Accessor)accessor;
 			chr.velocity = createVelocity();
 			Vector2 prev = chr.position;
-			base.update(entity);
+			base.update(entity, accessor);
 			if (!chr.contains)
 			{
-				chr.position = prev;
+				writer.position = prev;
 				chr.velocity = Vector2.Zero;
 			}
 		}
@@ -102,12 +106,13 @@ namespace Sample1_15.state.chr
 		/// <summary>1フレーム分の描画処理を実行します。</summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
 		/// <param name="graphics">グラフィック データ。</param>
-		public override void draw(Entity entity, Graphics graphics)
+		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
+		public override void draw(Entity entity, Graphics graphics, object accessor)
 		{
 			Character chr = (Character)entity;
 			graphics.spriteBatch.DrawString(graphics.spriteFont,
 				"PLAYER: " + m_amountString, new Vector2(600, 560), Color.Black);
-			base.draw(entity, graphics);
+			base.draw(entity, graphics, accessor);
 		}
 
 		/// <summary>
@@ -115,7 +120,8 @@ namespace Sample1_15.state.chr
 		/// <para>このメソッドは、遷移元の<c>teardown</c>よりも後に呼び出されます。</para>
 		/// </summary>
 		/// <param name="entity">この状態を適用されたオブジェクト。</param>
-		public override void teardown(Entity entity)
+		/// <param name="accessor">隠蔽されたメンバへのアクセサ。</param>
+		public override void teardown(Entity entity, object accessor)
 		{
 		}
 

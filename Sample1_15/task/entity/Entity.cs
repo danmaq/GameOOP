@@ -10,11 +10,11 @@ namespace Sample1_15.task.entity
 	{
 
 		/// <summary>次に変化する状態。</summary>
-		internal IState nextState;
+		public IState nextState;
 
 		/// <summary>コンストラクタ。</summary>
 		/// <param name="firstState">初期の状態。</param>
-		internal Entity(IState firstState)
+		public Entity(IState firstState)
 		{
 			currentState = StateEmpty.instance;
 			nextState = firstState;
@@ -22,23 +22,32 @@ namespace Sample1_15.task.entity
 
 		/// <summary>現在の状態を取得します。</summary>
 		/// <value>現在の状態。初期値は<c>CState.empty</c>。</value>
-		internal IState currentState
+		public IState currentState
 		{
 			get;
 			private set;
 		}
 
 		/// <summary>汎用カウンタ。</summary>
-		internal int counter
+		public int counter
 		{
 			get;
 			private set;
 		}
 
+		/// <summary>隠蔽されたメンバへのアクセサ。</summary>
+		protected virtual object accessor
+		{
+			get
+			{
+				return null;
+			}
+		}
+
 		/// <summary>1フレーム分の更新を行います。</summary>
 		public virtual void update()
 		{
-			currentState.update(this);
+			currentState.update(this, accessor);
 			commitNextState();
 			counter++;
 		}
@@ -47,7 +56,7 @@ namespace Sample1_15.task.entity
 		/// <param name="graphics">グラフィック データ。</param>
 		public virtual void draw(Graphics graphics)
 		{
-			currentState.draw(this, graphics);
+			currentState.draw(this, graphics, accessor);
 		}
 
 		/// <summary>オブジェクトをリセットします。</summary>
@@ -59,7 +68,7 @@ namespace Sample1_15.task.entity
 		}
 
 		/// <summary>汎用カウンタをリセットします。</summary>
-		internal void resetCounter()
+		public void resetCounter()
 		{
 			counter = 0;
 		}
@@ -72,8 +81,8 @@ namespace Sample1_15.task.entity
 				IState prev = currentState;
 				currentState = nextState;
 				nextState = null;
-				prev.teardown(this);
-				currentState.setup(this);
+				prev.teardown(this, accessor);
+				currentState.setup(this, accessor);
 			}
 		}
 	}

@@ -4,6 +4,8 @@ using Sample1_14.state.chr;
 
 namespace Sample1_14.task.entity.chr
 {
+
+	/// <summary>汎用キャラクタ。</summary>
 	class Character
 		: Entity
 	{
