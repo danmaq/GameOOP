@@ -3,6 +3,7 @@ using Sample1_14.task.entity;
 
 namespace Sample1_14.state
 {
+
 	/// <summary>状態表現のためのインターフェイス。</summary>
 	interface IState
 	{
